@@ -1,1 +1,19 @@
-*.logSampleTesting/*.pd
+# Ignore everything
+*
+
+# Track Python files
+!*.py
+
+# Track .gitignore itself
+!.gitignore
+
+# Optionally, track any other essential files (like config files, or a README)
+!README.md
+!config.json
+
+# You can also un-ignore specific directories if you have source code inside them
+!/src/
+
+# Ignore common unwanted files
+*.log
+*.pdf
