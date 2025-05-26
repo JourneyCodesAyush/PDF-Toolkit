@@ -1,19 +1,25 @@
-# Ignore everything
+# Ignore everything by default
 *
 
-# Track Python files
+# Un-ignore these directories so their contents can be tracked
+!gui/
+!core/
+!config/
+
+# Un-ignore Python files anywhere (including in root)
 !*.py
 
-# Track .gitignore itself
+# Un-ignore .gitignore and README.md at root
 !.gitignore
-
-# Optionally, track any other essential files (like config files, or a README)
 !README.md
-!config.json
 
-# You can also un-ignore specific directories if you have source code inside them
-!/src/
+# Ignore all log files inside logs folder
+logs/*.log
 
-# Ignore common unwanted files
-*.log
+# Ignore all PDFs anywhere
 *.pdf
+
+# Ignore common unwanted files/folders
+__pycache__/
+*.pyc
+.env/
