@@ -11,7 +11,7 @@ logger = setup_logger(__name__)
 
 def mergePDF_GUI():
     """
-    GUI handler for merging PDFs using core PDF mergePDF function
+    GUI handler for merging PDFs using core mergePDF function
     """
     logger.info("Merge PDF operation started")
 
@@ -22,7 +22,6 @@ def mergePDF_GUI():
             defaultextension="*.pdf",
         )
         if not input_files:
-            print("No file selected")
             messagebox.showinfo(
                 title="No files selected", message="No PDF files selected!"
             )
@@ -45,12 +44,12 @@ def mergePDF_GUI():
 
         result = mergePDF(list(input_files), save_file_path)
 
-        if result["result"] == "success":
-            messagebox.showinfo(title="Success", message=result["message"])
-            logger.info(f"Merging Successful: {result['message']}")
+        if result.success:
+            messagebox.showinfo(title="Success", message=result.message)
+            logger.info(f"Merging Successful: {result.message}")
         else:
             show_message(result)
-            logger.warning(f"Merging returned failure message: {result}")
+            logger.warning(f"Merging returned failure message: {result.message}")
 
     except Exception as exc:
         error_msg = handle_exception(exc, context="Merging PDFs")
