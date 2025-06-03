@@ -1,15 +1,16 @@
 # Showing error to the user
 
 from tkinter import messagebox
+from core.result import Result
 
 
-def show_message(msg: dict):
+def show_message(result: Result):
     """
-    Shows errors to the user via GUI
+    Shows messages to the user via GUI based on the Result object.
     """
-    if msg["error_type"] == "error":
-        messagebox.showerror(title=msg["title"], message=msg["message"])
-    elif msg["error_type"] == "warning":
-        messagebox.showwarning(title=msg["title"], message=msg["message"])
+    if result.error_type == "error":
+        messagebox.showerror(title=result.title, message=result.message)
+    elif result.error_type == "warning":
+        messagebox.showwarning(title=result.title, message=result.message)
     else:
-        messagebox.showinfo(title=msg["title"], message=msg["message"])
+        messagebox.showinfo(title=result.title, message=result.message)
