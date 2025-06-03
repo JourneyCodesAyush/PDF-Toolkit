@@ -1,5 +1,6 @@
 # PDF split GUI
 
+import os
 from tkinter import filedialog, simpledialog, messagebox
 from config.config import setup_logger
 from gui.error_handler_gui import show_message
@@ -47,5 +48,13 @@ def split_pdf_gui():
         return
 
     result = split_pdf(file_path, page_range_input, output_dir)
+    if result.error_type == "info":
+        logger.info(f"{result.message}")
+        if result.data and "files" in result.data:
+            for f in result.data["files"]:
+                logger.info(f"Created: {os.path.join(output_dir,f)}")
+        logger.info(f"Split operation finished with message: {result.message}")
+    else:
+        logger.warning(f"{result.title}: {result.message}")
+
     show_message(result)
-    logger.info(f"Split operation finished with message: {result['message']}")
