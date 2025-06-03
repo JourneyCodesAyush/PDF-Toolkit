@@ -1,6 +1,6 @@
 # Standardized return message from core/ to gui/
 
-from typing import Optional
+from typing import Optional, Dict, Any
 
 
 class Result:
@@ -10,7 +10,7 @@ class Result:
         title: str,
         message: str,
         error_type: Optional[str] = None,
-        data: Optional[str] = None,
+        data: Optional[Dict[str, Any]] = None,
     ):
         """
         Standard result message from core to GUI.
@@ -28,7 +28,7 @@ class Result:
         self.error_type = error_type or ("info" if success else "error")
         self.data = data or {}
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Dict[str, Any]:
         return {
             "success": self.success,
             "title": self.title,
@@ -38,4 +38,5 @@ class Result:
         }
 
     def __repr__(self):
-        return f"<Result {self.error_type.upper()}: {self.title}: {self.message}>"
+        status = "Success" if self.success else "Failure"
+        return f"<Result {status}: {self.error_type.upper()}: {self.title}: {self.message}>"
