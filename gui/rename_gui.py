@@ -53,4 +53,4 @@ def rename_file_gui():
 
     show_message(result)
 
-    logger.info(f"Rename operation finished with message: {result['message']}")
+    logger.info(f"Rename operation finished with message: {result.message}")
