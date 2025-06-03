@@ -2,6 +2,7 @@
 
 from config.config import setup_logger
 import traceback
+from core.result import Result  # Import the Result class
 
 logger = setup_logger(__name__)
 
@@ -23,17 +24,18 @@ def log_error_with_traceback(exc: Exception, context: str = ""):
     logger.error(log_message)
 
 
-def create_msg_object(error_type: str, title: str, message: str) -> dict:
+def create_msg_object(error_type: str, title: str, message: str) -> Result:
     """
-    Creates a dictionary for GUI to consume and display the error or warning
+    Creates a Result Object for the GUI to consume and display the error or warning.
     """
 
-    return {"error_type": error_type, "title": title, "message": message}
+    return Result(success=False, error_type=error_type, title=title, message=message)
+    # return {"error_type": error_type, "title": title, "message": message}
 
 
-def handle_exception(exc: Exception, context: str = "") -> dict:
+def handle_exception(exc: Exception, context: str = "") -> Result:
     """
-    Handles exceptions by logging with traceback and returning an error message object for the GUI
+    Handles exceptions by logging with traceback and returning a Result object for the GUI
     """
 
     log_error_with_traceback(exc, context)
