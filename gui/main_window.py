@@ -1,13 +1,13 @@
 # GUI window code
 
-import os
-from tkinter import Tk, RAISED, Label, Button
-from config.config import setup_logger
+from tkinter import Tk, RAISED, Label, Button, Frame
 from gui.merge_gui import mergePDF_GUI
 from gui.rename_gui import rename_file_gui
 from gui.split_gui import split_pdf_gui
 
-logger = setup_logger(__name__)
+# from config.config import setup_logger
+
+# logger = setup_logger(__name__)
 
 
 def main():
@@ -15,31 +15,68 @@ def main():
     Main window of the application
     """
     root = Tk()
-    root.title(os.getcwd())
+    for i in range(3):
+        root.grid_columnconfigure(i, weight=1)
+    root.grid_rowconfigure(5, weight=1)  # push footer down
+    root.title("PDF Toolkit v1.0")
     root.geometry("544x344")
     root.resizable(width=False, height=False)
+    root.iconbitmap("assets/PDF_file.ico")
 
-    Label(root, text="Want to merge some PDFs?", font="helvetica").grid(
-        row=0, column=1, padx=5, pady=5
+    title_font = ("Helvetica", 16)
+    font_style = ("Helvetica", 12, "bold")
+    button_font = ("Helvetica", 10)
+
+    Label(root, text="PDF Toolkit", font=title_font).grid(
+        row=0, column=0, columnspan=3, pady=15
     )
 
-    widget = Button(root, text="Select files here", relief=RAISED, command=mergePDF_GUI)
-    widget.grid(row=0, column=2)
-
-    Label(root, text="Want to rename a PDF?", font="helvetica").grid(
+    Label(root, text="Want to merge some PDFs?", font=font_style).grid(
         row=2, column=1, padx=5, pady=5
     )
-    widget = Button(
-        root, text="Select file here", relief=RAISED, command=rename_file_gui
-    )
-    widget.grid(row=2, column=2)
 
-    Label(root, text="Want to split a PDF?", font="helvetica").grid(
+    merge_pdf = Button(
+        root,
+        text="Choose PDFs to merge",
+        font=button_font,
+        relief=RAISED,
+        command=mergePDF_GUI,
+    )
+    merge_pdf.grid(row=2, column=2, padx=10, pady=10)
+
+    Label(root, text="Want to rename a PDF?", font=font_style).grid(
+        row=3, column=1, padx=5, pady=5
+    )
+    rename_pdf = Button(
+        root,
+        text="Select PDF to rename",
+        font=button_font,
+        relief=RAISED,
+        command=rename_file_gui,
+    )
+    rename_pdf.grid(row=3, column=2, padx=10, pady=10)
+
+    Label(root, text="Want to split a PDF?", font=font_style).grid(
         row=4, column=1, padx=5, pady=5
     )
-    widget = Button(root, text="Select file here", relief=RAISED, command=split_pdf_gui)
-    widget.grid(row=4, column=2)
+    split_pdf = Button(
+        root,
+        text="Choose PDF to split",
+        font=button_font,
+        relief=RAISED,
+        command=split_pdf_gui,
+    )
+    split_pdf.grid(row=4, column=2, padx=10, pady=10)
 
+    footer_frame = Frame(root, bd=1, relief="sunken")
+    footer_frame.grid(row=6, column=0, columnspan=3, pady=(30, 0), sticky="we")
+
+    Label(footer_frame, text="Version 1.0", font="helvetica 8").pack(
+        side="right", padx=10
+    )
+    Label(footer_frame, text="© 2025 JourneyCodesAyush", font="Helvetica 8").pack(
+        side="left", padx=10
+    )
     root.mainloop()
 
 
