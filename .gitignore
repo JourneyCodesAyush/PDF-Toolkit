@@ -1,25 +1,31 @@
-# Ignore everything by default
-*
+# Bytecode and cache
+__pycache__/
+*.pyc
 
-# Un-ignore these directories so their contents can be tracked
-!gui/
-!core/
-!config/
+# Virtual environment or environment config
+.env/
+.venv/
 
-# Un-ignore Python files anywhere (including in root)
-!*.py
+# Log files
+logs/
+*.log
 
-# Un-ignore .gitignore and README.md at root
+# PDF files (anywhere)
+*.pdf
+
+# Text files
+*.txt
+
+# Ignore assets folder if not needed in repo (remove 'assets/' if you want to track it)
+assets/
+
+# Track these files at root
 !.gitignore
 !README.md
 
-# Ignore all log files inside logs folder
-logs/*.log
-
-# Ignore all PDFs anywhere
-*.pdf
-
-# Ignore common unwanted files/folders
-__pycache__/
-*.pyc
-.env/
+# Do NOT ignore source files
+!*.py
+!core/
+!gui/
+!config/
+!main.py
