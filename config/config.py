@@ -1,5 +1,12 @@
 # Logging and configuration settings
 
+"""
+Logging and configuration settings.
+
+- Sets up basic logging configuration to log INFO and above to a file.
+- Provides `setup_logger` function to create named loggers.
+"""
+
 import logging
 
 LOG_FILE_PATH = "logs/user_activity.log"

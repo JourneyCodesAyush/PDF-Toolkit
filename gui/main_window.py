@@ -12,7 +12,10 @@ from gui.split_gui import split_pdf_gui
 
 def main():
     """
-    Main window of the application
+    Initialize and display the main application window for PDF Toolkit.
+
+    The window provides buttons to access PDF merge, rename, and split functionalities.
+    Sets up the window layout, fonts, and basic UI components.
     """
     root = Tk()
     for i in range(3):

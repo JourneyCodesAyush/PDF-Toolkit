@@ -13,15 +13,20 @@ class Result:
         data: Optional[Dict[str, Any]] = None,
     ):
         """
-        Standard result message from core to GUI.
+        Standardized result object used to return status and messages from core logic to GUI.
 
-        Args:
-            success (bool): Whether the operation was successful.
-            title (str): Title for the message box.
-            message (str): Main text message for the user.
-            error_type (Optional[str]): 'error', 'warning', or 'info' (used by GUI).
-            data (Optional[dict]): Any additional metadata.
+        Attributes:
+            success (bool): Indicates if the operation was successful.
+            title (str): Title to be displayed in the GUI message box.
+            message (str): Informational or error message for the user.
+            error_type (Optional[str]): Message category - 'error', 'warning', or 'info'.
+            data (Optional[Dict[str, Any]]): Additional metadata or context.
+
+        Methods:
+            to_dict(): Converts the result object into a dictionary format.
+            __repr__(): Provides a readable string representation for logging/debugging.
         """
+
         self.success = success
         self.title = title
         self.message = message

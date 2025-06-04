@@ -1,17 +1,20 @@
 # Shared utilities
 
-def parse_page_ranges(page_range_input: str, total_pages: int) -> tuple[list[tuple[int, int]] | None, str | None]:
+
+def parse_page_ranges(
+    page_range_input: str, total_pages: int
+) -> tuple[list[tuple[int, int]] | None, str | None]:
     """
-    Parses a page range input string like "1-3,5,7-9".
+    Parse a string representing page ranges into a list of (start, end) tuples.
 
     Args:
-        page_range_input (str): User input string.
-        total_pages (int): Total number of pages in the PDF.
+        page_range_input (str): Page range string (e.g., "1-3,5,7-9").
+        total_pages (int): Total pages in the PDF to validate ranges.
 
     Returns:
-        (ranges, error): 
-            - ranges: List of (start, end) tuples if successful, else None
-            - error: Error message string if failed, else None
+        tuple[list[tuple[int, int]] | None, str | None]:
+            - List of (start, end) page tuples if parsing is successful, else None.
+            - Error message string if parsing fails, else None.
     """
     page_range_strings = page_range_input.split(",")
     parsed_ranges = []
@@ -25,7 +28,10 @@ def parse_page_ranges(page_range_input: str, total_pages: int) -> tuple[list[tup
             try:
                 start, end = map(int, segment.split("-"))
                 if start > end:
-                    return None, f"Start page {start} cannot be greater than end page {end}"
+                    return (
+                        None,
+                        f"Start page {start} cannot be greater than end page {end}",
+                    )
             except ValueError:
                 return None, f"Invalid range format: '{segment}'"
         else:

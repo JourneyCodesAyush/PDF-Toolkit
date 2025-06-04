@@ -7,16 +7,15 @@ from core.result import Result
 
 def rename_pdf_file(old_path: str, new_directory: str, new_name: str) -> Result:
     """
-    Renames a PDF file and moves it to a new directory
+    Rename a PDF file and move it to a specified directory.
 
     Args:
-        old_path (str): The full path to the original PDF file.
-        new_directory (str): The directory where the renamed file will be saved.
-        new_name (str): The new name for the PDF file.
+        old_path (str): Full path to the original PDF file.
+        new_directory (str): Destination directory to save the renamed file.
+        new_name (str): New file name for the PDF (must end with .pdf).
 
     Returns:
-        Result: A standardized Result object for GUI display.
-
+        Result: Standardized result object indicating success or failure with message.
     """
     try:
         if not old_path.lower().endswith(".pdf"):

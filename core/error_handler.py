@@ -9,7 +9,11 @@ logger = setup_logger(__name__)
 
 def log_error_with_traceback(exc: Exception, context: str = ""):
     """
-    Logs the exception with traceback details using the configured logger
+    Log the provided exception and its traceback with optional context.
+
+    Args:
+        exc (Exception): The exception to log.
+        context (str): Optional context information for where the exception occurred.
     """
 
     context_msg = f"Context: {context}" if context else ""
@@ -26,7 +30,15 @@ def log_error_with_traceback(exc: Exception, context: str = ""):
 
 def create_msg_object(error_type: str, title: str, message: str) -> Result:
     """
-    Creates a Result Object for the GUI to consume and display the error or warning.
+    Create a Result object for GUI consumption representing an error or warning.
+
+    Args:
+        error_type (str): The type of error ('error', 'warning', etc.).
+        title (str): The title for the message box.
+        message (str): The message content to display.
+
+    Returns:
+        Result: A standardized result object for GUI display.
     """
 
     return Result(success=False, error_type=error_type, title=title, message=message)
@@ -35,7 +47,14 @@ def create_msg_object(error_type: str, title: str, message: str) -> Result:
 
 def handle_exception(exc: Exception, context: str = "") -> Result:
     """
-    Handles exceptions by logging with traceback and returning a Result object for the GUI
+    Handle an exception by logging details and returning a GUI-friendly Result object.
+
+    Args:
+        exc (Exception): The exception instance to handle.
+        context (str): Optional context about where the exception occurred.
+
+    Returns:
+        Result: A Result object describing the error or warning for display.
     """
 
     log_error_with_traceback(exc, context)

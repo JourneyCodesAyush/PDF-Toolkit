@@ -11,7 +11,15 @@ logger = setup_logger(__name__)
 
 def mergePDF_GUI():
     """
-    GUI handler for merging PDFs using core mergePDF function
+    GUI handler to merge multiple PDF files into a single PDF.
+
+    Opens file dialogs for user to select multiple PDFs to merge,
+    prompts for output save location, calls the core merge function,
+    and displays success or error messages.
+
+    Returns:
+        None: This function performs GUI interactions and shows messages,
+              no return value is needed.
     """
     logger.info("Merge PDF operation started")
 

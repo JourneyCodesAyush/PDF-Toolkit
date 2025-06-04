@@ -11,6 +11,17 @@ logger = setup_logger(__name__)
 
 
 def rename_file_gui():
+    """
+    GUI handler to rename a PDF file.
+
+    Opens dialogs for the user to select the original PDF, 
+    choose the output directory, and enter a new file name.
+    Calls the core rename function and displays the result.
+
+    Returns:
+        None: This function performs GUI interactions and shows messages,
+              no return value is needed.
+    """
     logger.info("Rename PDF operation started")
 
     try:

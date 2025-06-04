@@ -9,15 +9,16 @@ from core.result import Result
 
 def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
     """
-    Split a PDF file by given page ranges and save output files.
+    Split a PDF file into multiple files based on user-defined page ranges.
 
     Args:
-        file_path (str): Input PDF file path
-        page_range_input (str): User input for pages, e.g. "1-3,4,5-7"
-        output_dir (str): Directory to save split files
+        file_path (str): Path to the input PDF file.
+        page_range_input (str): Page ranges as a string (e.g., "1-3,4,5-7").
+        output_dir (str): Directory to save the resulting split PDF files.
 
     Returns:
-        Result: Standardized result object with status and message for GUI consumption.
+        Result: Standardized Result object containing success status, messages,
+                and metadata (such as list of created files).
     """
     try:
 

@@ -13,7 +13,13 @@ logger = setup_logger(__name__)
 def split_pdf_gui():
     """
     GUI handler to split a PDF based on user-specified page ranges.
-    Invokes file dialogs for input/output and delegates logic to core.
+
+    Opens dialogs for selecting an input PDF file, entering page ranges,
+    and choosing an output directory. Delegates the actual splitting
+    to the core split_pdf function and handles success or error messaging.
+
+    Returns:
+        None: Interacts via GUI dialogs and shows messages; no return value.
     """
 
     logger.info("Split PDF operation started")

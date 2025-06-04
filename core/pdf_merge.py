@@ -7,7 +7,14 @@ from core.result import Result
 
 def mergePDF(input_file_path: list[str], output_file_path: str) -> Result:
     """
-    Takes a list of PDF file paths and merges them into a single PDF saved at output_file_path.
+    Merge multiple PDF files into a single PDF saved at the specified output path.
+
+    Args:
+        input_file_path (list[str]): List of input PDF file paths to merge.
+        output_file_path (str): Output file path for the merged PDF.
+
+    Returns:
+        Result: Standardized result object indicating success or failure with message.
     """
 
     if not input_file_path:
