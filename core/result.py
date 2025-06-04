@@ -33,15 +33,6 @@ class Result:
         self.error_type = error_type or ("info" if success else "error")
         self.data = data or {}
 
-    def to_dict(self) -> Dict[str, Any]:
-        return {
-            "success": self.success,
-            "title": self.title,
-            "message": self.message,
-            "error_type": self.error_type,
-            **self.data,
-        }
-
     def __repr__(self):
         status = "Success" if self.success else "Failure"
         return f"<Result {status}: {self.error_type.upper()}: {self.title}: {self.message}>"
