@@ -74,9 +74,9 @@ def main():
     footer_frame = Frame(root, bd=1, relief="sunken")
     footer_frame.grid(row=6, column=0, columnspan=3, pady=(30, 0), sticky="we")
 
-    Label(footer_frame, text="Version 1.0", font="helvetica 8").pack(
-        side="right", padx=10
-    )
+    # Label(footer_frame, text="Version 1.0", font="helvetica 8").pack(
+    #     side="right", padx=10
+    # )
     Label(footer_frame, text="© 2025 JourneyCodesAyush", font="Helvetica 8").pack(
         side="left", padx=10
     )
