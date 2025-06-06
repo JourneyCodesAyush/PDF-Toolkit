@@ -120,7 +120,7 @@ The app is equipped with built-in logging for user actions and robust error hand
 
 ## 🧪 Screenshots
 
-*(Coming soon!)*
+![App Screenshot](assets/screenshot.png)
 
 ---
 
