@@ -16,9 +16,6 @@ logs/
 # Text files
 *.txt
 
-# Ignore assets folder if not needed in repo (remove 'assets/' if you want to track it)
-assets/
-
 # Track these files at root
 !.gitignore
 !README.md
@@ -29,3 +26,4 @@ assets/
 !gui/
 !config/
 !main.py
+!assets/
