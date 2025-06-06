@@ -21,7 +21,7 @@ def main():
     for i in range(3):
         root.grid_columnconfigure(i, weight=1)
     root.grid_rowconfigure(5, weight=1)  # push footer down
-    root.title("PDF Toolkit v1.0")
+    root.title("PDF Toolkit")
     root.geometry("544x344")
     root.resizable(width=False, height=False)
     root.iconbitmap("assets/PDF_file.ico")
@@ -74,9 +74,9 @@ def main():
     footer_frame = Frame(root, bd=1, relief="sunken")
     footer_frame.grid(row=6, column=0, columnspan=3, pady=(30, 0), sticky="we")
 
-    Label(footer_frame, text="Version 1.0", font="helvetica 8").pack(
-        side="right", padx=10
-    )
+    # Label(footer_frame, text="Version 1.0", font="helvetica 8").pack(
+    #     side="right", padx=10
+    # )
     Label(footer_frame, text="© 2025 JourneyCodesAyush", font="Helvetica 8").pack(
         side="left", padx=10
     )
