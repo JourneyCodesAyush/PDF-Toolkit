@@ -26,46 +26,46 @@ def main():
     root.resizable(width=False, height=False)
     root.iconbitmap("assets/PDF_file.ico")
 
-    title_font = ("Helvetica", 16)
-    font_style = ("Helvetica", 12, "bold")
-    button_font = ("Helvetica", 10)
+    TITLE_FONT = ("Helvetica", 16)
+    FONT_STYLE = ("Helvetica", 12, "bold")
+    BUTTON_FONT = ("Helvetica", 10)
 
-    Label(root, text="PDF Toolkit", font=title_font).grid(
+    Label(root, text="PDF Toolkit", font=TITLE_FONT).grid(
         row=0, column=0, columnspan=3, pady=15
     )
 
-    Label(root, text="Want to merge some PDFs?", font=font_style).grid(
+    Label(root, text="Want to merge some PDFs?", font=FONT_STYLE).grid(
         row=2, column=1, padx=5, pady=5
     )
 
     merge_pdf = Button(
         root,
         text="Choose PDFs to merge",
-        font=button_font,
+        font=BUTTON_FONT,
         relief=RAISED,
         command=mergePDF_GUI,
     )
     merge_pdf.grid(row=2, column=2, padx=10, pady=10)
 
-    Label(root, text="Want to rename a PDF?", font=font_style).grid(
+    Label(root, text="Want to rename a PDF?", font=FONT_STYLE).grid(
         row=3, column=1, padx=5, pady=5
     )
     rename_pdf = Button(
         root,
         text="Select PDF to rename",
-        font=button_font,
+        font=BUTTON_FONT,
         relief=RAISED,
         command=rename_file_gui,
     )
     rename_pdf.grid(row=3, column=2, padx=10, pady=10)
 
-    Label(root, text="Want to split a PDF?", font=font_style).grid(
+    Label(root, text="Want to split a PDF?", font=FONT_STYLE).grid(
         row=4, column=1, padx=5, pady=5
     )
     split_pdf = Button(
         root,
         text="Choose PDF to split",
-        font=button_font,
+        font=BUTTON_FONT,
         relief=RAISED,
         command=split_pdf_gui,
     )
