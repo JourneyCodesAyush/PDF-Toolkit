@@ -4,6 +4,7 @@ from tkinter import Tk, RAISED, Label, Button, Frame
 from gui.merge_gui import mergePDF_GUI
 from gui.rename_gui import rename_file_gui
 from gui.split_gui import split_pdf_gui
+from core.utils import get_absolute_path
 
 # from config.config import setup_logger
 
@@ -24,7 +25,9 @@ def main():
     root.title("PDF Toolkit")
     root.geometry("544x344")
     root.resizable(width=False, height=False)
-    root.iconbitmap("assets/PDF_file.ico")
+
+    ICON_PATH = get_absolute_path("assets/PDF_file.ico")
+    root.iconbitmap(ICON_PATH)
 
     TITLE_FONT = ("Helvetica", 16)
     FONT_STYLE = ("Helvetica", 12, "bold")
