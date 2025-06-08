@@ -1,5 +1,28 @@
 # Shared utilities
 
+import os
+import sys
+
+
+def get_absolute_path(relative_path: str = None) -> str:
+    """
+    Converts a relative path to an absolute path based on the directory
+    where the main script or executable resides.
+
+    Args:
+    relative_path (str): Relative path from the root of the project or executable file
+
+    Returns:
+    str: Absolute path
+    """
+
+    if getattr(sys, "frozen", False):
+        base_path = os.path.dirname(sys.executable)
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+
+    return os.path.join(base_path, relative_path)
+
 
 def parse_page_ranges(
     page_range_input: str, total_pages: int
