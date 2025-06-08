@@ -23,7 +23,6 @@ class Result:
             data (Optional[Dict[str, Any]]): Additional metadata or context.
 
         Methods:
-            to_dict(): Converts the result object into a dictionary format.
             __repr__(): Provides a readable string representation for logging/debugging.
         """
 
