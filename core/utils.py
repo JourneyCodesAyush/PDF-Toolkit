@@ -17,7 +17,8 @@ def get_absolute_path(relative_path: str = None) -> str:
     """
 
     if getattr(sys, "frozen", False):
-        base_path = os.path.dirname(sys.executable)
+        base_path = sys._MEIPASS
+        # base_path = os.path.dirname(sys.executable)
     else:
         base_path = os.path.dirname(os.path.abspath(__file__))
 
