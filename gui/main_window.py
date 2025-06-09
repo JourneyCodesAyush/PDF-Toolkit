@@ -1,14 +1,51 @@
 # GUI window code
 
+import os
 from tkinter import Tk, RAISED, Label, Button, Frame
 from gui.merge_gui import mergePDF_GUI
 from gui.rename_gui import rename_file_gui
 from gui.split_gui import split_pdf_gui
+from gui.error_handler_gui import show_message
 from core.utils import get_absolute_path
+from core.result import Result
 
 # from config.config import setup_logger
 
 # logger = setup_logger(__name__)
+
+
+def load_icon_safe(root) -> Result:
+    """
+    Safely attempts to load and set the application icon for the given Tkinter root window.
+
+    Args:
+        root (Tk): The Tkinter root window instance where the icon will be set.
+
+    Returns:
+        Result: A Result object indicating whether the icon was successfully loaded.
+
+    Behavior:
+        Tries to locate the icon file using an absolute path. If found, sets it as the window icon.
+        If the icon file is missing or cannot be loaded, returns a warning Result with the error details.
+    """
+    try:
+        ICON_PATH = get_absolute_path("assets/PDF_file.ico")
+        if not os.path.exists(ICON_PATH):
+            raise FileNotFoundError(f"Icon not found at: {ICON_PATH}")
+        root.iconbitmap(ICON_PATH)
+        return Result(
+            success=True,
+            title="Icon Loaded",
+            message="App Icon loaded successfully.",
+            error_type="info",
+        )
+    except Exception as e:
+        return Result(
+            success=False,
+            title="Icon load failed",
+            message=f"Could not load app icon.\nUsing default icon.\n\nDetails: {str(e)}",
+            error_type="warning",
+        )
 
 
 def main():
@@ -26,8 +63,10 @@ def main():
     root.geometry("544x344")
     root.resizable(width=False, height=False)
 
-    ICON_PATH = get_absolute_path("assets/PDF_file.ico")
-    root.iconbitmap(ICON_PATH)
+    icon_result = load_icon_safe(root)
+    if not icon_result.success and icon_result.error_type == "warning":
+        # Show warning if icon fails to load but continue with default icon
+        show_message(icon_result)
 
     TITLE_FONT = ("Helvetica", 16)
     FONT_STYLE = ("Helvetica", 12, "bold")
