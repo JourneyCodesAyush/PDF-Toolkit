@@ -11,7 +11,7 @@ import logging
 import os
 from core.utils import get_absolute_path
 
-LOG_FILE_PATH = get_absolute_path("logs/user_activity.log")
+LOG_FILE_PATH = get_absolute_path("../logs/user_activity.log")
 
 # Ensure the logs directory exists
 os.makedirs(os.path.dirname(LOG_FILE_PATH), exist_ok=True)
