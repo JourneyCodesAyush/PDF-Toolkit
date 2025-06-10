@@ -8,6 +8,7 @@ from gui.split_gui import split_pdf_gui
 from gui.error_handler_gui import show_message
 from core.utils import get_absolute_path
 from core.result import Result
+from version import __version__
 
 # from config.config import setup_logger
 
@@ -60,7 +61,7 @@ def main():
     for i in range(3):
         root.grid_columnconfigure(i, weight=1)
     root.grid_rowconfigure(5, weight=1)  # push footer down
-    root.title("PDF Toolkit")
+    root.title(f"PDF Toolkit v{__version__}")
     root.geometry("544x344")
     root.resizable(width=False, height=False)
 
