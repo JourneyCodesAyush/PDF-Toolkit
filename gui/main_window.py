@@ -29,8 +29,8 @@ def load_icon_safe(root) -> Result:
         If the icon file is missing or cannot be loaded, returns a warning Result with the error details.
     """
     try:
-        # os.path.join("assets", "PDF_file.ico")
-        ICON_PATH = get_absolute_path("../assets/PDF_file.ico")
+        # ICON_PATH = get_absolute_path("../assets/PDF_file.ico")
+        ICON_PATH = get_absolute_path(os.path.join("assets", "PDF_file.ico"))
         if not os.path.exists(ICON_PATH):
             raise FileNotFoundError(f"Icon not found at: {ICON_PATH}")
         root.iconbitmap(ICON_PATH)
