@@ -4,10 +4,14 @@ import os
 import sys
 
 
-def get_absolute_path(relative_path: str = None) -> str:
+def get_absolute_path(relative_path: str = "") -> str:
     """
-    Converts a relative path to an absolute path based on the directory
-    where the main script or executable resides.
+    Get the absolute path to a bundled resource, such as an icon or asset file.
+
+    This function returns a path that works both during development
+    and when the app is bundled by PyInstaller. When running as a bundled
+    executable, it returns the path inside PyInstaller’s temporary unpack folder
+    (sys._MEIPASS), where read-only resources are extracted.
 
     Args:
     relative_path (str): Relative path from the root of the project or executable file
@@ -21,7 +25,31 @@ def get_absolute_path(relative_path: str = None) -> str:
         # base_path = os.path.dirname(sys.executable)
     else:
         base_path = os.path.dirname(os.path.abspath(__file__))
+        # base_path = os.path.abspath(".")
 
+    return os.path.join(base_path, relative_path)
+
+
+def get_persistent_path(relative_path: str = "") -> str:
+    """
+    Get the absolute path to a writable file or folder location next to the executable.
+
+    This function returns a persistent path suitable for saving logs, configuration,
+    or user data. When running as a bundled executable, the path is relative to the
+    directory containing the executable itself, ensuring data persists after exit.
+    During development, it defaults to the current working directory.
+
+    Args:
+        relative_path (str): Relative path from the root of the project or executable file.
+
+    Returns:
+        str: Absolute path.
+    """
+    if getattr(sys, "frozen", False):
+        base_path = os.path.dirname(sys.executable)  # persistent folder next to exe
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        # base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
 
 
