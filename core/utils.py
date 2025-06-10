@@ -24,8 +24,8 @@ def get_absolute_path(relative_path: str = "") -> str:
         base_path = sys._MEIPASS
         # base_path = os.path.dirname(sys.executable)
     else:
-        base_path = os.path.dirname(os.path.abspath(__file__))
-        # base_path = os.path.abspath(".")
+        # base_path = os.path.dirname(os.path.abspath(__file__))
+        base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
 
