@@ -2,6 +2,7 @@
 
 <!-- Badges generated using https://shields.io -->
 ![Python](https://img.shields.io/badge/python-3.6%2B-blue)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/JourneyCodesAyush/pdf-toolkit?display_name=tag&sort=semver)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-early%20development-orange)
@@ -10,6 +11,18 @@
 Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you **merge**, **rename**, and **split** PDF files effortlessly. Whether you're handling academic papers, work documents, or just organizing your digital clutter, this tool gets the job done quickly and easily.
 
 > 🚧 *This project is currently under active development. Features, structure, and design may change before the first stable release.*
+
+---
+
+## 📦 Latest Version
+
+**Version:** [v0.1.0](https://github.com/JourneyCodesAyush/pdf-toolkit/releases/tag/v0.1.0)  
+**Release Date:** June 11, 2025  
+**Status:** Pre-release  
+**Download:** [PDF-Toolkit.v0.1.0.zip](https://github.com/JourneyCodesAyush/pdf-toolkit/releases/download/v0.1.0/PDF-Toolkit.v0.1.0.zip)  – includes the executable
+
+This is the first pre-release version of PDF Toolkit. It includes PDF merging, splitting, and renaming, along with a basic Tkinter-based GUI.  
+🧪 Currently for testing purposes – feedback and contributions are welcome!
 
 ---
 
@@ -158,10 +171,6 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 ---
 
-## 📌 Versioning
-This project is currently in development and does not yet follow semantic versioning (e.g., v1.0). A version tag will be applied once the core features are finalized and thoroughly tested.
-
----
 
 ## 👨‍💻 Author
 
