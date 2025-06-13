@@ -171,6 +171,37 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 ---
 
+## 🧾 Commit Message Convention
+
+Starting with **v0.2.0**, this project follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) standard.
+
+Please use this format when writing commit messages:
+
+`<type>(<scope>): <short message>`
+
+
+### ✅ Common Commit Types
+
+| Type       | Description                                           |
+|------------|-------------------------------------------------------|
+| `feat`     | A new feature                                         |
+| `fix`      | A bug fix                                             |
+| `docs`     | Changes to documentation only                         |
+| `style`    | Code formatting changes (no logic impact)             |
+| `refactor` | Code improvements that don't fix bugs or add features |
+| `test`     | Adding or modifying tests                             |
+| `chore`    | Routine tasks, build scripts, config changes          |
+
+### 📌 Examples
+
+```bash
+feat(split): add multi-range page support  
+fix(rename): handle non-PDF files gracefully  
+docs(readme): add commit message convention section  
+chore: update logging configuration
+```
+
+---
 
 ## 👨‍💻 Author
 
