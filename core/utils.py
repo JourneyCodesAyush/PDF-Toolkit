@@ -2,6 +2,7 @@
 
 import os
 import sys
+from PyPDF2 import PdfReader
 
 
 def get_absolute_path(relative_path: str = "") -> str:
@@ -48,8 +49,8 @@ def get_persistent_path(relative_path: str = "") -> str:
     if getattr(sys, "frozen", False):
         base_path = os.path.dirname(sys.executable)  # persistent folder next to exe
     else:
-        base_path = os.path.dirname(os.path.abspath(__file__))
-        # base_path = os.path.abspath(".")
+        # base_path = os.path.dirname(os.path.abspath(__file__))
+        base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
 
 
@@ -101,3 +102,73 @@ def parse_page_ranges(
         return None, "No valid page ranges provided"
 
     return parsed_ranges, None
+
+
+def is_valid_pdf(path: str) -> bool:
+    """
+    Check whether a file is a readable, non-corrupted PDF.
+
+    Attempts to load the file with PyPDF2 and access its pages to confirm validity.
+
+    Args:
+        path (str): Path to the PDF file.
+
+    Returns:
+        bool:
+            - True if the file can be read as a valid PDF.
+            - False if the file is corrupted or unreadable.
+    """
+    try:
+        reader = PdfReader(path)
+        _ = reader.pages
+        return True
+    except Exception as e:
+        return False
+
+
+def is_encrypted_pdf(path: str) -> bool:
+    """
+    Determine whether a PDF file is encrypted or password-protected.
+
+     Args:
+         path (str): Path to the PDF file.
+
+     Returns:
+         bool:
+             - True if the file is encrypted.
+             - False if the file is not encrypted or if the check fails.
+    """
+    try:
+        reader = PdfReader(path)
+        return reader.is_encrypted
+    except Exception as e:
+        return False
+
+
+def validate_pdf_file(path: str) -> tuple[bool, str]:
+    """
+    Validate whether the file is a legitimate, readable, and unencrypted PDF.
+
+    This function checks:
+      - The file has a .pdf extension
+      - It can be opened and parsed successfully
+      - It is not password-protected or encrypted
+
+    Args:
+        path (str): Path to the file to validate.
+
+    Returns:
+        tuple[bool, str]:
+            - (True, "") if the file is a valid, readable, unencrypted PDF.
+            - (False, error_message) if the file is invalid, unreadable, or encrypted.
+    """
+    if not path.lower().endswith(".pdf"):
+        return (False, "File is not a .pdf file.")
+
+    if not is_valid_pdf(path):
+        return (False, "The file is not a valid PDF or is corrupted")
+
+    if is_encrypted_pdf(path):
+        return (False, "PDF is encrypted and cannot be processed")
+
+    return (True, "")
