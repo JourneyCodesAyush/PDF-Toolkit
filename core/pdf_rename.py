@@ -36,9 +36,16 @@ def rename_pdf_file(old_path: str, new_directory: str, new_name: str) -> Result:
             )
 
         if not old_path.lower().endswith(".pdf"):
-            raise ValueError("Selected file is not a PDF.")
+            # raise ValueError("Selected file is not a PDF.")
+            return Result(
+                success=False,
+                error_type="error",
+                title="Invalid file",
+                message="Selected file not a PDF",
+            )
         if not new_name.lower().endswith(".pdf"):
-            raise ValueError("New file name must have a .pdf extension.")
+            # raise ValueError("New file name must have a .pdf extension.")
+            new_name += ".pdf"
 
         is_valid, error_message = validate_pdf_file(path=old_path)
         if not is_valid:
@@ -46,7 +53,7 @@ def rename_pdf_file(old_path: str, new_directory: str, new_name: str) -> Result:
                 success=False,
                 error_type="error",
                 title="Invalid PDF",
-                message=f"The file is not a valid PDF: {error_message}",
+                message=f"{error_message}",
             )
 
         new_path = os.path.join(new_directory, new_name)
@@ -67,4 +74,4 @@ def rename_pdf_file(old_path: str, new_directory: str, new_name: str) -> Result:
             message=f"File renamed to '{new_name}' and moved to selected directory.",
         )
     except Exception as e:
-        return handle_exception(e, context="renaming PDF")
+        return handle_exception(exc=e, context="renaming PDF")

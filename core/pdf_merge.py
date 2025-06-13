@@ -1,7 +1,7 @@
 # PDF merge logic
 
 from PyPDF2 import PdfMerger
-from core import error_handler
+from core.error_handler import handle_exception
 from core.result import Result
 from core.utils import validate_pdf_file
 
@@ -28,7 +28,14 @@ def mergePDF(input_file_path: list[str], output_file_path: str) -> Result:
         for pdf in input_file_path:
             is_valid, error_message = validate_pdf_file(path=pdf)
             if not is_valid:
-                raise ValueError(f"{error_message}")
+                # raise ValueError(f"{error_message}")
+                return Result(
+                    success=False,
+                    error_type="error",
+                    title="Invalid file",
+                    message=f"{error_message}",
+                )
+
             merger.append(pdf)
         merger.write(output_file_path)
         return Result(
@@ -39,7 +46,7 @@ def mergePDF(input_file_path: list[str], output_file_path: str) -> Result:
         )
 
     except Exception as e:
-        return error_handler.handle_exception(exc=e, context="merging PDFs")
+        return handle_exception(exc=e, context="merging PDFs")
 
     finally:
         merger.close()

@@ -40,7 +40,13 @@ def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
             )
 
         if not file_path.lower().endswith(".pdf"):
-            raise ValueError("Selected file is not a PDF.")
+            # raise ValueError("Selected file is not a PDF.")
+            return Result(
+                success=False,
+                error_type="error",
+                title="Invalid file",
+                message="Selected file is not a PDF",
+            )
 
         is_valid, error_message = validate_pdf_file(path=file_path)
         if not is_valid:
@@ -48,7 +54,7 @@ def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
                 success=False,
                 error_type="error",
                 title="Invalid PDF",
-                message=f"The file is not a valid PDF: {error_message}",
+                message=f"{error_message}",
             )
 
         reader = PdfReader(file_path)
@@ -103,4 +109,4 @@ def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
         )
 
     except Exception as e:
-        return handle_exception(e, context="Splitting PDF")
+        return handle_exception(exc=e, context="Splitting PDF")
