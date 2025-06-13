@@ -5,6 +5,7 @@ from PyPDF2 import PdfReader, PdfWriter
 from core.utils import parse_page_ranges
 from core.error_handler import handle_exception
 from core.result import Result
+from core.utils import validate_pdf_file
 
 
 def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
@@ -22,8 +23,33 @@ def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
     """
     try:
 
+        if not os.path.isfile(file_path):
+            return Result(
+                success=False,
+                error_type="error",
+                title="File Not Found",
+                message=f"The original file does not exist: {file_path}",
+            )
+
+        if not os.path.isdir(output_dir):
+            return Result(
+                success=False,
+                error_type="error",
+                title="Invalid output directory",
+                message=f"The specified directory does not exist: {output_dir}",
+            )
+
         if not file_path.lower().endswith(".pdf"):
             raise ValueError("Selected file is not a PDF.")
+
+        is_valid, error_message = validate_pdf_file(path=file_path)
+        if not is_valid:
+            return Result(
+                success=False,
+                error_type="error",
+                title="Invalid PDF",
+                message=f"The file is not a valid PDF: {error_message}",
+            )
 
         reader = PdfReader(file_path)
         total_pages = len(reader.pages)
