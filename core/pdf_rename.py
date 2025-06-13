@@ -3,6 +3,7 @@
 import os
 from core.error_handler import handle_exception, create_msg_object
 from core.result import Result
+from core.utils import validate_pdf_file
 
 
 def rename_pdf_file(old_path: str, new_directory: str, new_name: str) -> Result:
@@ -18,15 +19,41 @@ def rename_pdf_file(old_path: str, new_directory: str, new_name: str) -> Result:
         Result: Standardized result object indicating success or failure with message.
     """
     try:
+        if not os.path.isfile(old_path):
+            return Result(
+                success=False,
+                error_type="error",
+                title="File Not Found",
+                message=f"The original file does not exist: {old_path}",
+            )
+
+        if not os.path.isdir(new_directory):
+            return Result(
+                success=False,
+                error_type="error",
+                title="Invalid directory",
+                message=f"The specified directory does not exist: {new_directory}",
+            )
+
         if not old_path.lower().endswith(".pdf"):
             raise ValueError("Selected file is not a PDF.")
         if not new_name.lower().endswith(".pdf"):
             raise ValueError("New file name must have a .pdf extension.")
 
+        is_valid, error_message = validate_pdf_file(path=old_path)
+        if not is_valid:
+            return Result(
+                success=False,
+                error_type="error",
+                title="Invalid PDF",
+                message=f"The file is not a valid PDF: {error_message}",
+            )
+
         new_path = os.path.join(new_directory, new_name)
 
         if os.path.exists(new_path):
-            return create_msg_object(
+            return Result(
+                success=False,
                 error_type="error",
                 title="File exists",
                 message=f"A file named '{new_path}' already exists in the selected directory.",
