@@ -169,6 +169,6 @@ def validate_pdf_file(path: str) -> tuple[bool, str]:
         return (False, "The file is not a valid PDF or is corrupted")
 
     if is_encrypted_pdf(path):
-        return (False, "PDF is encrypted and cannot be processed")
+        return (False, "The file is encrypted and cannot be processed")
 
     return (True, "")
