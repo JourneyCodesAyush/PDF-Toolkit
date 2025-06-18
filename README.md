@@ -16,13 +16,20 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 ## 📦 Latest Version
 
-**Version:** [v0.2.0](https://github.com/JourneyCodesAyush/pdf-toolkit/releases/tag/v0.2.0)  
-**Release Date:** June 13, 2025  
+**Version:** [v0.2.1](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.2.1)  
+**Release Date:** June 18, 2025  
 **Status:** Pre-release  
-**Download:** [PDF-Toolkit.v0.2.0.zip](https://github.com/JourneyCodesAyush/pdf-toolkit/releases/download/v0.2.0/PDF-Toolkit.v0.2.0.zip)  – includes the executable
+**Download:** [PDF-Toolkit.v0.2.1.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.2.1/PDF-Toolkit.v0.2.1.zip)
 
-This is a pre-release version of PDF Toolkit. It includes PDF merging, splitting, and renaming, along with a basic Tkinter-based GUI.  
-🧪 Currently for testing purposes – feedback and contributions are welcome!
+This is a **pre-release** of PDF Toolkit v0.2.1. It includes the following key improvements:
+
+- 📄 **Separate logging** for user-visible messages and developer-facing errors  
+- 🛠️ **Improved error handling** and clearer feedback in GUI operations  
+- 🪛 Minor internal refactoring for better structure and maintainability  
+
+🔍 Features include PDF **merging**, **splitting**, and **renaming**, with a basic Tkinter-based GUI.
+
+🧪 This version is for testing purposes. Feedback and contributions are welcome!
 
 ---
 

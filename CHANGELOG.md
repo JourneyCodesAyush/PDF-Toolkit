@@ -6,6 +6,18 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v0.2.1] – 2025-06-18
+
+### ✨ Added
+
+- Separate logging for **user-facing messages** and **developer-focused error logs**
+- Improved error handling with clearer separation between user feedback and internal logging
+- Refactored GUI error reporting:
+  - Streamlined usage of `show_message()` and `handle_exception()`
+  - More consistent logging of `Result.success` outcomes
+
+---
+
 ## [v0.2.0] – 2025-06-13
 
 ### ✨ Added
