@@ -14,7 +14,7 @@ def rename_file_gui():
     """
     GUI handler to rename a PDF file.
 
-    Opens dialogs for the user to select the original PDF, 
+    Opens dialogs for the user to select the original PDF,
     choose the output directory, and enter a new file name.
     Calls the core rename function and displays the result.
 
@@ -78,4 +78,6 @@ def rename_file_gui():
     except Exception as exc:
         error_msg = handle_exception(exc, context="Renaming PDF")
         show_message(error_msg)
-        logger.error(f"Exception during renaming: {exc}")
+        logger.error(
+            f"Renaming PDF failed due to an unexpected error. We are sorry for your inconvenience!"
+        )

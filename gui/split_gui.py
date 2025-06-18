@@ -73,4 +73,6 @@ def split_pdf_gui():
     except Exception as exc:
         error_msg = handle_exception(exc, context="Splitting PDF")
         show_message(error_msg)
-        logger.error(f"Exception during splitting PDF: {exc}")
+        logger.error(
+            "Splitting PDF failed due to an unexpected error.. We are sorry for your inconvenience!"
+        )

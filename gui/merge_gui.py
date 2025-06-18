@@ -62,4 +62,6 @@ def mergePDF_GUI():
     except Exception as exc:
         error_msg = handle_exception(exc, context="Merging PDFs")
         show_message(error_msg)
-        logger.error(f"Exception during merging: {exc}")
+        logger.error(
+            "Merging PDFs failed due to an unexpected error. We are sorry for your inconvenience!"
+        )
