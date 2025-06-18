@@ -5,6 +5,7 @@ import traceback
 from core.result import Result  # Import the Result class
 
 logger = setup_logger(__name__)
+dev_logger = setup_logger(__name__, error_logger=True)
 
 
 def log_error_with_traceback(exc: Exception, context: str = ""):
@@ -25,7 +26,7 @@ def log_error_with_traceback(exc: Exception, context: str = ""):
         f"Exception message: {exc}\n"
         f"Traceback:\n{tb_str}"
     )
-    logger.error(log_message)
+    dev_logger.error(log_message)
 
 
 def create_msg_object(error_type: str, title: str, message: str) -> Result:
@@ -61,7 +62,7 @@ def handle_exception(exc: Exception, context: str = "") -> Result:
 
     if isinstance(exc, FileNotFoundError):
         user_msg = (
-            f"The file could not be found {('during ' + context) if context else ''}."
+            f"File could not be found {('during ' + context) if context else ''}."
         )
         return create_msg_object("error", "File Not Found Error", user_msg.strip())
 
@@ -70,17 +71,15 @@ def handle_exception(exc: Exception, context: str = "") -> Result:
         return create_msg_object("error", "Permission Error", user_msg.strip())
 
     elif isinstance(exc, OSError):
-        user_msg = (
-            f"An OS error occurred {('during ' + context) if context else ''}: {exc}."
-        )
+        user_msg = f"An OS error occurred {('during ' + context) if context else ''}."
         return create_msg_object("error", "OS Error", user_msg.strip())
 
     elif isinstance(exc, ValueError):
-        user_msg = (
-            f"Invalid input provided {('during ' + context) if context else ''}:{exc}"
-        )
+        user_msg = f"Invalid input provided {('during ' + context) if context else ''}."
         return create_msg_object("warning", "Value Error", user_msg.strip())
 
     else:
-        user_msg = f"An unexpected error occurred {('during ' + context) if context else ''}: {exc}"
+        user_msg = (
+            f"An unexpected error occurred {('during ' + context) if context else ''}."
+        )
         return create_msg_object("error", "Unexpected Error", user_msg.strip())

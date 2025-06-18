@@ -12,13 +12,17 @@ import os
 from core.utils import get_persistent_path
 
 # LOG_FILE_PATH = get_absolute_path("../logs/user_activity.log")
-LOG_FILE_PATH = get_persistent_path(os.path.join("logs", "user_activity.log"))
+LOG_DIR = get_persistent_path("logs")
 
 # Ensure the logs directory exists
-os.makedirs(os.path.dirname(LOG_FILE_PATH), exist_ok=True)
+os.makedirs(LOG_DIR, exist_ok=True)
+
+USER_LOG_FILE = os.path.join(LOG_DIR, "user_activity.log")
+ERROR_LOG_FILE = os.path.join(LOG_DIR, "errors.log")
+
 
 logging.basicConfig(
-    filename=LOG_FILE_PATH,
+    filename=USER_LOG_FILE,
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     encoding="utf-8",
@@ -27,14 +31,35 @@ logging.basicConfig(
 # logger = logging.getLogger(__name__)
 
 
-def setup_logger(name: str = __name__):
+def setup_logger(name: str = __name__, error_logger: bool = False) -> logging.Logger:
     """
-    Returns a logger with the specified name.
+    Create and return a logger instance.
+    - If error_only is True, logs only technical errors to errors.log.
+    - Otherwise, returns a standard logger that writes to user_activity.log.
 
     Args:
-        name (str): Name of the logger.
+        name (str): Logger name.
+        error_only (bool): Whether to return an error-only logger.
 
     Returns:
-        logging.Logger: Configured logger instance.
+        logging.Logger: Configured logger.
     """
-    return logging.getLogger(name)
+
+    logger = logging.getLogger(name)
+
+    if error_logger:
+        if not any(
+            isinstance(h, logging.FileHandler) and h.baseFilename == ERROR_LOG_FILE
+            for h in logger.handlers
+        ):
+            handler = logging.FileHandler(ERROR_LOG_FILE, encoding="utf-8")
+            handler.setLevel(logging.ERROR)
+            formatter = logging.Formatter(
+                "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
+            )
+            handler.setFormatter(formatter)
+            logger.addHandler(handler)
+            logger.setLevel(logging.ERROR)
+            logger.propagate = False
+
+    return logger
