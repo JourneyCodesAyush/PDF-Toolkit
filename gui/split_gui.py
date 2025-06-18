@@ -59,14 +59,16 @@ def split_pdf_gui():
             return
 
         result = split_pdf(file_path, page_range_input, output_dir)
-        if result.error_type == "info":
+        if result.success:
             logger.info(f"{result.message}")
             if result.data and "files" in result.data:
                 for f in result.data["files"]:
                     logger.info(f"Created: {os.path.join(output_dir,f)}")
             logger.info(f"Split operation finished with message: {result.message}")
         else:
-            logger.warning(f"{result.title}: {result.message}")
+            logger.warning(
+                f"Split PDF operation returned failure message: {result.message}"
+            )
 
         show_message(result)
 
@@ -74,5 +76,5 @@ def split_pdf_gui():
         error_msg = handle_exception(exc, context="Splitting PDF")
         show_message(error_msg)
         logger.error(
-            "Splitting PDF failed due to an unexpected error.. We are sorry for your inconvenience!"
+            "Splitting PDF failed due to an unexpected error. We are sorry for your inconvenience!"
         )

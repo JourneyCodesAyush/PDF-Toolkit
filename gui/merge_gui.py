@@ -30,7 +30,7 @@ def mergePDF_GUI():
             defaultextension="*.pdf",
         )
         if not input_files:
-            messagebox.showinfo(
+            messagebox.showwarning(
                 title="No files selected", message="No PDF files selected!"
             )
             logger.warning("Merging failed - No file selected")
@@ -43,7 +43,7 @@ def mergePDF_GUI():
         )
 
         if not save_file_path:
-            messagebox.showinfo(
+            messagebox.showwarning(
                 title="No output location selected",
                 message="Please provide valid output location",
             )
@@ -53,11 +53,11 @@ def mergePDF_GUI():
         result = mergePDF(list(input_files), save_file_path)
 
         if result.success:
-            messagebox.showinfo(title="Success", message=result.message)
             logger.info(f"Merging Successful: {result.message}")
         else:
-            show_message(result)
-            logger.warning(f"Merging returned failure message: {result.message}")
+            logger.warning(f"Merge returned failure message: {result.message}")
+
+        show_message(result)
 
     except Exception as exc:
         error_msg = handle_exception(exc, context="Merging PDFs")

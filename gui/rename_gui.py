@@ -71,9 +71,14 @@ def rename_file_gui():
         )
         result = rename_pdf_file(old_file_path, new_directory, new_file_name)
 
-        show_message(result)
+        if result.success:
+            logger.info(f"Renaming successful: {result.message}")
+        else:
+            logger.warning(
+                f"Rename operation returned failure message: {result.message}"
+            )
 
-        logger.info(f"Rename operation finished with message: {result.message}")
+        show_message(result)
 
     except Exception as exc:
         error_msg = handle_exception(exc, context="Renaming PDF")
