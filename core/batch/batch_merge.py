@@ -1,13 +1,14 @@
 # Batch PDF merge logic
 
 import os
+from typing import Optional
 from PyPDF2 import PdfMerger
 from core.error_handler import handle_exception
 from core.result import Result
 from core.utils import validate_pdf_file
 
 
-def batch_merge_pdfs(input_dir_path: str, output_file_path: str) -> Result:
+def batch_merge_pdfs(input_dir_path: str, output_file_path: Optional[str]) -> Result:
     """
     Merge multiple PDF files into a single PDF saved at the specified output path.
 
@@ -23,6 +24,8 @@ def batch_merge_pdfs(input_dir_path: str, output_file_path: str) -> Result:
         return Result(
             success=False, title="No files", message="No input files selected."
         )
+
+    output_file_path = output_file_path if output_file_path else input_dir_path
 
     pdf_files = [
         os.path.join(input_dir_path, f)
@@ -57,4 +60,3 @@ def batch_merge_pdfs(input_dir_path: str, output_file_path: str) -> Result:
 
     finally:
         merger.close()
- 
