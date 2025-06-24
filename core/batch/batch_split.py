@@ -1,20 +1,19 @@
 # Batch PDF split logic
 
 import os
+from typing import Optional
 from PyPDF2 import PdfReader, PdfWriter
-from core.utils import parse_page_ranges
 from core.error_handler import handle_exception
 from core.result import Result
 from core.utils import validate_pdf_file
 
 
-def batch_split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
+def batch_split_pdf(file_path: str, output_dir: Optional[str] = None) -> Result:
     """
     Split a PDF file into multiple files based on user-defined page ranges.
 
     Args:
         file_path (str): Path to the input PDF file.
-        page_range_input (str): Page ranges as a string (e.g., "1-3,4,5-7").
         output_dir (str): Directory to save the resulting split PDF files.
 
     Returns:
@@ -39,8 +38,9 @@ def batch_split_pdf(file_path: str, page_range_input: str, output_dir: str) -> R
                 message=f"The specified directory does not exist: {output_dir}",
             )
 
+        output_dir = output_dir if output_dir else file_path
+
         if not file_path.lower().endswith(".pdf"):
-            # raise ValueError("Selected file is not a PDF.")
             return Result(
                 success=False,
                 error_type="error",
@@ -64,7 +64,7 @@ def batch_split_pdf(file_path: str, page_range_input: str, output_dir: str) -> R
 
         saved_files = []
 
-        for i, page in enumerate(total_pages, start=1):
+        for i, page in enumerate(reader.pages, start=1):
             writer = PdfWriter()
             writer.add_page(page)
 
@@ -89,10 +89,9 @@ def batch_split_pdf(file_path: str, page_range_input: str, output_dir: str) -> R
             success=True,
             error_type="info",
             title="Success",
-            message=f"PDF successfully split into {len(file_path)} single-page PDF files and saved to {output_dir}.",
+            message=f"PDF successfully split into {len(saved_files)} single-page PDF files and saved to {output_dir}.",
             data={"files": saved_files},
         )
 
     except Exception as e:
         return handle_exception(exc=e, context="Splitting PDF into single pages")
- 
