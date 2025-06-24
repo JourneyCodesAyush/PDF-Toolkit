@@ -55,7 +55,7 @@ def batch_rename_pdfs(
             )
 
         if base_name.lower().endswith(".pdf"):
-            base_name = base_name[:-4]  # remove extension to append numbers
+            base_name = base_name[:-4]  # remove extension (.pdf) to append numbers
 
         for file in pdf_files:
             is_valid, error_message = validate_pdf_file(path=file)
