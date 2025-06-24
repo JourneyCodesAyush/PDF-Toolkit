@@ -6,6 +6,9 @@ from gui.merge_gui import mergePDF_GUI
 from gui.rename_gui import rename_file_gui
 from gui.split_gui import split_pdf_gui
 from gui.error_handler_gui import show_message
+
+from gui.batch.batch_operations_gui import batch_operations_gui_window
+from gui.common_ui import load_icon_safe
 from core.utils import get_absolute_path
 from core.result import Result
 from version import __version__
@@ -13,41 +16,6 @@ from version import __version__
 # from config.config import setup_logger
 
 # logger = setup_logger(__name__)
-
-
-def load_icon_safe(root) -> Result:
-    """
-    Safely attempts to load and set the application icon for the given Tkinter root window.
-
-    Args:
-        root (Tk): The Tkinter root window instance where the icon will be set.
-
-    Returns:
-        Result: A Result object indicating whether the icon was successfully loaded.
-
-    Behavior:
-        Tries to locate the icon file using an absolute path. If found, sets it as the window icon.
-        If the icon file is missing or cannot be loaded, returns a warning Result with the error details.
-    """
-    try:
-        # ICON_PATH = get_absolute_path("../assets/PDF_file.ico")
-        ICON_PATH = get_absolute_path(os.path.join("assets", "PDF_file.ico"))
-        if not os.path.exists(ICON_PATH):
-            raise FileNotFoundError(f"Icon not found at: {ICON_PATH}")
-        root.iconbitmap(ICON_PATH)
-        return Result(
-            success=True,
-            title="Icon Loaded",
-            message="App Icon loaded successfully.",
-            error_type="info",
-        )
-    except Exception as e:
-        return Result(
-            success=False,
-            title="Icon load failed",
-            message=f"Could not load app icon.\nUsing default icon.\n\nDetails: {str(e)}",
-            error_type="warning",
-        )
 
 
 def main():
@@ -114,6 +82,19 @@ def main():
         command=split_pdf_gui,
     )
     split_pdf.grid(row=4, column=2, padx=10, pady=10)
+
+    Label(root, text="Need to process multiple PDFs?", font=FONT_STYLE).grid(
+        row=5, column=1, padx=5, pady=5
+    )
+
+    batch_button = Button(
+        root,
+        text="Batch Operations",
+        font=BUTTON_FONT,
+        relief=RAISED,
+        command=lambda: batch_operations_gui_window(root),
+    )
+    batch_button.grid(row=5, column=2, padx=10, pady=10)
 
     footer_frame = Frame(root, bd=1, relief="sunken")
     footer_frame.grid(row=6, column=0, columnspan=3, pady=(30, 0), sticky="we")
