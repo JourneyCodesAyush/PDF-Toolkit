@@ -38,20 +38,20 @@ def batch_operations_gui_window(parent=None):
         row=0, column=0, columnspan=3, pady=15
     )
 
-    Label(window, text="Want to merge some PDFs?", font=FONT_STYLE).grid(
+    Label(window, text="Want to merge PDFs of an entire folder?", font=FONT_STYLE).grid(
         row=2, column=1, padx=5, pady=5
     )
 
     merge_pdf = Button(
         window,
-        text="Choose the folder",
+        text="Select the folder",
         font=BUTTON_FONT,
         relief=RAISED,
         command=batch_merge_pdf_gui,
     )
     merge_pdf.grid(row=2, column=2, padx=10, pady=10)
 
-    Label(window, text="Want to rename a PDF?", font=FONT_STYLE).grid(
+    Label(window, text="Want to rename PDFs of a folder?", font=FONT_STYLE).grid(
         row=3, column=1, padx=5, pady=5
     )
     rename_pdf = Button(
@@ -63,7 +63,7 @@ def batch_operations_gui_window(parent=None):
     )
     rename_pdf.grid(row=3, column=2, padx=10, pady=10)
 
-    Label(window, text="Want to split a PDF?", font=FONT_STYLE).grid(
+    Label(window, text="Want to split a PDF into single-paged ones?", font=FONT_STYLE).grid(
         row=4, column=1, padx=5, pady=5
     )
     split_pdf = Button(
