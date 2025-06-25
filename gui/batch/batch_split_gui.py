@@ -23,7 +23,7 @@ def batch_split_pdf_gui():
         None: Interacts via GUI dialogs and shows messages; no return value.
     """
 
-    logger.info("Split PDF operation started")
+    logger.info("Batch split PDF operation started")
     try:
         file_path = filedialog.askopenfilename(
             title="Select PDF to split",
@@ -35,7 +35,7 @@ def batch_split_pdf_gui():
             messagebox.showwarning(
                 title="No file selected", message="Please select a PDF to split."
             )
-            logger.warning("Splitting failed - No PDF file selected.")
+            logger.warning("Batch splitting failed - No PDF file selected.")
             return
 
         output_path_yes_no = messagebox.askyesno(
@@ -56,10 +56,12 @@ def batch_split_pdf_gui():
             if result.data and "files" in result.data:
                 for f in result.data["files"]:
                     logger.info(f"Created: {os.path.join(output_dir,f)}")
-            logger.info(f"Split operation finished with message: {result.message}")
+            logger.info(
+                f"Batch split operation finished with message: {result.message}"
+            )
         else:
             logger.warning(
-                f"Split PDF operation returned failure message: {result.message}"
+                f"Batch split PDF operation returned failure message: {result.message}"
             )
 
         show_message(result)
@@ -68,5 +70,5 @@ def batch_split_pdf_gui():
         error_msg = handle_exception(exc, context="Splitting PDF")
         show_message(error_msg)
         logger.error(
-            "Splitting PDF failed due to an unexpected error. We are sorry for your inconvenience!"
+            "Batch splitting PDF failed due to an unexpected error. We are sorry for your inconvenience!"
         )

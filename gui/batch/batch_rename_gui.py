@@ -23,7 +23,7 @@ def batch_rename_pdf_gui():
         None: This function performs GUI interactions and shows messages,
               no return value is needed.
     """
-    logger.info("Rename PDF operation started")
+    logger.info("Batch rename PDF operation started")
 
     try:
         input_dir = filedialog.askdirectory(
@@ -60,21 +60,21 @@ def batch_rename_pdf_gui():
             messagebox.showwarning(
                 title="Warning", message="Please enter a valid file name."
             )
-            logger.warning(f"Renaming failed - New file name NOT selected")
+            logger.warning(f"Batch renaming failed - New file name NOT selected")
             return
 
         new_file_name = new_file_name.strip()
 
         logger.info(
-            f"Renaming files inside: {input_dir} -> {os.path.join(output_dir, new_file_name)}"
+            f"Batch renaming files inside: {input_dir} -> {os.path.join(output_dir, new_file_name)}"
         )
         result = batch_rename_pdfs(input_dir, output_dir, new_file_name)
 
         if result.success:
-            logger.info(f"Renaming successful: {result.message}")
+            logger.info(f"Batch renaming successful: {result.message}")
         else:
             logger.warning(
-                f"Rename operation returned failure message: {result.message}"
+                f"Batch rename operation returned failure message: {result.message}"
             )
 
         show_message(result)
@@ -83,5 +83,5 @@ def batch_rename_pdf_gui():
         error_msg = handle_exception(exc, context="Renaming PDF")
         show_message(error_msg)
         logger.error(
-            f"Renaming PDF failed due to an unexpected error. We are sorry for your inconvenience!"
+            f"Batch renaming PDF failed due to an unexpected error. We are sorry for your inconvenience!"
         )

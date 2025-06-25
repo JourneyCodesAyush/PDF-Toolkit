@@ -53,9 +53,9 @@ def batch_merge_pdf_gui():
         result = batch_merge_pdfs(input_dir, save_file_path)
 
         if result.success:
-            logger.info(f"Merging Successful: {result.message}")
+            logger.info(f"Batch merging successful: {result.message}")
         else:
-            logger.warning(f"Merge returned failure message: {result.message}")
+            logger.warning(f"Batch merge returned failure message: {result.message}")
 
         show_message(result)
 
