@@ -11,7 +11,7 @@ from gui.error_handler_gui import show_message
 from version import __version__
 
 
-def batch_operations_gui_window(parent=None):
+def batch_operations_gui_window(parent=None) -> None:
     """
     Create and display the Batch Operations window as a Tkinter Toplevel.
 

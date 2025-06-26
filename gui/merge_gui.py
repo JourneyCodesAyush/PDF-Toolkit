@@ -10,7 +10,7 @@ from gui.error_handler_gui import show_message
 logger = setup_logger(__name__)
 
 
-def mergePDF_GUI():
+def mergePDF_GUI() -> None:
     """
     GUI handler to merge multiple PDF files into a single PDF.
 

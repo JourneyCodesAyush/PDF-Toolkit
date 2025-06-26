@@ -9,7 +9,7 @@ logger = setup_logger(__name__)
 dev_logger = setup_logger(__name__, error_logger=True)
 
 
-def log_error_with_traceback(exc: Exception, context: str = ""):
+def log_error_with_traceback(exc: Exception, context: str = "") -> None:
     """
     Log the provided exception and its traceback with optional context.
 

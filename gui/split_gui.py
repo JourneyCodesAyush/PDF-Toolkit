@@ -11,7 +11,7 @@ from gui.error_handler_gui import show_message
 logger = setup_logger(__name__)
 
 
-def split_pdf_gui():
+def split_pdf_gui() -> None:
     """
     GUI handler to split a PDF based on user-specified page ranges.
 

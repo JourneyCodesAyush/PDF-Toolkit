@@ -11,7 +11,7 @@ from gui.error_handler_gui import show_message
 logger = setup_logger(__name__)
 
 
-def rename_file_gui():
+def rename_file_gui() -> None:
     """
     GUI handler to rename a PDF file.
 

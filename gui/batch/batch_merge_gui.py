@@ -11,7 +11,7 @@ from gui.error_handler_gui import show_message
 logger = setup_logger(__name__)
 
 
-def batch_merge_pdf_gui():
+def batch_merge_pdf_gui() -> None:
     """
     Handle the GUI workflow for merging multiple PDF files into one.
 

@@ -18,7 +18,7 @@ from version import __version__
 # logger = setup_logger(__name__)
 
 
-def main():
+def main() -> None:
     """
     Initialize and display the main application window for PDF Toolkit.
 

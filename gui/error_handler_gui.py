@@ -5,7 +5,7 @@ from tkinter import messagebox
 from core.result import Result
 
 
-def show_message(result: Result):
+def show_message(result: Result) -> None:
     """
     Display a message box to the user based on the Result object's status.
 
