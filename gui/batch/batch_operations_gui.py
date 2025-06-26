@@ -1,13 +1,13 @@
 # Batch Operations GUI
 
-from tkinter import Toplevel, Button, Label, Frame, RAISED
+from tkinter import RAISED, Button, Frame, Label, Toplevel
+
+from core.result import Result
 from gui.batch.batch_merge_gui import batch_merge_pdf_gui
 from gui.batch.batch_rename_gui import batch_rename_pdf_gui
 from gui.batch.batch_split_gui import batch_split_pdf_gui
 from gui.common_ui import load_icon_safe
 from gui.error_handler_gui import show_message
-from core.result import Result
-
 from version import __version__
 
 

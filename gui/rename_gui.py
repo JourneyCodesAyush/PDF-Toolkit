@@ -1,11 +1,12 @@
 # PDF renaming GUI part here
 
 import os
+from tkinter import filedialog, messagebox, simpledialog
+
 from config.config import setup_logger
 from core.error_handler import handle_exception
-from gui.error_handler_gui import show_message
 from core.pdf_rename import rename_pdf_file
-from tkinter import messagebox, filedialog, simpledialog
+from gui.error_handler_gui import show_message
 
 logger = setup_logger(__name__)
 

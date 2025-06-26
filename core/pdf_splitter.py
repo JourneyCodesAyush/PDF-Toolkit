@@ -1,11 +1,12 @@
 # PDF split logic
 
 import os
+
 from PyPDF2 import PdfReader, PdfWriter
-from core.utils import parse_page_ranges
+
 from core.error_handler import handle_exception
 from core.result import Result
-from core.utils import validate_pdf_file
+from core.utils import parse_page_ranges, validate_pdf_file
 
 
 def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:

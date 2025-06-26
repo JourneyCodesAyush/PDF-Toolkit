@@ -2,10 +2,11 @@
 
 
 from tkinter import filedialog, messagebox, simpledialog
+
+from config.config import setup_logger
+from core.batch.batch_merge import batch_merge_pdfs
 from core.error_handler import handle_exception
 from gui.error_handler_gui import show_message
-from core.batch.batch_merge import batch_merge_pdfs
-from config.config import setup_logger
 
 logger = setup_logger(__name__)
 

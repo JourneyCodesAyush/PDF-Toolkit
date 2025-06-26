@@ -1,10 +1,11 @@
 # PDF merging GUI part here
 
 from tkinter import filedialog, messagebox
-from core.error_handler import handle_exception
-from gui.error_handler_gui import show_message
-from core.pdf_merge import mergePDF
+
 from config.config import setup_logger
+from core.error_handler import handle_exception
+from core.pdf_merge import mergePDF
+from gui.error_handler_gui import show_message
 
 logger = setup_logger(__name__)
 

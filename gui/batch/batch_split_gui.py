@@ -2,11 +2,12 @@
 
 
 import os
-from tkinter import filedialog, simpledialog, messagebox
+from tkinter import filedialog, messagebox, simpledialog
+
 from config.config import setup_logger
+from core.batch.batch_split import batch_split_pdf
 from core.error_handler import handle_exception
 from gui.error_handler_gui import show_message
-from core.batch.batch_split import batch_split_pdf
 
 logger = setup_logger(__name__)
 

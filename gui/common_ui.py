@@ -1,8 +1,10 @@
 # Shared UI
 
 import os
+
 from core.result import Result
 from core.utils import get_absolute_path
+
 
 def load_icon_safe(root) -> Result:
     """

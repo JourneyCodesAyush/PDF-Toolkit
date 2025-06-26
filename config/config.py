@@ -9,6 +9,7 @@ Logging and configuration settings.
 
 import logging
 import os
+
 from core.utils import get_persistent_path
 
 # LOG_FILE_PATH = get_absolute_path("../logs/user_activity.log")

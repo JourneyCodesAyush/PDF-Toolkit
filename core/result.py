@@ -1,6 +1,6 @@
 # Standardized return message from core/ to gui/
 
-from typing import Optional, Dict, Any
+from typing import Any, Dict, Optional
 
 
 class Result:

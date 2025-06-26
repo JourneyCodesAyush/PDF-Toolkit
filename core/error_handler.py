@@ -1,7 +1,8 @@
 # Centralized error handling
 
-from config.config import setup_logger
 import traceback
+
+from config.config import setup_logger
 from core.result import Result  # Import the Result class
 
 logger = setup_logger(__name__)

@@ -1,16 +1,16 @@
 # GUI window code
 
 import os
-from tkinter import Tk, RAISED, Label, Button, Frame
+from tkinter import RAISED, Button, Frame, Label, Tk
+
+from core.result import Result
+from core.utils import get_absolute_path
+from gui.batch.batch_operations_gui import batch_operations_gui_window
+from gui.common_ui import load_icon_safe
+from gui.error_handler_gui import show_message
 from gui.merge_gui import mergePDF_GUI
 from gui.rename_gui import rename_file_gui
 from gui.split_gui import split_pdf_gui
-from gui.error_handler_gui import show_message
-
-from gui.batch.batch_operations_gui import batch_operations_gui_window
-from gui.common_ui import load_icon_safe
-from core.utils import get_absolute_path
-from core.result import Result
 from version import __version__
 
 # from config.config import setup_logger
