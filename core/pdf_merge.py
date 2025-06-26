@@ -7,7 +7,7 @@ from core.result import Result
 from core.utils import validate_pdf_file
 
 
-def mergePDF(input_file_path: list[str], output_file_path: str) -> Result:
+def merge_pdf(input_file_path: list[str], output_file_path: str) -> Result:
     """
     Merge multiple PDF files into a single PDF saved at the specified output path.
 

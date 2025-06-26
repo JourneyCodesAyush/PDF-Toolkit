@@ -4,7 +4,7 @@ from tkinter import filedialog, messagebox
 
 from config.config import setup_logger
 from core.error_handler import handle_exception
-from core.pdf_merge import mergePDF
+from core.pdf_merge import merge_pdf
 from gui.error_handler_gui import show_message
 
 logger = setup_logger(__name__)
@@ -51,7 +51,7 @@ def mergePDF_GUI() -> None:
             logger.warning("Merging failed - Output file name NOT selected")
             return
 
-        result = mergePDF(list(input_files), save_file_path)
+        result = merge_pdf(list(input_files), save_file_path)
 
         if result.success:
             logger.info(f"Merging Successful: {result.message}")
