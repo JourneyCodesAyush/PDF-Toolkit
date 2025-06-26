@@ -51,7 +51,6 @@ def batch_rename_pdf_gui():
         else:
             output_dir = input_dir
 
-
         new_file_name = simpledialog.askstring(
             title="Rename PDF",
             prompt="Enter the new file name (without .pdf extension)",

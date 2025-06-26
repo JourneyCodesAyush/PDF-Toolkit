@@ -39,4 +39,3 @@ def load_icon_safe(root) -> Result:
             message=f"Could not load app icon.\nUsing default icon.\n\nDetails: {str(e)}",
             error_type="warning",
         )
-

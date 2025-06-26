@@ -63,9 +63,9 @@ def batch_operations_gui_window(parent=None):
     )
     rename_pdf.grid(row=3, column=2, padx=10, pady=10)
 
-    Label(window, text="Want to split a PDF into single-paged ones?", font=FONT_STYLE).grid(
-        row=4, column=1, padx=5, pady=5
-    )
+    Label(
+        window, text="Want to split a PDF into single-paged ones?", font=FONT_STYLE
+    ).grid(row=4, column=1, padx=5, pady=5)
     split_pdf = Button(
         window,
         text="Choose PDF to split",

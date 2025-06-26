@@ -88,4 +88,3 @@ def batch_rename_pdfs(
         )
     except Exception as e:
         return handle_exception(exc=e, context="Renaming PDFs of a directory")
- 
