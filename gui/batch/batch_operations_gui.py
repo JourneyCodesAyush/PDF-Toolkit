@@ -13,7 +13,16 @@ from version import __version__
 
 def batch_operations_gui_window(parent=None):
     """
-    Makes a new TopLevel window for the batch operations
+    Create and display the Batch Operations window as a Tkinter Toplevel.
+
+    Sets up UI elements including buttons for batch PDF merge, rename, and split operations,
+    configures window properties, and handles loading the application icon.
+
+    Args:
+        parent (tk.Widget, optional): The parent widget for this window. Defaults to None.
+
+    Returns:
+        None: This function creates and manages the window, it does not return a value.
     """
 
     window = Toplevel(parent)

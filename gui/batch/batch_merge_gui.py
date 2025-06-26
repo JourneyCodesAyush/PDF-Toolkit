@@ -13,15 +13,14 @@ logger = setup_logger(__name__)
 
 def batch_merge_pdf_gui():
     """
-    GUI handler to merge multiple PDF files into a single PDF.
+    Handle the GUI workflow for merging multiple PDF files into one.
 
-    Opens file dialogs for user to select directory of PDFs to merge,
-    prompts for output save location, calls the core merge function,
-    and displays success or error messages.
+    Opens dialogs for the user to select the input folder containing PDFs,
+    prompts for an optional output folder to save the merged PDF,
+    then calls the core batch merge function and displays success or error messages.
 
     Returns:
-        None: This function performs GUI interactions and shows messages,
-              no return value is needed.
+        None: This function manages GUI interactions and user messaging, no return value.
     """
     logger.info("Batch merge PDF operation started")
 

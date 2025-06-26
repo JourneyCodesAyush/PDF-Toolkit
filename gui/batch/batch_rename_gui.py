@@ -14,15 +14,14 @@ logger = setup_logger(__name__)
 
 def batch_rename_pdf_gui():
     """
-    GUI handler to rename a PDF file.
+    Handle the GUI workflow for batch renaming PDF files in a selected folder.
 
-    Opens dialogs for the user to select the original PDF,
-    choose the output directory, and enter a new file name.
-    Calls the core rename function and displays the result.
+    Opens dialogs to select the input folder of PDFs, optionally choose an output folder,
+    and prompt the user for a new file name. Calls the core renaming function and displays
+    success or error messages accordingly.
 
     Returns:
-        None: This function performs GUI interactions and shows messages,
-              no return value is needed.
+        None: This function manages GUI interactions and user messaging, no return value.
     """
     logger.info("Batch rename PDF operation started")
 

@@ -12,14 +12,15 @@ from core.utils import validate_pdf_file
 
 def batch_merge_pdfs(input_dir_path: str, output_file_path: Optional[str]) -> Result:
     """
-    Merge multiple PDF files into a single PDF saved at the specified output path.
+    Merge multiple PDF files from a directory into a single PDF saved to the specified path.
 
     Args:
-        input_dir_path (str): Directory containing PDF files to merge.
-        output_file_path (str): Output file path for the merged PDF.
+        input_dir_path (str): Path to the directory containing PDF files to merge.
+        output_file_path (Optional[str]): Path where the merged PDF will be saved.
+            If None, defaults to input directory path.
 
     Returns:
-        Result: Standardized result object indicating success or failure with message.
+        Result: Object indicating success or failure, with relevant message and error type.
     """
 
     if not input_dir_path:

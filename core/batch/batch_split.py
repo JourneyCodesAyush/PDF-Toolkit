@@ -12,15 +12,16 @@ from core.utils import validate_pdf_file
 
 def batch_split_pdf(file_path: str, output_dir: Optional[str] = None) -> Result:
     """
-    Split a PDF file into multiple files based on user-defined page ranges.
+    Split a PDF file into multiple single-page PDF files saved in the specified directory.
 
     Args:
-        file_path (str): Path to the input PDF file.
-        output_dir (str): Directory to save the resulting split PDF files.
+        file_path (str): Path to the input PDF file to be split.
+        output_dir (Optional[str]): Directory to save the split PDF files.
+            Defaults to the directory of the input file if not provided.
 
     Returns:
-        Result: Standardized Result object containing success status, messages,
-                and metadata (such as list of created files).
+        Result: Standardized Result object indicating success or failure.
+            On success, includes a list of the created single-page PDF filenames in 'data'.
     """
     try:
 

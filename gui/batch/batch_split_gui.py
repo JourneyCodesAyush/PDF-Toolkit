@@ -14,14 +14,14 @@ logger = setup_logger(__name__)
 
 def batch_split_pdf_gui():
     """
-    GUI handler to split a PDF based on user-specified page ranges.
+    Handle the GUI workflow for splitting a PDF into single-page PDFs.
 
-    Opens dialogs for selecting an input PDF file, entering page ranges,
-    and choosing an output directory. Delegates the actual splitting
-    to the core split_pdf function and handles success or error messaging.
+    Opens dialogs to select the input PDF file and choose an output directory,
+    then delegates the splitting operation to the core batch_split_pdf function.
+    Displays success or error messages based on the outcome.
 
     Returns:
-        None: Interacts via GUI dialogs and shows messages; no return value.
+        None: This function manages GUI dialogs and messaging; it does not return a value.
     """
 
     logger.info("Batch split PDF operation started")

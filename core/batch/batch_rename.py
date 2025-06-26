@@ -12,15 +12,15 @@ def batch_rename_pdfs(
     input_dir: str, base_name: str, output_dir: Optional[str] = None
 ) -> Result:
     """
-    Rename a PDF file and move it to a specified directory.
+    Rename all PDF files in the input directory with a base name and move them to the output directory.
 
     Args:
-        input_dir (str):  Directory containing PDF files to rename.
-        output_dir (str): Destination directory to save the renamed files.
-        base_name (str): New file name for the PDF files (Should NOT include .pdf extension).
+        input_dir (str): Directory containing PDF files to rename.
+        base_name (str): Base name for the new PDF files (without '.pdf' extension).
+        output_dir (Optional[str]): Directory to save renamed files; defaults to input_dir if not provided.
 
     Returns:
-        Result: Standardized result object indicating success or failure with message.
+        Result: Standardized result indicating success or failure, with a descriptive message.
     """
     try:
         if not os.path.isdir(input_dir):

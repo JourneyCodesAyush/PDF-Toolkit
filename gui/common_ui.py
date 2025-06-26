@@ -8,17 +8,17 @@ from core.utils import get_absolute_path
 
 def load_icon_safe(root) -> Result:
     """
-    Safely attempts to load and set the application icon for the given Tkinter root window.
+    Load and set the application icon for the given Tkinter root window safely.
 
     Args:
-        root (Tk): The Tkinter root window instance where the icon will be set.
+        root (tk.Tk): The root Tkinter window instance to set the icon on.
 
     Returns:
-        Result: A Result object indicating whether the icon was successfully loaded.
+        Result: Indicates success or failure of loading the icon, with message and error type.
 
     Behavior:
-        Tries to locate the icon file using an absolute path. If found, sets it as the window icon.
-        If the icon file is missing or cannot be loaded, returns a warning Result with the error details.
+        Attempts to locate the icon file via an absolute path and set it as the window icon.
+        If the icon file is missing or cannot be loaded, returns a warning Result explaining the issue.
     """
     try:
         # ICON_PATH = get_absolute_path("../assets/PDF_file.ico")
