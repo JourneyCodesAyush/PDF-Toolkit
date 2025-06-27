@@ -8,7 +8,7 @@ from core.utils import get_absolute_path
 from gui.batch.batch_operations_gui import batch_operations_gui_window
 from gui.common_ui import load_icon_safe
 from gui.error_handler_gui import show_message
-from gui.merge_gui import mergePDF_GUI
+from gui.merge_gui import merge_pdf_gui
 from gui.rename_gui import rename_file_gui
 from gui.split_gui import split_pdf_gui
 from version import __version__
@@ -55,7 +55,7 @@ def main() -> None:
         text="Choose PDFs to merge",
         font=BUTTON_FONT,
         relief=RAISED,
-        command=mergePDF_GUI,
+        command=merge_pdf_gui,
     )
     merge_pdf.grid(row=2, column=2, padx=10, pady=10)
 
