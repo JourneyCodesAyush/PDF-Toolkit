@@ -54,6 +54,9 @@ def merge_pdf_gui() -> None:
         result = merge_pdf(list(input_files), save_file_path)
 
         if result.success:
+            logger.info(
+                f"Merged files: { ', '.join([input_file for input_file in input_files])} to {save_file_path}"
+            )
             logger.info(f"Merging Successful: {result.message}")
         else:
             logger.warning(f"Merge returned failure message: {result.message}")
