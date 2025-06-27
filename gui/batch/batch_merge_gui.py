@@ -17,6 +17,7 @@ def batch_merge_pdf_gui() -> None:
 
     Opens dialogs for the user to select the input folder containing PDFs,
     prompts for an optional output folder to save the merged PDF,
+    then asks for a new name for the merged file (without the .pdf extension),
     then calls the core batch merge function and displays success or error messages.
 
     Returns:
@@ -44,13 +45,23 @@ def batch_merge_pdf_gui() -> None:
         )
 
         if output_path_yes_no:
-            save_file_path = filedialog.askdirectory(
+            output_dir = filedialog.askdirectory(
                 title="Where do you want to save the merged file?",
             )
         else:
-            save_file_path = input_dir
+            output_dir = input_dir
 
-        result = batch_merge_pdfs(input_dir, save_file_path)
+        new_name = simpledialog.askstring(
+            title="New PDF name",
+            prompt="Enter the name for the merged PDF(without .pdf extension)",
+        )
+
+        if not new_name.endswith(".pdf"):
+            new_name += ".pdf"
+
+        result = batch_merge_pdfs(
+            input_dir_path=input_dir, new_name=new_name, output_dir=output_dir
+        )
 
         if result.success:
             logger.info(f"Batch merging successful: {result.message}")
