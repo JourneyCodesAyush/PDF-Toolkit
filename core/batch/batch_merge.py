@@ -10,13 +10,16 @@ from core.result import Result
 from core.utils import validate_pdf_file
 
 
-def batch_merge_pdfs(input_dir_path: str, output_file_path: Optional[str]) -> Result:
+def batch_merge_pdfs(
+    input_dir_path: str, new_name: str, output_dir: Optional[str]
+) -> Result:
     """
     Merge multiple PDF files from a directory into a single PDF saved to the specified path.
 
     Args:
         input_dir_path (str): Path to the directory containing PDF files to merge.
-        output_file_path (Optional[str]): Path where the merged PDF will be saved.
+        new_name (str): The name of the merged output PDF file (without a '.pdf' extension).
+        output_dir (Optional[str]): Path where the merged PDF will be saved.
             If None, defaults to input directory path.
 
     Returns:
@@ -28,13 +31,16 @@ def batch_merge_pdfs(input_dir_path: str, output_file_path: Optional[str]) -> Re
             success=False, title="No files", message="No input files selected."
         )
 
-    output_file_path = output_file_path if output_file_path else input_dir_path
+    output_dir = output_dir if output_dir else input_dir_path
 
     pdf_files = [
         os.path.join(input_dir_path, f)
         for f in os.listdir(input_dir_path)
         if f.lower().endswith(".pdf")
     ]
+
+    if not new_name.endswith(".pdf"):
+        new_name += ".pdf"
 
     merger = PdfMerger()
     try:
@@ -50,7 +56,7 @@ def batch_merge_pdfs(input_dir_path: str, output_file_path: Optional[str]) -> Re
                 )
 
             merger.append(pdf)
-        merger.write(output_file_path)
+        merger.write(os.path.join(output_dir, new_name))
         return Result(
             success=True,
             title="Success",
