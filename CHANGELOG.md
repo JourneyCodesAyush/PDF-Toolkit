@@ -6,7 +6,7 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
-## [v0.3.0] – 2025-06-26
+## [v0.3.0] – 2025-06-27
 
 ### ✨ Added
 - Batch processing support for PDFs:
