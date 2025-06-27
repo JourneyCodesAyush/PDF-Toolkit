@@ -41,7 +41,7 @@ def batch_merge_pdf_gui() -> None:
 
         output_path_yes_no = messagebox.askyesno(
             title="Output folder",
-            message="Do you want to save the merged folder elsewhere?",
+            message="Do you want to save the merged PDF elsewhere?",
         )
 
         if output_path_yes_no:

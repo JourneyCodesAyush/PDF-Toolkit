@@ -41,12 +41,12 @@ def batch_split_pdf_gui() -> None:
 
         output_path_yes_no = messagebox.askyesno(
             title="Output folder",
-            message="Do you want to save the merged folder elsewhere?",
+            message="Do you want to save the splitted PDFs elsewhere?",
         )
 
         if output_path_yes_no:
             output_dir = filedialog.askdirectory(
-                title="Where do you want to save the merged file?",
+                title="Where do you want to save the splitted PDFs?",
             )
         else:
             output_dir = os.path.dirname(file_path)

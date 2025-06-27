@@ -40,7 +40,7 @@ def batch_rename_pdf_gui() -> None:
 
         output_dir_yes_no = messagebox.askyesno(
             title="Output folder",
-            message="Do you want to save the merged folder elsewhere?",
+            message="Do you want to save the renamed files elsewhere?",
         )
 
         if output_dir_yes_no == True:
