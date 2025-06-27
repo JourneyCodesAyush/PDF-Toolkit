@@ -6,6 +6,17 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v0.3.0] – 2025-06-26
+
+### ✨ Added
+- Batch processing support for PDFs:
+  - Batch merge, rename, and split operations implemented in `core/batch/` and `gui/batch/`
+  - New GUI dialogs for selecting folders or multiple PDFs for batch actions
+  - Comprehensive logging of batch operations in `user_activity.log`
+- Enhanced error handling and user messaging consistency across batch features
+
+---
+
 ## [v0.2.1] – 2025-06-18
 
 ### ✨ Added

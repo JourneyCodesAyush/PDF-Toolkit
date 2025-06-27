@@ -16,18 +16,17 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 ## 📦 Latest Version
 
-**Version:** [v0.2.1](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.2.1)  
-**Release Date:** June 18, 2025  
+**Version:** [v0.3.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.3.0)  
+**Release Date:** June 27, 2025  
 **Status:** Pre-release  
-**Download:** [PDF-Toolkit.v0.2.1.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.2.1/PDF-Toolkit.v0.2.1.zip)
+**Download:** [PDF-Toolkit.v0.3.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.3.0/PDF-Toolkit.v0.3.0.zip)
 
-This is a **pre-release** of PDF Toolkit v0.2.1. It includes the following key improvements:
+This is a **pre-release** of PDF Toolkit v0.3.0. It includes the following key improvements:
 
-- 📄 **Separate logging** for user-visible messages and developer-facing errors  
-- 🛠️ **Improved error handling** and clearer feedback in GUI operations  
-- 🪛 Minor internal refactoring for better structure and maintainability  
-
-🔍 Features include PDF **merging**, **splitting**, and **renaming**, with a basic Tkinter-based GUI.
+- 🔍 **Improved Logging** with standardized log format, specifically for file paths (using forward slashes `/`).
+- 🛠️ **Enhanced User Experience**:
+  - Minor UI tweaks to improve accessibility.
+  - Improved error reporting for file path issues.
 
 🧪 This version is for testing purposes. Feedback and contributions are welcome!
 
@@ -38,6 +37,7 @@ This is a **pre-release** of PDF Toolkit v0.2.1. It includes the following key i
 - 🔗 **Merge PDFs** – Combine multiple PDF files into one.
 - ✏️ **Rename PDFs** – Give your PDF files cleaner, more meaningful names.
 - ✂️ **Split PDFs** – Break up large PDFs into smaller files or extract specific pages.
+- 🏷️ **Batch Processing** – Perform batch operations like merge PDFs of entire folder (and/or move to other location) into one, rename PDFs of entire folder at once, or split a PDF into multiple single-paged PDFs at once. 
 - 🎯 **User-friendly interface** – No learning curve, just click and go.
 - ⚡ **Lightweight & fast** – Minimal dependencies and blazing performance.
 - 💻 **Cross-platform** – Built with Python & Tkinter; runs on Windows and (with small tweaks) on macOS/Linux too.
@@ -141,6 +141,7 @@ The app is equipped with built-in logging for user actions and robust error hand
 ## 🧪 Screenshots
 
 ![App Screenshot](assets/screenshot.png)
+![App Screenshot](assets/screenshot2.png)
 
 ---
 
