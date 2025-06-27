@@ -38,12 +38,12 @@ def batch_rename_pdf_gui() -> None:
             logger.warning(f"Batch renaming failed - No folder selected")
             return
 
-        output_path_yes_no = messagebox.askyesno(
+        output_dir_yes_no = messagebox.askyesno(
             title="Output folder",
             message="Do you want to save the merged folder elsewhere?",
         )
 
-        if output_path_yes_no:
+        if output_dir_yes_no == True:
             output_dir = filedialog.askdirectory(
                 title="Select a directory to save the renamed files"
             )
@@ -67,7 +67,9 @@ def batch_rename_pdf_gui() -> None:
         logger.info(
             f"Batch renaming files inside: {input_dir} -> {os.path.join(output_dir, new_file_name)}"
         )
-        result = batch_rename_pdfs(input_dir, output_dir, new_file_name)
+        result = batch_rename_pdfs(
+            input_dir=input_dir, base_name=new_file_name, output_dir=output_dir
+        )
 
         if result.success:
             logger.info(f"Batch renaming successful: {result.message}")
