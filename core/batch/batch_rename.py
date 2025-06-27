@@ -84,7 +84,7 @@ def batch_rename_pdfs(
             success=True,
             title="Success",
             error_type="info",
-            message=f"{len(pdf_files)} PDF files renamed successfully to: {output_dir}.",
+            message=f"{len(pdf_files)} PDF files renamed successfully in and/or moved to: {output_dir}.",
         )
     except Exception as e:
         return handle_exception(exc=e, context="Renaming PDFs of a directory")
