@@ -4,7 +4,7 @@ import os
 import threading
 import tkinter as tk
 from tkinter import Toplevel, ttk
-from typing import Callable
+from typing import Callable, Union
 
 from core.result import Result
 from core.utils import get_absolute_path
@@ -94,7 +94,9 @@ class ProgressBar(Toplevel):
 
 
 def run_task_with_progress(
-    root: tk.Tk, task_func: Callable[[], Result], on_done=Callable[[Result], None]
+    root: Union[tk.Tk, tk.Toplevel],
+    task_func: Callable[[], Result],
+    on_done=Callable[[Result], None],
 ) -> None:
     """
     Run a long-running task in a background thread while showing a modal progress bar.
