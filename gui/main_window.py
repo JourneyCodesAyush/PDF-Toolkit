@@ -55,7 +55,7 @@ def main() -> None:
         text="Choose PDFs to merge",
         font=BUTTON_FONT,
         relief=RAISED,
-        command=merge_pdf_gui,
+        command=lambda: merge_pdf_gui(root),
     )
     merge_pdf.grid(row=2, column=2, padx=10, pady=10)
 
@@ -67,7 +67,7 @@ def main() -> None:
         text="Select PDF to rename",
         font=BUTTON_FONT,
         relief=RAISED,
-        command=rename_file_gui,
+        command=lambda: rename_file_gui(root),
     )
     rename_pdf.grid(row=3, column=2, padx=10, pady=10)
 
@@ -79,7 +79,7 @@ def main() -> None:
         text="Choose PDF to split",
         font=BUTTON_FONT,
         relief=RAISED,
-        command=split_pdf_gui,
+        command=lambda: split_pdf_gui(root),
     )
     split_pdf.grid(row=4, column=2, padx=10, pady=10)
 
