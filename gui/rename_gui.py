@@ -11,7 +11,7 @@ from gui.error_handler_gui import show_message
 logger = setup_logger(__name__)
 
 
-def rename_file_gui() -> None:
+def rename_file_gui(root) -> None:
     """
     GUI handler to rename a PDF file.
 
@@ -70,16 +70,23 @@ def rename_file_gui() -> None:
         logger.info(
             f"Renaming file: {old_file_path} -> {os.path.join(new_directory, new_file_name)}"
         )
-        result = rename_pdf_file(old_file_path, new_directory, new_file_name)
 
-        if result.success:
-            logger.info(f"Renaming successful: {result.message}")
-        else:
-            logger.warning(
-                f"Rename operation returned failure message: {result.message}"
-            )
+        def task():
+            return rename_pdf_file(old_file_path, new_directory, new_file_name)
 
-        show_message(result)
+        def on_done(result):
+            if result.success:
+                logger.info(f"Renaming successful: {result.message}")
+            else:
+                logger.warning(
+                    f"Rename operation returned failure message: {result.message}"
+                )
+
+            show_message(result)
+
+        from gui.common_ui import run_task_with_progress
+
+        run_task_with_progress(root, task_func=task, on_done=on_done)
 
     except Exception as exc:
         error_msg = handle_exception(exc, context="Renaming PDF")

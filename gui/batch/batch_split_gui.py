@@ -12,7 +12,7 @@ from gui.error_handler_gui import show_message
 logger = setup_logger(__name__)
 
 
-def batch_split_pdf_gui() -> None:
+def batch_split_pdf_gui(parent_window) -> None:
     """
     Handle the GUI workflow for splitting a PDF into single-page PDFs.
 
@@ -51,21 +51,28 @@ def batch_split_pdf_gui() -> None:
         else:
             output_dir = os.path.dirname(file_path)
 
-        result = batch_split_pdf(file_path, output_dir)
-        if result.success:
-            logger.info(f"{result.message}")
-            if result.data and "files" in result.data:
-                for f in result.data["files"]:
-                    logger.info(f"Created: {os.path.join(output_dir,f)}")
-            logger.info(
-                f"Batch split operation finished with message: {result.message}"
-            )
-        else:
-            logger.warning(
-                f"Batch split PDF operation returned failure message: {result.message}"
-            )
+        def task():
+            return batch_split_pdf(file_path, output_dir)
 
-        show_message(result)
+        def on_done(result):
+            if result.success:
+                logger.info(f"{result.message}")
+                if result.data and "files" in result.data:
+                    for f in result.data["files"]:
+                        logger.info(f"Created: {os.path.join(output_dir,f)}")
+                logger.info(
+                    f"Batch split operation finished with message: {result.message}"
+                )
+            else:
+                logger.warning(
+                    f"Batch split PDF operation returned failure message: {result.message}"
+                )
+
+            show_message(result)
+
+        from gui.common_ui import run_task_with_progress
+
+        run_task_with_progress(root=parent_window, task_func=task, on_done=on_done)
 
     except Exception as exc:
         error_msg = handle_exception(exc, context="Splitting PDF")

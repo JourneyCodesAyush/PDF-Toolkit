@@ -10,7 +10,7 @@ from gui.error_handler_gui import show_message
 logger = setup_logger(__name__)
 
 
-def merge_pdf_gui() -> None:
+def merge_pdf_gui(root) -> None:
     """
     GUI handler to merge multiple PDF files into a single PDF.
 
@@ -51,17 +51,23 @@ def merge_pdf_gui() -> None:
             logger.warning("Merging failed - Output file name NOT selected")
             return
 
-        result = merge_pdf(list(input_files), save_file_path)
+        def task():
+            return merge_pdf(list(input_files), save_file_path)
 
-        if result.success:
-            logger.info(
-                f"Merged files: { ', '.join([input_file for input_file in input_files])} to {save_file_path}"
-            )
-            logger.info(f"Merging Successful: {result.message}")
-        else:
-            logger.warning(f"Merge returned failure message: {result.message}")
+        def on_done(result):
+            if result.success:
+                logger.info(
+                    f"Merged files: { ', '.join([input_file for input_file in input_files])} to {save_file_path}"
+                )
+                logger.info(f"Merging Successful: {result.message}")
+            else:
+                logger.warning(f"Merge returned failure message: {result.message}")
 
-        show_message(result)
+            show_message(result)
+
+        from gui.common_ui import run_task_with_progress
+
+        run_task_with_progress(root, task, on_done)
 
     except Exception as exc:
         error_msg = handle_exception(exc, context="Merging PDFs")

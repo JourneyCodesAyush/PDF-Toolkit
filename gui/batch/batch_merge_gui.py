@@ -11,7 +11,7 @@ from gui.error_handler_gui import show_message
 logger = setup_logger(__name__)
 
 
-def batch_merge_pdf_gui() -> None:
+def batch_merge_pdf_gui(parent_window) -> None:
     """
     Handle the GUI workflow for merging multiple PDF files into one.
 
@@ -59,19 +59,27 @@ def batch_merge_pdf_gui() -> None:
         if not new_name.endswith(".pdf"):
             new_name += ".pdf"
 
-        result = batch_merge_pdfs(
-            input_dir_path=input_dir, new_name=new_name, output_dir=output_dir
-        )
-
-        if result.success:
-            logger.info(
-                f"Batch merged files of {input_dir} to {output_dir}/{new_name}"
+        def task():
+            return batch_merge_pdfs(
+                input_dir_path=input_dir, new_name=new_name, output_dir=output_dir
             )
-            logger.info(f"Batch merging successful: {result.message}")
-        else:
-            logger.warning(f"Batch merge returned failure message: {result.message}")
 
-        show_message(result)
+        def on_done(result):
+            if result.success:
+                logger.info(
+                    f"Batch merged files of {input_dir} to {output_dir}/{new_name}"
+                )
+                logger.info(f"Batch merging successful: {result.message}")
+            else:
+                logger.warning(
+                    f"Batch merge returned failure message: {result.message}"
+                )
+
+            show_message(result)
+
+        from gui.common_ui import run_task_with_progress
+
+        run_task_with_progress(root=parent_window, task_func=task, on_done=on_done)
 
     except Exception as exc:
         error_msg = handle_exception(exc, context="Merging PDFs")

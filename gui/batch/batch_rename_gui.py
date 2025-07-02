@@ -12,7 +12,7 @@ from gui.error_handler_gui import show_message
 logger = setup_logger(__name__)
 
 
-def batch_rename_pdf_gui() -> None:
+def batch_rename_pdf_gui(parent_window) -> None:
     """
     Handle the GUI workflow for batch renaming PDF files in a selected folder.
 
@@ -67,18 +67,25 @@ def batch_rename_pdf_gui() -> None:
         logger.info(
             f"Batch renaming files inside: {input_dir} -> {os.path.join(output_dir, new_file_name)}"
         )
-        result = batch_rename_pdfs(
-            input_dir=input_dir, base_name=new_file_name, output_dir=output_dir
-        )
 
-        if result.success:
-            logger.info(f"Batch renaming successful: {result.message}")
-        else:
-            logger.warning(
-                f"Batch rename operation returned failure message: {result.message}"
+        def task():
+            return batch_rename_pdfs(
+                input_dir=input_dir, base_name=new_file_name, output_dir=output_dir
             )
 
-        show_message(result)
+        def on_done(result):
+            if result.success:
+                logger.info(f"Batch renaming successful: {result.message}")
+            else:
+                logger.warning(
+                    f"Batch rename operation returned failure message: {result.message}"
+                )
+
+            show_message(result)
+
+        from gui.common_ui import run_task_with_progress
+
+        run_task_with_progress(root=parent_window, task_func=task, on_done=on_done)
 
     except Exception as exc:
         error_msg = handle_exception(exc, context="Renaming PDF")

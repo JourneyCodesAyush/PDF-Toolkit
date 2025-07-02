@@ -11,7 +11,7 @@ from gui.error_handler_gui import show_message
 logger = setup_logger(__name__)
 
 
-def split_pdf_gui() -> None:
+def split_pdf_gui(root) -> None:
     """
     GUI handler to split a PDF based on user-specified page ranges.
 
@@ -59,19 +59,26 @@ def split_pdf_gui() -> None:
             logger.warning("Splitting failed - No output folder selected.")
             return
 
-        result = split_pdf(file_path, page_range_input, output_dir)
-        if result.success:
-            logger.info(f"{result.message}")
-            if result.data and "files" in result.data:
-                for f in result.data["files"]:
-                    logger.info(f"Created: {os.path.join(output_dir,f)}")
-            logger.info(f"Split operation finished with message: {result.message}")
-        else:
-            logger.warning(
-                f"Split PDF operation returned failure message: {result.message}"
-            )
+        def task():
+            return split_pdf(file_path, page_range_input, output_dir)
 
-        show_message(result)
+        def on_done(result):
+            if result.success:
+                logger.info(f"{result.message}")
+                if result.data and "files" in result.data:
+                    for f in result.data["files"]:
+                        logger.info(f"Created: {os.path.join(output_dir,f)}")
+                logger.info(f"Split operation finished with message: {result.message}")
+            else:
+                logger.warning(
+                    f"Split PDF operation returned failure message: {result.message}"
+                )
+
+            show_message(result)
+
+        from gui.common_ui import run_task_with_progress
+
+        run_task_with_progress(root, task_func=task, on_done=on_done)
 
     except Exception as exc:
         error_msg = handle_exception(exc, context="Splitting PDF")
