@@ -6,6 +6,27 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v0.4.0] – 2025-07-03
+
+### ✨ Added
+- **Progress bar and threading support for long-running operations**:
+  - Introduced a reusable `ProgressBar` modal window in `gui/common_ui.py`
+  - New `run_task_with_progress()` function allows running any `Result`-returning task in a background thread
+  - Keeps GUI responsive during operations like merge, split, rename (batch and single)
+  - Safe GUI lock using `grab_set()` and `WM_DELETE_WINDOW` override
+  
+
+### 🔧 Changed
+- All long-running operations now execute in background threads
+- Main UI remains interactive during PDF processing tasks
+- Enhanced error resilience and encapsulation of shared UI behaviors
+
+### 🐞 Fixed
+- Fixed UI freeze when performing large PDF operations in batch mode
+- Minor alignment and modality bugs in batch dialogs
+
+---
+
 ## [v0.3.0] – 2025-06-27
 
 ### ✨ Added

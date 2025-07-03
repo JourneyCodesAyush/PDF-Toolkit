@@ -16,15 +16,15 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 ## 📦 Latest Version
 
-**Version:** [v0.3.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.3.0)  
-**Release Date:** June 27, 2025  
+**Version:** [v0.4.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.4.0)  
+**Release Date:** July 3, 2025  
 **Status:** Pre-release  
-**Download:** [PDF-Toolkit.v0.3.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.3.0/PDF-Toolkit.v0.3.0.zip)
+**Download:** [PDF-Toolkit.v0.4.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.4.0/PDF-Toolkit.v0.4.0.zip)
 
-This is a **pre-release** of PDF Toolkit v0.3.0. It includes the following key improvements:
+> This is a **pre-release** of PDF Toolkit. It includes the following key improvements:
 
-- 🔍 **Improved Logging** with standardized log format, specifically for file paths (using forward slashes `/`).
 - 🛠️ **Enhanced User Experience**:
+  - Added a progress bar during operations
   - Minor UI tweaks to improve accessibility.
   - Improved error reporting for file path issues.
 
@@ -48,7 +48,7 @@ This is a **pre-release** of PDF Toolkit v0.3.0. It includes the following key i
 
 To install and run PDF Toolkit locally:
 
-2. Clone the repository:
+1. Clone the repository:
    ```bash
    git clone https://github.com/JourneyCodesAyush/pdf-toolkit.git
    cd pdf-toolkit
@@ -96,7 +96,6 @@ If dependencies aren’t installing or the app crashes, try setting up and activ
 Run
 
 ```bash
-
 pip install -r requirements.txt
 ```
 again to ensure all required packages are installed.
@@ -218,7 +217,15 @@ Crafted with care by **JourneyCodesAyush**
 
 ---
 
-## 🧠 What I Learned
+## 🙌 Special Thanks
+
+Built with ❤️ using Python and Tkinter.  
+Badges powered by [Shields.io](https://shields.io)  
+Special thanks to ChatGPT (OpenAI) for helping with coding, documentation, and guidance.
+
+---
+
+## 📚 Developer Notes (Optional Read)
 
 - How to use Python's `PyPDF2` library to manipulate PDF files (merge, split, extract pages).
 - Using Python's `os` module for file system operations like checking file existence and renaming.
@@ -228,10 +235,3 @@ Crafted with care by **JourneyCodesAyush**
 - Writing clean, modular code with docstrings and meaningful comments.
 - Writing effective README documentation to make the project user-friendly.
 
----
-
-## 🙌 Special Thanks
-
-Built with ❤️ using Python and Tkinter.  
-Badges powered by [Shields.io](https://shields.io)  
-Special thanks to ChatGPT (OpenAI) for helping with coding, documentation, and guidance.
