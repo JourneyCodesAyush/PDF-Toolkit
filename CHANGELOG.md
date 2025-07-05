@@ -6,6 +6,13 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v0.4.1] – 2025-07-05
+
+### 🐞 Fixed
+- Replace `.ico` icon with `.png` to improve compatibility with Linux desktop environments.
+
+---
+
 ## [v0.4.0] – 2025-07-03
 
 ### ✨ Added
