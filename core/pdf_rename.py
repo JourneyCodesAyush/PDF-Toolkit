@@ -44,6 +44,15 @@ def rename_pdf_file(old_path: str, new_directory: str, new_name: str) -> Result:
                 title="Invalid file",
                 message="Selected file not a PDF",
             )
+
+        if not new_name or not new_name.strip():
+            return Result(
+                success=False,
+                error_type="Error",
+                title="New file name not selected",
+                message="New file name for the pdf is empty",
+            )
+
         if not new_name.lower().endswith(".pdf"):
             # raise ValueError("New file name must have a .pdf extension.")
             new_name += ".pdf"
