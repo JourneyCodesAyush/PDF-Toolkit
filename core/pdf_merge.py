@@ -1,5 +1,6 @@
 # PDF merge logic
 
+import os
 from PyPDF2 import PdfMerger
 
 from core.error_handler import handle_exception
@@ -22,6 +23,11 @@ def merge_pdf(input_file_path: list[str], output_file_path: str) -> Result:
     if not input_file_path:
         return Result(
             success=False, title="No files", message="No input files selected."
+        )
+
+    if os.path.exists(output_file_path):
+        return Result(
+            success=False, title="Duplicate file", message="Location already exists."
         )
 
     merger = PdfMerger()
