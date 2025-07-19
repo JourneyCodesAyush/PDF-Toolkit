@@ -25,6 +25,22 @@ def merge_pdf(input_file_path: list[str], output_file_path: str) -> Result:
             success=False, title="No files", message="No input files selected."
         )
 
+    if not output_file_path or output_file_path.strip() == "":
+        return Result(
+            success=False,
+            title="Invalid output path",
+            message="Output file path cannot be empty.",
+        )
+
+    if os.path.abspath(output_file_path) in [
+        os.path.abspath(p) for p in input_file_path
+    ]:
+        return Result(
+            success=False,
+            title="Invalid output path",
+            message="Output file path cannot be same as any input file.",
+        )
+
     if os.path.exists(output_file_path):
         return Result(
             success=False, title="Duplicate file", message="Location already exists."
