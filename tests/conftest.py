@@ -155,3 +155,63 @@ def valid_invalid_pdfs():
         yield input_pdfs_path
     finally:
         sample_dir.cleanup()
+
+
+@pytest.fixture
+def pdfs_directory():
+    """Provide a directory of temporary file paths to multiple copies of a valid sample PDF for positive batch tests."""
+
+    sample_dir = TemporaryDirectory(
+        dir=os.path.join(root_path, "tests"), prefix="test_pdf_"
+    )
+
+    for i in range(4):
+        temp_pdf = os.path.join(sample_dir.name, f"tempfile{i}.pdf")
+        create_pdf(temp_pdf)
+
+    try:
+        yield sample_dir.name
+    finally:
+        sample_dir.cleanup()
+
+
+@pytest.fixture
+def corrupt_pdfs_directory():
+    """Provide a directory containing a mix of valid and invalid PDF files for batch merge testing."""
+
+    sample_dir = TemporaryDirectory(
+        dir=os.path.join(root_path, "tests"), prefix="test_pdf_"
+    )
+
+    for i in range(4):
+        if i % 3 == 0:
+            temp_pdf = os.path.join(sample_dir.name, f"tempfile{i}.pdf")
+            with open(temp_pdf, "w") as f:
+                f.write("I am an invalid PDF!")
+
+        else:
+            temp_pdf = os.path.join(sample_dir.name, f"tempfile{i}.pdf")
+            create_pdf(temp_pdf)
+
+    try:
+        yield sample_dir.name
+    finally:
+        sample_dir.cleanup()
+
+
+@pytest.fixture
+def large_pdfs_directory():
+    """Provide a directory with multiple valid sample PDFs for large-scale batch testing."""
+
+    sample_dir = TemporaryDirectory(
+        dir=os.path.join(root_path, "tests"), prefix="test_pdf_"
+    )
+
+    for i in range(111):
+        temp_pdf = os.path.join(sample_dir.name, f"tempfile{i}.pdf")
+        create_pdf(temp_pdf)
+
+    try:
+        yield sample_dir.name
+    finally:
+        sample_dir.cleanup()
