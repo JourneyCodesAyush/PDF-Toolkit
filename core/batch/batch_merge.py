@@ -31,7 +31,28 @@ def batch_merge_pdfs(
             success=False, title="No files", message="No input files selected."
         )
 
+    if not new_name or new_name.strip() == "":
+        return Result(
+            success=False,
+            title="Invalid name",
+            message="Name of the merged PDF cannot be empty",
+        )
+
     output_dir = output_dir if output_dir else input_dir_path
+
+    if os.path.abspath(os.path.join(output_dir, new_name)) in [
+        os.path.abspath(p) for p in os.path.join(output_dir, new_name)
+    ]:
+        return Result(
+            success=False,
+            title="Invalid output path",
+            message="Output file path cannot be same as any input file.",
+        )
+
+    if os.path.exists(os.path.join(output_dir, new_name)):
+        return Result(
+            success=False, title="Duplicate file", message="Location already exists."
+        )
 
     pdf_files = [
         os.path.join(input_dir_path, f)
