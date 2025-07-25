@@ -32,7 +32,8 @@ def batch_split_pdf(file_path: str, output_dir: Optional[str] = None) -> Result:
                 title="File Not Found",
                 message=f"The original file does not exist: {file_path}",
             )
-
+        
+        output_dir = output_dir if output_dir else os.path.dirname(file_path)
         if not os.path.isdir(output_dir):
             return Result(
                 success=False,
@@ -40,8 +41,6 @@ def batch_split_pdf(file_path: str, output_dir: Optional[str] = None) -> Result:
                 title="Invalid output directory",
                 message=f"The specified directory does not exist: {output_dir}",
             )
-
-        output_dir = output_dir if output_dir else file_path
 
         if not file_path.lower().endswith(".pdf"):
             return Result(
