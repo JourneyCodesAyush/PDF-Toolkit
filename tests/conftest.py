@@ -7,7 +7,7 @@ from fpdf import FPDF
 root_path = os.getcwd()
 
 
-def create_pdf(save_location: int, page_nums: int = 7):
+def create_pdf(save_location: str, page_nums: int = 7):
     """
     Generate a simple multi-page PDF file with sample content and save it to the given location.
 
@@ -215,3 +215,21 @@ def large_pdfs_directory():
         yield sample_dir.name
     finally:
         sample_dir.cleanup()
+
+
+@pytest.fixture
+def single_page_pdf():
+    """Provide a temporary path to a valid, sample, and single-page PDF for testing purposes."""
+
+    sample_dir = TemporaryDirectory(
+        dir=os.path.join(root_path, "tests"), prefix="test_pdf_"
+    )
+
+    temp_pdf = os.path.join(sample_dir.name, "tempfile1.pdf")
+    create_pdf(temp_pdf, 1)
+
+    try:
+        yield temp_pdf
+    finally:
+        sample_dir.cleanup()
+
