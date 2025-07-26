@@ -5,7 +5,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/JourneyCodesAyush/pdf-toolkit?display_name=tag&sort=semver)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/status-early%20development-orange)
+![Status](https://img.shields.io/badge/status-pre%20release-orange)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
 
 Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you **merge**, **rename**, and **split** PDF files effortlessly. Whether you're handling academic papers, work documents, or just organizing your digital clutter, this tool gets the job done quickly and easily.
@@ -16,19 +16,17 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 ## 📦 Latest Version
 
-**Version:** [v0.4.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.4.0)  
-**Release Date:** July 3, 2025  
+**Version:** [v0.5.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.5.0)  
+**Release Date:** July 26, 2025  
 **Status:** Pre-release  
-**Download:** [PDF-Toolkit.v0.4.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.4.0/PDF-Toolkit.v0.4.0.zip)
+**Download:** [PDF-Toolkit.v0.5.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.5.0/PDF-Toolkit.v0.5.0.zip)
 
 > This is a **pre-release** of PDF Toolkit. It includes the following key improvements:
 
-- 🛠️ **Enhanced User Experience**:
-  - Added a progress bar during operations
-  - Minor UI tweaks to improve accessibility.
-  - Improved error reporting for file path issues.
-
-🧪 This version is for testing purposes. Feedback and contributions are welcome!
+- 🐞 **Bug Fixes and Validations**:
+  - Added filename validation in **rename** module
+  - Improved overwrite protection and validation logic in **merge** and **batch-merge**
+  - Resolved runtime error in **batch-split** by assigning output directory before checks
 
 ---
 
@@ -190,7 +188,7 @@ Please use this format when writing commit messages:
 ### ✅ Common Commit Types
 
 | Type       | Description                                           |
-|------------|-------------------------------------------------------|
+| ---------- | ----------------------------------------------------- |
 | `feat`     | A new feature                                         |
 | `fix`      | A bug fix                                             |
 | `docs`     | Changes to documentation only                         |
