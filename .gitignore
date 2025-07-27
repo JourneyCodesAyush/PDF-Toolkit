@@ -13,6 +13,9 @@ logs/
 # PDF files (anywhere)
 *.pdf
 
+# .vscode files
+*.vscode
+
 # Text files
 *.txt
 
