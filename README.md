@@ -8,6 +8,8 @@
 ![Status](https://img.shields.io/badge/status-pre%20release-orange)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
 
+---
+
 Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you **merge**, **rename**, and **split** PDF files effortlessly. Whether you're handling academic papers, work documents, or just organizing your digital clutter, this tool gets the job done quickly and easily.
 
 > 🚧 *This project is currently under active development. Features, structure, and design may change before the first stable release.*
@@ -35,7 +37,7 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 - 🔗 **Merge PDFs** – Combine multiple PDF files into one.
 - ✏️ **Rename PDFs** – Give your PDF files cleaner, more meaningful names.
 - ✂️ **Split PDFs** – Break up large PDFs into smaller files or extract specific pages.
-- 🏷️ **Batch Processing** – Perform batch operations like merge PDFs of entire folder (and/or move to other location) into one, rename PDFs of entire folder at once, or split a PDF into multiple single-paged PDFs at once. 
+- 🏷️ **Batch Processing** – Perform batch operations like merging all PDFs in a folder into one (with optional move), rename PDFs of entire folder at once, or split a PDF into multiple single-paged PDFs at once. 
 - 🎯 **User-friendly interface** – No learning curve, just click and go.
 - ⚡ **Lightweight & fast** – Minimal dependencies and blazing performance.
 - 💻 **Cross-platform** – Built with Python & Tkinter; runs on Windows and (with small tweaks) on macOS/Linux too.
@@ -62,6 +64,14 @@ To install and run PDF Toolkit locally:
    ```bash
    pip install -r requirements.txt
    ```
+
+<details><summary>Linux Quick Launch<b></b></summary>
+
+```bash
+chmod +x launch_linux.sh
+launch_linux.sh
+```
+</details>
 
 ---
 
@@ -105,7 +115,7 @@ On some systems, you might need to run commands with elevated permissions (e.g.,
 Check the terminal or command prompt for error messages and share them when reporting bugs.
 
 - **Still stuck**?
-Open an issue on GitHub or contact the author.
+Open an issue on GitHub or contact the [author](https://github.com/journeycodesayush).
 
 ---
 
@@ -121,11 +131,42 @@ pdf_toolkit/
 │   └── split_gui.py
 ├── core/                 # Core PDF logic (merge, rename, split)
 ├── config/               # Logging and global configuration
+├── tests/                # Testing files
 ├── logs/                 # Stores logs of user activity
 ├── main.py               # Entry point of the app
 ├── requirements.txt      # Dependency list
 └── README.md             # You're reading it!
 ```
+
+---
+
+## 🧪 Testing
+As of ***v0.6.0***, *PDF Toolkit* includes a growing suite of unit tests to ensure the reliability of its core and batch features.
+
+### ✅ How to Run Tests
+1. Make sure `pytest` is installed:
+  ```bash
+  pip install pytest
+  ```
+2. Then from the project root, run:
+  ```bash
+  pytest
+  ```
+> ⚠️**No module named core/**: Run this command
+
+  ```bash
+   python -m pytest
+   ```
+
+3. This will automatically discover and run all tests under the `tests/` directory.
+
+## 🧬 Test Coverage
+
+- Core modules: merge, split, rename
+- Batch modules: batch-merge, batch-split, batch-rename
+- Shared test fixtures in  `tests/conftest.py`
+
+Working towards expanding test coverage. Contributions welcome!
 
 ---
 
@@ -225,11 +266,12 @@ Special thanks to ChatGPT (OpenAI) for helping with coding, documentation, and g
 
 ## 📚 Developer Notes (Optional Read)
 
-- How to use Python's `PyPDF2` library to manipulate PDF files (merge, split, extract pages).
-- Using Python's `os` module for file system operations like checking file existence and renaming.
-- Basics of building a GUI application using Tkinter.
-- Implementing proper error handling and logging to make the app robust.
-- Working with Git for version control and managing branches.
-- Writing clean, modular code with docstrings and meaningful comments.
-- Writing effective README documentation to make the project user-friendly.
-
+-  Manipulating PDFs using Python's `PyPDF2` (merge, split, extract pages)
+-  File system handling with Python's `os` module
+-  Using `pytest` for testing, with shared `fixtures` in `conftest.py`
+-  Creating and auto-cleaning temporary directories with `tempfile`
+-  Building GUIs with Tkinter (layouts, event handling)
+-  Implementing robust error handling and logging
+-  Writing modular, well-documented Python code
+-  Using Git for version control, branching, and collaboration
+-  Writing effective, structured documentation like this README

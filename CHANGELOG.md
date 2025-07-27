@@ -6,23 +6,36 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v0.6.0] – 2025-07-27
+
+### ✨ Added
+- `tests/` directory with unit tests for all core operations:
+  - `tests/conftest.py`: Contains shared fixtures for all tests
+  - `tests/core_test/`: Includes test files corresponding to modules in `core/`
+  - `tests/core_test/batch_test/`: Includes test files for modules in `core/batch/`
+- 🧪 Initial test suite covering:
+  - Core modules: merge, split, rename
+  - Batch modules: batch-merge, batch-split, batch-rename
+  
+---
+
 ## [v0.5.0] – 2025-07-26
 
 ### 🛡️ Improved
-- Added stricter validation in **batch rename** to prevent input errors and handle the output location where the files would be saved.
+- Added stricter validation in **batch rename** to prevent input errors and handle the output location where the files would be saved
 
 ### 🐞 Fixed
-- **core/rename**: Add validation for empty file name.
-- **core/merge**: Prevent overwriting an existing file, add output path validations, and avoid self-merge scenarios.
-- **core/batch-merge**: Ensure the new name is not empty and the output file does not already exist.
-- **core/batch-split**: Assign the output directory to a variable before checking its validity to prevent runtime errors.
+- **core/rename**: Add validation for empty file name
+- **core/merge**: Prevent overwriting an existing file, add output path validations, and avoid self-merge scenarios
+- **core/batch-merge**: Ensure the new name is not empty and the output file does not already exist
+- **core/batch-split**: Assign the output directory to a variable before checking its validity to prevent runtime errors
 
 ---
 
 ## [v0.4.1] – 2025-07-05
 
 ### 🐞 Fixed
-- Replace `.ico` icon with `.png` to improve compatibility with Linux desktop environments.
+- Replace `.ico` icon with `.png` to improve compatibility with Linux desktop environments
 
 ---
 
