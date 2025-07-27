@@ -54,9 +54,15 @@ def batch_rename_pdfs(
                 title="Empty directory",
                 message=f"No PDF files inside the input directory: {input_dir}",
             )
-
         if base_name.lower().endswith(".pdf"):
             base_name = base_name[:-4]  # remove extension (.pdf) to append numbers
+
+        if not base_name or base_name.strip() == "":
+            return Result(
+                success=False,
+                title="Invalid name",
+                message="New name for the PDFs cannot be empty",
+            )
 
         for file in pdf_files:
             is_valid, error_message = validate_pdf_file(path=file)
