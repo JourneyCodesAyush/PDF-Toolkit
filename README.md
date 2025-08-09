@@ -54,10 +54,18 @@ To install and run PDF Toolkit locally:
    cd pdf-toolkit
    ```
 
-2. (Optional) Create and activate a virtual environment:
+2. (Recommended) Create and activate a virtual environment:
    ```bash
    python -m venv venv
-   source venv/bin/activate       # On Windows: venv\Scripts\activate
+
+   # On Linux/macOS:
+   source venv/bin/activate       
+
+   # On Windows CMD:
+   venv\Scripts\activate.bat
+
+   # On Windows PowerShell:
+   .\venv\Scripts\Activate.ps1
    ```
 
 3. Install dependencies:
@@ -131,10 +139,13 @@ pdf_toolkit/
 │   └── split_gui.py
 ├── core/                 # Core PDF logic (merge, rename, split)
 ├── config/               # Logging and global configuration
-├── tests/                # Testing files
-├── logs/                 # Stores logs of user activity
-├── main.py               # Entry point of the app
-├── requirements.txt      # Dependency list
+├── tests/                # Unit and integration tests
+├── logs/                 # Logs for user activity and errors
+├── main.py               # Entry point of launching the app
+├── requirements.txt      # Python package dependencies
+├── SECURITY.md           # How to report security vulnerabilities
+├── CONTRIBUTING.md       # Contribution guidelines for developers
+├── CODE_OF_CONDUCT.md    # Rules for respectful collaboration
 └── README.md             # You're reading it!
 ```
 
@@ -184,6 +195,8 @@ The app is equipped with built-in logging for user actions and robust error hand
 ---
 
 ## 🤝 Contributing
+
+Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before submitting pull requests.
 
 Feel free to fork the repo, create a new branch, and send in a pull request! Bug fixes, new features, UI tweaks — it’s all welcome.
 
