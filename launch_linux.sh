@@ -17,7 +17,7 @@ source ./venv/bin/activate
 
 # Install dependencies if not already installed
 echo "Installing dependencies from requirements.txt..."
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 # Run the application
 echo "Launching application..."
