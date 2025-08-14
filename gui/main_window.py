@@ -83,8 +83,20 @@ def main() -> None:
     )
     split_pdf.grid(row=4, column=2, padx=10, pady=10)
 
-    Label(root, text="Need to process multiple PDFs?", font=FONT_STYLE).grid(
+    Label(root, text="Want to extract pages from a PDF?", font=FONT_STYLE).grid(
         row=5, column=1, padx=5, pady=5
+    )
+    extract_pages_from_pdf = Button(
+        root,
+        text="Select here",
+        font=BUTTON_FONT,
+        relief=RAISED,
+        command=lambda: split_pdf_gui(root),
+    )
+    extract_pages_from_pdf.grid(row=5, column=2, padx=10, pady=10)
+
+    Label(root, text="Need to process multiple PDFs?", font=FONT_STYLE).grid(
+        row=6, column=1, padx=5, pady=5
     )
 
     batch_button = Button(
@@ -94,10 +106,10 @@ def main() -> None:
         relief=RAISED,
         command=lambda: batch_operations_gui_window(root),
     )
-    batch_button.grid(row=5, column=2, padx=10, pady=10)
+    batch_button.grid(row=6, column=2, padx=10, pady=10)
 
     footer_frame = Frame(root, bd=1, relief="sunken")
-    footer_frame.grid(row=6, column=0, columnspan=3, pady=(30, 0), sticky="we")
+    footer_frame.grid(row=7, column=0, columnspan=3, pady=(30, 0), sticky="we")
 
     # Label(footer_frame, text="Version 1.0", font="helvetica 8").pack(
     #     side="right", padx=10
