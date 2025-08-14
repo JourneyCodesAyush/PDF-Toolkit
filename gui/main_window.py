@@ -11,6 +11,7 @@ from gui.error_handler_gui import show_message
 from gui.merge_gui import merge_pdf_gui
 from gui.rename_gui import rename_file_gui
 from gui.split_gui import split_pdf_gui
+from gui.extract_page_pdf import extract_page_pdf_gui
 from version import __version__
 
 # from config.config import setup_logger
@@ -91,7 +92,7 @@ def main() -> None:
         text="Select here",
         font=BUTTON_FONT,
         relief=RAISED,
-        command=lambda: split_pdf_gui(root),
+        command=lambda: extract_page_pdf_gui(root),
     )
     extract_pages_from_pdf.grid(row=5, column=2, padx=10, pady=10)
 
