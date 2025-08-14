@@ -23,17 +23,17 @@ def extract_page_pdf_gui(root) -> None:
         None: Interacts via GUI dialogs and shows messages; no return value.
     """
 
-    logger.info("Split PDF operation started")
+    logger.info("Extract PDF pages operation started")
     try:
         file_path = filedialog.askopenfilename(
-            title="Select PDF to split",
+            title="Select PDF to extract pages from",
             filetypes=[("PDF Files", "*.pdf"), ("All Files", "*.pdf")],
             defaultextension="*.pdf",
         )
 
         if not file_path:
             messagebox.showwarning(
-                title="No file selected", message="Please select a PDF to split."
+                title="No file selected", message="Please select a PDF to extract from."
             )
             logger.warning("Extracting pages failed - No PDF file selected.")
             return
@@ -51,7 +51,7 @@ def extract_page_pdf_gui(root) -> None:
             return
 
         output_dir = filedialog.askdirectory(
-            title="Select folder to save the split files"
+            title="Select folder to save the extracted pages"
         )
 
         if not output_dir:

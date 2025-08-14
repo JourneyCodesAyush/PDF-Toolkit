@@ -107,8 +107,8 @@ def extract_pdf_page(file_path: str, page_range_input: str, output_dir: str) -> 
             success=True,
             error_type="info",
             title="Success",
-            message=f"Pages {page_ranges} successfully extracted and saved to: {output_dir}.",
-            data={"file": saved_files},
+            message=f"Pages {page_ranges} were successfully extracted and saved to {output_dir}.",
+            data={"files": saved_files},
         )
 
     except Exception as e:
