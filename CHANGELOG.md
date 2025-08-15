@@ -6,6 +6,18 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v0.7.0] – 2025-08-15
+
+### ✨ Added
+- New **Extract** module to extract custom page ranges from PDFs (e.g., `5-7`)
+- Unit tests covering the Extract module to ensure correctness and robustness
+- Updated GUI to include Extract functionality with user-friendly page range input
+
+### 🧪 Testing
+- Added tests specifically for Extract module in `tests/core_test/test_pdf_extract.py`
+
+---
+
 ## [v0.6.0] – 2025-07-27
 
 ### ✨ Added
