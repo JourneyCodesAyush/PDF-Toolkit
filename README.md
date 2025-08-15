@@ -18,17 +18,16 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 ## 📦 Latest Version
 
-**Version:** [v0.5.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.5.0)  
-**Release Date:** July 26, 2025  
+**Version:** [v0.7.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.7.0)  
+**Release Date:** August 15, 2025  
 **Status:** Pre-release  
-**Download:** [PDF-Toolkit.v0.5.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.5.0/PDF-Toolkit.v0.5.0.zip)
+**Download:** [PDF-Toolkit.v0.7.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.7.0/PDF-Toolkit.v0.7.0.zip)
 
 > This is a **pre-release** of PDF Toolkit. It includes the following key improvements:
 
-- 🐞 **Bug Fixes and Validations**:
-  - Added filename validation in **rename** module
-  - Improved overwrite protection and validation logic in **merge** and **batch-merge**
-  - Resolved runtime error in **batch-split** by assigning output directory before checks
+- ✨ **New Features**:
+  - Added a new **Extract** module to extract custom page ranges from PDFs (e.g., `5-7`)
+  - Added unit tests for the Extract module
 
 ---
 
@@ -37,6 +36,7 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 - 🔗 **Merge PDFs** – Combine multiple PDF files into one.
 - ✏️ **Rename PDFs** – Give your PDF files cleaner, more meaningful names.
 - ✂️ **Split PDFs** – Break up large PDFs into smaller files or extract specific pages.
+- - 📤 **Extract PDFs** – Extract custom page ranges or specific pages from PDFs.
 - 🏷️ **Batch Processing** – Perform batch operations like merging all PDFs in a folder into one (with optional move), rename PDFs of entire folder at once, or split a PDF into multiple single-paged PDFs at once. 
 - 🎯 **User-friendly interface** – No learning curve, just click and go.
 - ⚡ **Lightweight & fast** – Minimal dependencies and blazing performance.
@@ -152,7 +152,7 @@ pdf_toolkit/
 ---
 
 ## 🧪 Testing
-As of ***v0.6.0***, *PDF Toolkit* includes a growing suite of unit tests to ensure the reliability of its core and batch features.
+As of ***v0.7.0***, *PDF Toolkit* includes a growing suite of unit tests to ensure the reliability of its core and batch features.
 
 ### ✅ How to Run Tests
 1. Make sure `pytest` is installed:
@@ -279,7 +279,7 @@ Special thanks to ChatGPT (OpenAI) for helping with coding, documentation, and g
 
 ## 📚 Developer Notes (Optional Read)
 
--  Manipulating PDFs using Python's `PyPDF2` (merge, split, extract pages)
+-  Manipulating PDFs using Python's `PyPDF2` (merge, split, extract custom page ranges)
 -  File system handling with Python's `os` module
 -  Using `pytest` for testing, with shared `fixtures` in `conftest.py`
 -  Creating and auto-cleaning temporary directories with `tempfile`
