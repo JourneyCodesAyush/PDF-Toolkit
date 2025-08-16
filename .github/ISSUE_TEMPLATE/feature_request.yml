@@ -1,0 +1,39 @@
+name: "🚀 Feature Request"
+description: Suggest an idea for this project
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Got a great idea for PDF Toolkit? Let us know here! We're always looking for ways to improve the app.
+  - type: input
+    id: title
+    attributes:
+      label: Feature Summary
+      placeholder: "Support for encrypted PDF merging"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What would you like to see?
+      placeholder: |
+        Describe the feature, how it would work, and why it would be useful.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      placeholder: |
+        Related features, user story, visual mockup, etc.
+  - type: checkboxes
+    id: type
+    attributes:
+      label: What kind of feature is this?
+      options:
+        - label: Core logic (merge/split/rename)
+        - label: Batch operations
+        - label: GUI improvement
+        - label: CLI enhancement
+        - label: Other

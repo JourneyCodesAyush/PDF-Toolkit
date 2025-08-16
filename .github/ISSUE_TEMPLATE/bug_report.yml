@@ -1,0 +1,57 @@
+name: "🐛 Bug Report"
+description: Report something that isn't working as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug with PDF Toolkit! Please fill out this form so we can investigate and fix it faster.
+  - type: input
+    id: title
+    attributes:
+      label: Short Summary
+      placeholder: "Crash when splitting PDF with no output folder selected"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      placeholder: |
+        Please describe what you did, what happened, and what you expected to happen.
+      description: |
+        Screenshots and error logs are helpful. You can drag and drop images/files below.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Open PDF Toolkit
+        2. Click on "Split"
+        3. Select a file and leave the output directory blank
+        4. Click Split – crash occurs
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "v0.5.0"
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: "Windows 10 / macOS Ventura / Ubuntu 22.04"
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version
+      placeholder: "3.10"
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I'm using the latest pre-release version
+        - label: I checked the [Troubleshooting](../README.md#troubleshooting) section
+        - label: I have included all necessary logs/screenshots

@@ -1,0 +1,24 @@
+name: "❓ Question / Help"
+description: Ask a question or request guidance
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question or need help using PDF Toolkit? Ask below and we'll do our best to assist.
+  - type: input
+    id: summary
+    attributes:
+      label: Question Summary
+      placeholder: "How do I rename all PDFs in a folder?"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      placeholder: |
+        Please describe what you're trying to do, and what you've already tried.
+        Add screenshots or logs if relevant.
+    validations:
+      required: true
