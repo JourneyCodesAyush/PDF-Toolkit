@@ -1,0 +1,74 @@
+name: "📦 Pull Request Template"
+description: Submit changes to PDF Toolkit
+title: "[<type>] <short summary>"
+labels: [pull request]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing to PDF Toolkit! Please complete this form so we can review your pull request efficiently.
+
+  - type: input
+    id: summary
+    attributes:
+      label: PR Summary
+      placeholder: "Fix crash when splitting PDF with empty output path"
+      description: A short, descriptive summary of the changes.
+    validations:
+      required: true
+
+  - type: textarea
+    id: changes
+    attributes:
+      label: What has changed?
+      placeholder: |
+        - Fixed bug in `pdf_splitter.py`
+        - Updated GUI to show warning dialog if output path is blank
+        - Added unit tests in `test_pdf_splitter.py`
+      description: List the key changes made in this PR.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: areas
+    attributes:
+      label: Affected Areas
+      options:
+        - label: Core logic (`core/`)
+        - label: GUI (`gui/`)
+        - label: Tests (`tests/`)
+        - label: Configuration / CI
+        - label: Documentation
+        - label: Other
+    validations:
+      required: true
+
+  - type: input
+    id: issue
+    attributes:
+      label: Related Issue
+      placeholder: "Closes #42"
+      description: Link to any related issues (if applicable)
+
+  - type: textarea
+    id: testing
+    attributes:
+      label: Testing Instructions
+      placeholder: |
+        1. Launch the app
+        2. Go to Split tab
+        3. Try without selecting output path – a warning should appear
+      description: How should we test this change?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: My code follows the project's style guidelines
+        - label: I have tested my changes locally
+        - label: I have added relevant tests
+        - label: I have updated related documentation
+        - label: This PR is ready for review
