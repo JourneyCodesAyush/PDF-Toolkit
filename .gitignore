@@ -13,8 +13,12 @@ logs/
 # PDF files (anywhere)
 *.pdf
 
+# Build files
+dist/
+build/
+
 # .vscode files
-*.vscode
+*.vscode/
 
 # Text files
 *.txt
