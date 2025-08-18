@@ -27,7 +27,7 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 - ✨ **New Features**:
   - Added a new **Extract** module to extract custom page ranges from PDFs (e.g., `5-7`)
-  - Added unit tests for the Extract module
+  - Added unit tests for the **Extract** module
 
 ---
 
@@ -36,7 +36,7 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 - 🔗 **Merge PDFs** – Combine multiple PDF files into one.
 - ✏️ **Rename PDFs** – Give your PDF files cleaner, more meaningful names.
 - ✂️ **Split PDFs** – Break up large PDFs into smaller files or extract specific pages.
-- - 📤 **Extract PDFs** – Extract custom page ranges or specific pages from PDFs.
+- 📤 **Extract PDFs** – Extract custom page ranges or specific pages from PDFs.
 - 🏷️ **Batch Processing** – Perform batch operations like merging all PDFs in a folder into one (with optional move), rename PDFs of entire folder at once, or split a PDF into multiple single-paged PDFs at once. 
 - 🎯 **User-friendly interface** – No learning curve, just click and go.
 - ⚡ **Lightweight & fast** – Minimal dependencies and blazing performance.
@@ -72,6 +72,20 @@ To install and run PDF Toolkit locally:
    ```bash
    pip install -r requirements.txt
    ```
+
+4. (Optional) Make an executable (for Windows):
+  
+   First make sure **Pyinstaller** is installed
+   ```bash
+   pip install pyinstaller 
+   ```
+   Then run:
+   ```bash
+   pyinstaller main.spec
+   ``` 
+
+  💡 Tip: The generated `.exe` can be found inside `dist/`.
+      
 
 <details><summary>Linux Quick Launch<b></b></summary>
 
@@ -288,3 +302,5 @@ Special thanks to ChatGPT (OpenAI) for helping with coding, documentation, and g
 -  Writing modular, well-documented Python code
 -  Using Git for version control, branching, and collaboration
 -  Writing effective, structured documentation like this README
+- Added `.github/` folder containing issue and pull request templates to streamline project contributions
+- Added `main.spec` for PyInstaller to facilitate building standalone executables
