@@ -4,12 +4,13 @@
 Logging and configuration settings.
 
 - Sets up basic logging configuration to log INFO and above to a file.
-- Provides `setup_logger` function to create named loggers.
+- Provides setup_logger function to create named loggers.
 """
 
 import logging
 import os
 
+from config.json_formatter import JsonFormatter
 from core.utils import get_persistent_path
 
 # LOG_FILE_PATH = get_absolute_path("../logs/user_activity.log")
@@ -19,7 +20,7 @@ LOG_DIR = get_persistent_path("logs")
 os.makedirs(LOG_DIR, exist_ok=True)
 
 USER_LOG_FILE = os.path.join(LOG_DIR, "user_activity.log")
-ERROR_LOG_FILE = os.path.join(LOG_DIR, "errors.log")
+ERROR_LOG_FILE = os.path.join(LOG_DIR, "errors.ndjson")
 
 
 logging.basicConfig(
@@ -53,12 +54,12 @@ def setup_logger(name: str = __name__, error_logger: bool = False) -> logging.Lo
             isinstance(h, logging.FileHandler) and h.baseFilename == ERROR_LOG_FILE
             for h in logger.handlers
         ):
-            handler = logging.FileHandler(ERROR_LOG_FILE, encoding="utf-8")
+            handler = logging.FileHandler(ERROR_LOG_FILE, encoding="utf-8", mode="a")
             handler.setLevel(logging.ERROR)
             formatter = logging.Formatter(
                 "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
             )
-            handler.setFormatter(formatter)
+            handler.setFormatter(JsonFormatter())
             logger.addHandler(handler)
             logger.setLevel(logging.ERROR)
             logger.propagate = False
