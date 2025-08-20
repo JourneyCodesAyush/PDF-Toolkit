@@ -3,7 +3,7 @@
 import traceback
 
 from config.config import setup_logger
-from core.result import Result  # Import the Result class
+from core.result import Result
 
 logger = setup_logger(__name__)
 dev_logger = setup_logger(__name__, error_logger=True)
@@ -18,16 +18,16 @@ def log_error_with_traceback(exc: Exception, context: str = "") -> None:
         context (str): Optional context information for where the exception occurred.
     """
 
-    context_msg = f"Context: {context}" if context else ""
+    # context_msg = f"Context: {context}" if context else ""
     tb_str = traceback.format_exc()
 
-    log_message = (
-        f"Exception occurred: {context_msg}\n"
-        f"Exception type: {type(exc).__name__}\n"
-        f"Exception message: {exc}\n"
-        f"Traceback:\n{tb_str}"
-    )
-    dev_logger.error(log_message)
+    log_message = {
+        "context": context if context else "",
+        "exception_type": type(exc).__name__,
+        "exception_message": str(exc),
+        "traceback": tb_str,
+    }
+    dev_logger.error(msg="", extra=log_message)
 
 
 def create_msg_object(error_type: str, title: str, message: str) -> Result:
