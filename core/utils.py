@@ -12,7 +12,7 @@ def get_absolute_path(relative_path: str = "") -> str:
 
     This function returns a path that works both during development
     and when the app is bundled by PyInstaller. When running as a bundled
-    executable, it returns the path inside PyInstaller’s temporary unpack folder
+    executable, it returns the path inside PyInstaller's temporary unpack folder
     (sys._MEIPASS), where read-only resources are extracted.
 
     Args:
@@ -23,7 +23,8 @@ def get_absolute_path(relative_path: str = "") -> str:
     """
 
     if getattr(sys, "frozen", False):
-        base_path = sys._MEIPASS
+        base_path = getattr(sys, "_MEIPASS", os.path.dirname(sys.executable))
+        # base_path = sys._MEIPASS
         # base_path = os.path.dirname(sys.executable)
     else:
         # base_path = os.path.dirname(os.path.abspath(__file__))
