@@ -56,7 +56,7 @@ def batch_operations_gui_window(parent=None) -> None:
         text="Select the folder",
         font=BUTTON_FONT,
         relief=RAISED,
-        command= lambda: batch_merge_pdf_gui(window),
+        command=lambda: batch_merge_pdf_gui(window),
     )
     merge_pdf.grid(row=2, column=2, padx=10, pady=10)
 
@@ -68,7 +68,7 @@ def batch_operations_gui_window(parent=None) -> None:
         text="Select the folder",
         font=BUTTON_FONT,
         relief=RAISED,
-        command= lambda: batch_rename_pdf_gui(window),
+        command=lambda: batch_rename_pdf_gui(window),
     )
     rename_pdf.grid(row=3, column=2, padx=10, pady=10)
 
@@ -80,7 +80,7 @@ def batch_operations_gui_window(parent=None) -> None:
         text="Choose PDF to split",
         font=BUTTON_FONT,
         relief=RAISED,
-        command= lambda: batch_split_pdf_gui(window),
+        command=lambda: batch_split_pdf_gui(window),
     )
     split_pdf.grid(row=4, column=2, padx=10, pady=10)
 

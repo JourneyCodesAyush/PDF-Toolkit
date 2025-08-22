@@ -232,4 +232,3 @@ def single_page_pdf():
         yield temp_pdf
     finally:
         sample_dir.cleanup()
-
