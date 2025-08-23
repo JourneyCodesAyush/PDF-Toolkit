@@ -18,16 +18,15 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 ## 📦 Latest Version
 
-**Version:** [v0.7.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.7.0)  
-**Release Date:** August 15, 2025  
+**Version:** [v0.8.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.8.0)  
+**Release Date:** August 21, 2025  
 **Status:** Pre-release  
-**Download:** [PDF-Toolkit.v0.7.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.7.0/PDF-Toolkit.v0.7.0.zip)
+**Download:** [PDF-Toolkit.v0.8.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.8.0/PDF-Toolkit.v0.8.0.zip)
 
 > This is a **pre-release** of PDF Toolkit. It includes the following key improvements:
 
 - ✨ **New Features**:
-  - Added a new **Extract** module to extract custom page ranges from PDFs (e.g., `5-7`)
-  - Added unit tests for the **Extract** module
+  - Log errors in `logs/error.ndjson` as structured JSON objects for easier developer debugging.
 
 ---
 
