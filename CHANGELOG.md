@@ -6,6 +6,16 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v0.8.0] – 2025-08-23
+
+### ✨ Added
+- Migrated serious error logging from `logs/error.log` to `logs/error.ndjson` using structured JSON lines format, improving both machine parsing and human readability while maintaining existing error capture and user-friendly messaging.
+
+### 🐞 Fixed
+- `core/utils.py`: Use `getattr()` to safely access `_MEIPASS` in `get_absolute_path()` — prevents errors during PyInstaller execution
+
+---
+
 ## [v0.7.0] – 2025-08-15
 
 ### ✨ Added
