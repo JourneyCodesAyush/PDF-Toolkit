@@ -2,9 +2,11 @@
 
 
 import os
+from pathlib import Path
 from tkinter import filedialog, messagebox, simpledialog
 
 from config.config import setup_logger
+from config.preferences_manager import get_preferences, set_preferences
 from core.batch.batch_split import batch_split_pdf
 from core.error_handler import handle_exception
 from gui.error_handler_gui import show_message
@@ -26,6 +28,14 @@ def batch_split_pdf_gui(parent_window) -> None:
 
     logger.info("Batch split PDF operation started")
     try:
+
+        prefs = get_preferences()
+        initial_directory = Path.home()
+
+        if prefs.get("save_preferences") and prefs.get("batch_last_split_file"):
+            initial_directory = prefs["batch_last_split_file"]
+            initial_directory = Path(str(initial_directory))
+
         file_path = filedialog.askopenfilename(
             title="Select PDF to split",
             filetypes=[("PDF Files", "*.pdf"), ("All Files", "*.pdf")],
@@ -63,6 +73,11 @@ def batch_split_pdf_gui(parent_window) -> None:
                 logger.info(
                     f"Batch split operation finished with message: {result.message}"
                 )
+
+                # Update the preferences if user opted for it
+
+                if prefs.get("save_preferences"):
+                    set_preferences(batch_last_split_file=str(Path(file_path).parent))
             else:
                 logger.warning(
                     f"Batch split PDF operation returned failure message: {result.message}"
