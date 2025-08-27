@@ -1,9 +1,11 @@
 # PDF extract page GUI
 
 import os
+from pathlib import Path
 from tkinter import filedialog, messagebox, simpledialog
 
 from config.config import setup_logger
+from config.preferences_manager import get_preferences, set_preferences
 from core.error_handler import handle_exception
 from core.pdf_extract_pages import extract_pdf_page
 from gui.error_handler_gui import show_message
@@ -25,8 +27,16 @@ def extract_page_pdf_gui(root) -> None:
 
     logger.info("Extract PDF pages operation started")
     try:
+        prefs = get_preferences()
+
+        initial_directory = Path.home()
+        if prefs.get("save_preferences") and prefs.get("last_extract_file"):
+            initial_directory = prefs["last_extract_file"]
+            initial_directory = Path(str(initial_directory))
+
         file_path = filedialog.askopenfilename(
             title="Select PDF to extract pages from",
+            initialdir=initial_directory,
             filetypes=[("PDF Files", "*.pdf"), ("All Files", "*.pdf")],
             defaultextension="*.pdf",
         )
@@ -73,6 +83,11 @@ def extract_page_pdf_gui(root) -> None:
                 logger.info(
                     f"Extract pages from PDF operation finished with message: {result.message}"
                 )
+
+                # Update the preferences if user opted for it
+
+                if prefs.get("save_preferences"):
+                    set_preferences(last_extract_file=str(Path(file_path).parent))
             else:
                 logger.warning(
                     f"Extract pages from PDF operation returned failure message: {result.message}"
