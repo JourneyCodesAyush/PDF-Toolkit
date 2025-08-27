@@ -2,9 +2,11 @@
 
 
 import os
+from pathlib import Path
 from tkinter import filedialog, messagebox, simpledialog
 
 from config.config import setup_logger
+from config.preferences_manager import get_preferences, set_preferences
 from core.batch.batch_rename import batch_rename_pdfs
 from core.error_handler import handle_exception
 from gui.error_handler_gui import show_message
@@ -26,8 +28,17 @@ def batch_rename_pdf_gui(parent_window) -> None:
     logger.info("Batch rename PDF operation started")
 
     try:
+
+        prefs = get_preferences()
+        initial_directory = Path.home()
+
+        if prefs.get("save_preferences") and prefs.get("batch_last_renamed_folder"):
+            initial_directory = prefs["batch_last_renamed_folder"]
+            initial_directory = Path(str(initial_directory))
+
         input_dir = filedialog.askdirectory(
-            title="Select the folder you wish to rename the PDFs of..."
+            title="Select the folder you wish to rename the PDFs of...",
+            initialdir=initial_directory,
         )
 
         if not input_dir:
@@ -76,6 +87,11 @@ def batch_rename_pdf_gui(parent_window) -> None:
         def on_done(result):
             if result.success:
                 logger.info(f"Batch renaming successful: {result.message}")
+
+                # Update the preferences if user opted for it
+
+                if prefs.get("save_preferences"):
+                    set_preferences(batch_last_renamed_folder=str(Path(input_dir)))
             else:
                 logger.warning(
                     f"Batch rename operation returned failure message: {result.message}"
