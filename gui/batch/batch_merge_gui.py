@@ -1,9 +1,11 @@
 # Batch PDF merge GUI logic
 
 
+from pathlib import Path
 from tkinter import filedialog, messagebox, simpledialog
 
 from config.config import setup_logger
+from config.preferences_manager import get_preferences, set_preferences
 from core.batch.batch_merge import batch_merge_pdfs
 from core.error_handler import handle_exception
 from gui.error_handler_gui import show_message
@@ -27,8 +29,16 @@ def batch_merge_pdf_gui(parent_window) -> None:
 
     try:
 
+        prefs = get_preferences()
+        initial_directory = Path.home()
+
+        if prefs.get("save_preferences") and prefs.get("batch_last_merged_folder"):
+            initial_directory = prefs["batch_last_merged_folder"]
+            initial_directory = Path(str(initial_directory))
+
         input_dir = filedialog.askdirectory(
-            title="Select the folder you wish to merge the PDFs of."
+            title="Select the folder you wish to merge the PDFs of.",
+            initialdir=initial_directory,
         )
 
         if not input_dir:
@@ -70,6 +80,11 @@ def batch_merge_pdf_gui(parent_window) -> None:
                     f"Batch merged files of {input_dir} to {output_dir}/{new_name}"
                 )
                 logger.info(f"Batch merging successful: {result.message}")
+
+                # Update the preferences if user opted for it
+
+                if prefs.get("save_preferences"):
+                    set_preferences(batch_last_merged_folder=str(Path(input_dir)))
             else:
                 logger.warning(
                     f"Batch merge returned failure message: {result.message}"
