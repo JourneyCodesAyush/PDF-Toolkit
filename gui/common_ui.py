@@ -1,14 +1,19 @@
 # Shared UI
 
+import json
 import os
 import threading
 import tkinter as tk
 from tkinter import Toplevel, ttk
 from tkinter import PhotoImage
+from tkinter import messagebox
 from typing import Callable, Union
+from config.preferences_manager import USER_PREFERENCES, get_preferences
 
+from core.error_handler import create_msg_object
 from core.result import Result
 from core.utils import get_absolute_path
+from gui.error_handler_gui import show_message
 
 
 def load_icon_safe(root) -> Result:
@@ -132,3 +137,36 @@ def run_task_with_progress(
         root.after(0, finish)
 
     threading.Thread(target=worker, daemon=True).start()
+
+
+def save_preferences():
+    """
+    Prompt the user to save their preferences and update the preferences file accordingly.
+
+    Prompts the user with a Yes/No dialog asking whether they want to save their preferences.
+    The user's choice is then stored in the preferences JSON file.
+
+    Returns:
+        None: This function performs file operations and user interaction but does not return a value.
+
+    Behaviour:
+        - Displays a confirmation dialog to the user.
+        - If the user confirms, updates the save_preferences key in the preferences file.
+        - Handles any exceptions during file writing and shows an error message if needed.
+    """
+
+    save_or_not = messagebox.askyesno(
+        title="Preferences", message="Do you want to save the preferences?"
+    )
+
+    prefs = get_preferences()
+    prefs["save_preferences"] = save_or_not
+    try:
+        with open(USER_PREFERENCES, mode="w", encoding="utf-8") as f:
+            json.dump(prefs, f, indent=4)
+    except Exception as e:
+        show_message(
+            create_msg_object(
+                error_type="Unknown", title="Some error occurred", message=f"{str(e)}"
+            )
+        )
