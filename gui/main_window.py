@@ -4,7 +4,7 @@
 from tkinter import RAISED, Button, Frame, Label, Tk
 
 from gui.batch.batch_operations_gui import batch_operations_gui_window
-from gui.common_ui import load_icon_safe
+from gui.common_ui import load_icon_safe, save_preferences
 from gui.error_handler_gui import show_message
 from gui.extract_page_pdf import extract_page_pdf_gui
 from gui.merge_gui import merge_pdf_gui
@@ -42,8 +42,18 @@ def main() -> None:
     BUTTON_FONT = ("Helvetica", 10)
 
     Label(root, text="PDF Toolkit", font=TITLE_FONT).grid(
-        row=0, column=0, columnspan=3, pady=15
+        row=0, column=0, columnspan=3, pady=15, sticky="n", padx=15
     )
+
+    gear_button = Button(
+        root,
+        text="⚙️",  # Unicode gear symbol
+        font=("Helvetica", 12),
+        relief=RAISED,
+        command=save_preferences,
+        cursor="hand2",
+    )
+    gear_button.grid(row=0, column=2, sticky="ne", padx=15, pady=5)
 
     Label(root, text="Want to merge some PDFs?", font=FONT_STYLE).grid(
         row=2, column=1, padx=5, pady=5
