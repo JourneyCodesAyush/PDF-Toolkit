@@ -1,9 +1,11 @@
 # PDF renaming GUI part here
 
 import os
+from pathlib import Path
 from tkinter import filedialog, messagebox, simpledialog
 
 from config.config import setup_logger
+from config.preferences_manager import get_preferences, set_preferences
 from core.error_handler import handle_exception
 from core.pdf_rename import rename_pdf_file
 from gui.error_handler_gui import show_message
@@ -26,8 +28,16 @@ def rename_file_gui(root) -> None:
     logger.info("Rename PDF operation started")
 
     try:
+
+        prefs = get_preferences()
+        initial_directory = Path.home()
+        if prefs.get("save_preferences") and prefs.get("last_renamed_file"):
+            initial_directory = prefs["last_renamed_file"]
+            initial_directory = Path(str(initial_directory))
+
         old_file_path = filedialog.askopenfilename(
             title="Select PDF to rename",
+            initialdir=initial_directory,
             filetypes=[("PDF Files", "*.pdf"), ("All Files", "*.pdf")],
             defaultextension="*.pdf",
         )
@@ -77,6 +87,10 @@ def rename_file_gui(root) -> None:
         def on_done(result):
             if result.success:
                 logger.info(f"Renaming successful: {result.message}")
+
+                # Update the preferences if user opted for it
+                if prefs.get("save_preferences"):
+                    set_preferences(last_renamed_file=str(Path(old_file_path).parent))
             else:
                 logger.warning(
                     f"Rename operation returned failure message: {result.message}"
