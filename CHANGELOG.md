@@ -6,6 +6,23 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v0.9.0] – 2025-08-28
+
+### ✨ Added
+- **Persistent User Preferences**:
+  - Support for saving recent file paths and user actions in `user_config/preferences.json`.
+  - Preferences such as last used files and folders for merge, rename, and split operations are now remembered across sessions.
+
+### 🐞 Fixed
+- Resolved `RecursionError` caused by missing `preferences.json` on first-time use.
+- Improved error logging and handling for corrupted or missing preferences files.
+
+### 🧱 Improved
+- Correct handling of `user_config` and `logs` directories in both source and PyInstaller builds.
+- Enhanced path resolution using `get_persistent_path()`, improving cross-platform compatibility and stability.
+
+---
+
 ## [v0.8.0] – 2025-08-23
 
 ### ✨ Added
