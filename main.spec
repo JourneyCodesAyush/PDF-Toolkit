@@ -1,10 +1,16 @@
 import os
 
 a = Analysis(
-    ['main.py'],
-    pathex=[os.path.abspath('.')],  # Add project root to path
+    ["main.py"],
+    pathex=[os.path.abspath(".")],  # Add project root to path
     binaries=[],
-    datas=[('assets', 'assets'),('version.py','.'),('logs','logs')],   # Bundle the full assets folder
+    datas=[
+        ("assets", "assets"),
+        ("version.py", "."),
+        ("logs", "logs"),
+        ("user_config", "user_config"),
+    ],
+    # Bundle the full assets folder
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -22,7 +28,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='PDF-Toolkit',
+    name="PDF-Toolkit",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -35,5 +41,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon='assets/PDF_file.ico', 
+    icon="assets/PDF_file.ico",
 )
