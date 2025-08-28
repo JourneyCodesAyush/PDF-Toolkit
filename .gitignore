@@ -10,6 +10,10 @@ __pycache__/
 logs/
 *.log
 
+# Preference settings
+user_config/
+*.json
+
 # PDF files (anywhere)
 *.pdf
 
