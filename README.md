@@ -1,8 +1,9 @@
 # 📄 PDF Toolkit 
 
 <!-- Badges generated using https://shields.io -->
-![Python](https://img.shields.io/badge/python-3.6%2B-blue)
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/JourneyCodesAyush/pdf-toolkit?display_name=tag&sort=semver)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-pre%20release-orange)
@@ -18,15 +19,27 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 ## 📦 Latest Version
 
-**Version:** [v0.8.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.8.0)  
-**Release Date:** August 21, 2025  
+**Version:** [v0.9.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.9.0)  
+**Release Date:** August 28, 2025  
 **Status:** Pre-release  
-**Download:** [PDF-Toolkit.v0.8.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.8.0/PDF-Toolkit.v0.8.0.zip)
+**Download:** [PDF-Toolkit.v0.9.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.9.0/PDF-Toolkit.v0.9.0.zip)
 
-> This is a **pre-release** of PDF Toolkit. It includes the following key improvements:
+> This pre-release introduces **persistent user preferences** and enhances stability across platforms.
 
-- ✨ **New Features**:
-  - Log errors in `logs/error.ndjson` as structured JSON objects for easier developer debugging.
+### ✨ What's New in v0.9.0:
+
+- 💾 **User Preferences**:
+  - Added support for saving recent file paths and user actions in `user_config/preferences.json`.
+  - Preferences like last used files and folders for merge, rename, and split are now remembered across sessions.
+
+- 🐛 **Bug Fixes**:
+  - Fixed a `RecursionError` caused by missing `preferences.json` on first-time use.
+  - Improved error logging and handling for corrupted or missing preference files.
+
+- 🧱 **Infrastructure & Executable Enhancements**:
+  - `user_config` and `logs` directories are now correctly handled in both source and PyInstaller builds.
+  - Better path resolution with `get_persistent_path()` and improved compatibility across OSes.
+
 
 ---
 
@@ -113,7 +126,7 @@ You’ll see a friendly window with three options: **Merge**, **Rename**, or **S
 If you run into any issues, try the following steps:
 
 - **Python version:**  
-  Make sure you are using Python 3.6 or above. Check your version with:  
+  Make sure you are using Python 3.9 or above. Check your version with:  
   ```bash
   python --version 
   ```
@@ -154,6 +167,7 @@ pdf_toolkit/
 ├── config/               # Logging and global configuration
 ├── tests/                # Unit and integration tests
 ├── logs/                 # Logs for user activity and errors
+├── user_config/          # Persistent user preferences (created at runtime)
 ├── main.py               # Entry point of launching the app
 ├── requirements.txt      # Python package dependencies
 ├── SECURITY.md           # How to report security vulnerabilities
