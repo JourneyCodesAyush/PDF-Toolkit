@@ -48,7 +48,9 @@ def get_preferences() -> dict[str, bool | str | None]:
     """
 
     if not USER_PREFERENCES.exists():
-        set_preferences()
+        # set_preferences()
+        with open(USER_PREFERENCES, mode="w", encoding="utf-8") as f:
+            json.dump(DEFAULT_PREFERENCES, f, indent=4)
         return DEFAULT_PREFERENCES
 
     try:
@@ -56,7 +58,10 @@ def get_preferences() -> dict[str, bool | str | None]:
             user_data = json.load(f)
 
     except (json.JSONDecodeError, OSError):
-        set_preferences()
+        # set_preferences()
+        with open(USER_PREFERENCES, mode="w", encoding="utf-8") as f:
+            json.dump(DEFAULT_PREFERENCES, f, indent=4)
+
         return DEFAULT_PREFERENCES
 
     for key, default_value in DEFAULT_PREFERENCES.items():
