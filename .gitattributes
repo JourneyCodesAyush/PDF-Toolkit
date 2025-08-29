@@ -1,0 +1,9 @@
+# Ensure consistent line endings across platforms
+* text=auto
+
+# Treat image files in assets/ as binary
+assets/*.{png,jpg,jpeg} binary
+
+# Treat PDF files as binary
+*.pdf binary
+*.ico binary
