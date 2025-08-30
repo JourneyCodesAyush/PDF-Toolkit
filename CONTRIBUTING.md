@@ -31,7 +31,7 @@ Please make sure to read and follow our [Code of Conduct](CODE_OF_CONDUCT.md). I
 To contribute, you’ll need to set up the project on your local machine. Follow these steps:
 
 ### Prerequisites
-1. **Python 3.6+**: Ensure you have Python 3.6 or above installed on your machine. You can check your Python version by running:
+1. **Python 3.9+**: Ensure you have Python 3.9 or above installed on your machine. You can check your Python version by running:
    ```bash
    python --version
    ```
@@ -93,21 +93,91 @@ If `core/` is not found, run:
 ## 🚧 Making a Contribution
 
 1. Understand the Project Structure
-    ```
-    pdf_toolkit/
-    ├── assets/               # Icons and images (e.g., app icon)
-    ├── gui/                  # GUI layer for PDF operations
-    │   ├── main_window.py    # Main window structure and layout
+    ``` 
+    pdf-toolkit/
+    │
+    │
+    ├── .github/
+    │    ├── ISSUE_TEMPLATE/
+    │    │   ├── bug_report.yml
+    │    │   ├── feature_request.yml
+    │    │   ├── question.yml
+    │    │   └── config.yml
+    │    └── PULL_REQUEST_TEMPLATE.yml
+    │     
+    │
+    ├── assets/ 
+    │   ├── PDF_file.ico
+    │   ├── PDF_file.png
+    │   ├── screenshot.png
+    │   └── screenshot2.png 
+    │   
+    ├── gui/
+    │   ├── __init__.py
+    │   ├── error_handler_gui.py
     │   ├── merge_gui.py
     │   ├── rename_gui.py
-    │   └── split_gui.py
-    ├── core/                 # Core PDF logic (merge, rename, split)
-    ├── config/               # Logging and global configuration
-    ├── tests/                # Testing files
-    ├── logs/                 # Stores logs of user activity
-    ├── main.py               # Entry point of the app
-    ├── requirements.txt      # Dependency list
-    └── README.md             # You're reading it!
+    │   ├── split_gui.py
+    │   ├── extract_page_pdf.py
+    │   ├── common_ui.py
+    │   ├── main_window.py
+    │   └── batch/
+    │       ├── __init__.py
+    │       ├── batch_operations_gui.py
+    │       ├── batch_merge_gui.py
+    │       ├── batch_rename_gui.py
+    │       └── batch_split_gui.py
+    │
+    ├── core/
+    │   ├── __init__.py
+    │   ├── pdf_merge.py
+    │   ├── pdf_rename.py
+    │   ├── pdf_splitter.py
+    │   ├── pdf_extract_pages.py
+    │   ├── utils.py
+    │   ├── error_handler.py
+    │   └── batch/
+    │       ├── __init__.py
+    │       ├── batch_merge.py
+    │       ├── batch_rename.py
+    │       └── batch_split.py
+    │
+    ├── logs/
+    │   ├── errors.json
+    │   └── user_activity.log
+    │
+    ├── tests/
+    │   ├── conftest.py
+    │   ├── error_handler.py
+    │   └── core_tests/
+    │       ├──__init__.py
+    │       ├── test_pdf_merge.py
+    │       ├── test_pdf_rename.py
+    │       ├── test_pdf_splitter.py
+    │       ├── test_pdf_extract.py
+    │       └── batch/
+    │           ├── __init__.py
+    │           ├── test_pdf_merge.py
+    │           ├── test_pdf_rename.py
+    │           └── test_pdf_splitter.py
+    │
+    ├── config/
+    │   ├── config.py
+    │   ├── json_formatter.py
+    │   └── preferences.py
+    │
+    ├── user_config/
+    │   └── preferences.json
+    │
+    ├── main.py
+    ├── README.md
+    ├── CHANGELOG.md
+    ├── CODE_OF_CONDUCT.md
+    ├── CONTRIBUTING.md
+    ├── SECURITY.md
+    ├── launch_linux.sh
+    ├── LICENSE
+    └── .gitignore   
     ```
 
 2. Write Tests
