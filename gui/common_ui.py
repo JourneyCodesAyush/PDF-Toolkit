@@ -3,13 +3,12 @@
 import json
 import os
 import threading
-import tkinter as tk
-from tkinter import Toplevel, ttk
-from tkinter import PhotoImage
-from tkinter import messagebox
+from tkinter import PhotoImage, messagebox, ttk
 from typing import Callable, Union
-from config.preferences_manager import USER_PREFERENCES, get_preferences
 
+import customtkinter as ctk
+
+from config.preferences_manager import USER_PREFERENCES, get_preferences
 from core.error_handler import create_msg_object
 from core.result import Result
 from core.utils import get_absolute_path
@@ -55,12 +54,12 @@ def load_icon_safe(root) -> Result:
         )
 
 
-class ProgressBar(Toplevel):
+class ProgressBar(ctk.CTkToplevel):
     """
     Modal progress bar window that shows an indeterminate progress animation.
 
     Args:
-        master (tk.Tk): The parent Tkinter root window on which to create this modal progress bar.
+        master (ctk.CTk): The parent customtkinter root window on which to create this modal progress bar.
 
     Returns:
         None: This class represents a window and does not return a value.
@@ -70,9 +69,9 @@ class ProgressBar(Toplevel):
         Shows an indeterminate progress bar animation until stopped.
     """
 
-    def __init__(self, master: tk.Tk) -> None:
+    def __init__(self, master: ctk.CTk | ctk.CTkToplevel) -> None:
         if master is None:
-            raise ValueError("ProgressBar requires a master Tkinter window.")
+            raise ValueError("ProgressBar requires a master customtkinter window.")
         super().__init__(master=master)
 
         self.title("Please wait...")
@@ -104,7 +103,7 @@ class ProgressBar(Toplevel):
 
 
 def run_task_with_progress(
-    root: Union[tk.Tk, tk.Toplevel],
+    root: Union[ctk.CTk, ctk.CTkToplevel],
     task_func: Callable[[], Result],
     on_done=Callable[[Result], None],
 ) -> None:
@@ -112,7 +111,7 @@ def run_task_with_progress(
     Run a long-running task in a background thread while showing a modal progress bar.
 
     Args:
-        root (tk.Tk): The parent Tkinter root window used for creating the progress bar modal window.
+        root (ctk.CTk): The parent customtkinter root window used for creating the progress bar modal window.
         task_func (Callable[[], Result]): The function representing the long-running task. Should return a Result object.
         on_done (Callable[[Result], None]): A callback function that will be called with the Result from task_func upon completion.
 
