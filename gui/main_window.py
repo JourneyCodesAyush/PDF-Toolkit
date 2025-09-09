@@ -1,131 +1,153 @@
 # GUI window code
 
 
-from tkinter import RAISED, Button, Frame, Label, Tk
+import os
+from tkinter import messagebox
 
+import customtkinter as ctk
+from PIL import Image
+
+from core.utils import get_persistent_path
 from gui.batch.batch_operations_gui import batch_operations_gui_window
-from gui.common_ui import load_icon_safe, save_preferences
-from gui.error_handler_gui import show_message
+from gui.common_ui import save_preferences
 from gui.extract_page_pdf import extract_page_pdf_gui
 from gui.merge_gui import merge_pdf_gui
 from gui.rename_gui import rename_file_gui
 from gui.split_gui import split_pdf_gui
 from version import __version__
 
-# from config.config import setup_logger
+ctk.set_appearance_mode("Light")  # Dark, Light, System
+ctk.set_default_color_theme("dark-blue")
 
-# logger = setup_logger(__name__)
 
-
-def main() -> None:
-    """
-    Initialize and display the main application window for PDF Toolkit.
-
-    The window provides buttons to access PDF merge, rename, and split functionalities.
-    Sets up the window layout, fonts, and basic UI components.
-    """
-    root = Tk()
-    for i in range(3):
-        root.grid_columnconfigure(i, weight=1)
-    root.grid_rowconfigure(5, weight=1)  # push footer down
+def main():
+    root = ctk.CTk()
+    root.geometry("800x600")
+    root.minsize(1000, 680)
     root.title(f"PDF Toolkit v{__version__}")
-    root.geometry("544x344")
-    root.resizable(width=False, height=False)
 
-    icon_result = load_icon_safe(root)
-    if not icon_result.success and icon_result.error_type == "warning":
-        # Show warning if icon fails to load but continue with default icon
-        show_message(icon_result)
+    # Font constants
+    FONT_TITLE = ctk.CTkFont("Helvetica", size=24, weight="bold")
+    FONT_DESC = ctk.CTkFont("Helvetica", size=12)
+    FONT_BUTTON = ctk.CTkFont("Helvetica", size=13)
+    FONT_FOOTER = ctk.CTkFont("Helvetica", size=12)
 
-    TITLE_FONT = ("Helvetica", 16)
-    FONT_STYLE = ("Helvetica", 12, "bold")
-    BUTTON_FONT = ("Helvetica", 10)
+    # Configure grid layout
+    root.grid_rowconfigure(1, weight=1)  # Body
+    root.grid_columnconfigure(0, weight=1)
 
-    Label(root, text="PDF Toolkit", font=TITLE_FONT).grid(
-        row=0, column=0, columnspan=3, pady=15, sticky="n", padx=15
+    # Header
+    header = ctk.CTkFrame(root, height=60, fg_color="transparent")
+    header.grid(row=0, column=0, sticky="ew", padx=20, pady=(15, 5))
+    header.grid_columnconfigure(0, weight=1)
+    header.grid_columnconfigure(1, weight=0)
+
+    title = ctk.CTkLabel(
+        header,
+        text="📄 PDF Toolkit",
+        font=FONT_TITLE,
+        anchor="w",
     )
+    title.grid(row=0, column=0, sticky="w")
 
-    gear_button = Button(
-        root,
-        text="⚙️",  # Unicode gear symbol
-        font=("Helvetica", 12),
-        relief=RAISED,
+    pref_btn = ctk.CTkButton(
+        header,
+        text="⚙",
+        width=40,
         command=save_preferences,
-        cursor="hand2",
+        fg_color="#000000",
+        hover_color="#242424",
+        font=FONT_BUTTON,
     )
-    gear_button.grid(row=0, column=2, sticky="ne", padx=15, pady=5)
+    pref_btn.grid(row=0, column=1, sticky="e")
 
-    Label(root, text="Want to merge some PDFs?", font=FONT_STYLE).grid(
-        row=2, column=1, padx=5, pady=5
-    )
+    # Body
+    body = ctk.CTkFrame(root, fg_color="transparent")
+    body.grid(row=1, column=0, sticky="nsew", padx=20, pady=10)
+    body.grid_columnconfigure((0, 1), weight=1, uniform="a")
+    body.grid_rowconfigure((0, 1), weight=1, uniform="a")
 
-    merge_pdf = Button(
-        root,
-        text="Choose PDFs to merge",
-        font=BUTTON_FONT,
-        relief=RAISED,
-        command=lambda: merge_pdf_gui(root),
-    )
-    merge_pdf.grid(row=2, column=2, padx=10, pady=10)
+    def create_card(parent, image_path, desc, command):
+        card = ctk.CTkFrame(
+            parent,
+            corner_radius=12,
+            border_width=1,
+            border_color="#A9A9A9",
+            fg_color="#f4f4f4" if ctk.get_appearance_mode() == "Light" else "#2b2b2b",
+        )
+        card.grid_propagate(False)
+        card.configure(width=300, height=200)
 
-    Label(root, text="Want to rename a PDF?", font=FONT_STYLE).grid(
-        row=3, column=1, padx=5, pady=5
-    )
-    rename_pdf = Button(
-        root,
-        text="Select PDF to rename",
-        font=BUTTON_FONT,
-        relief=RAISED,
-        command=lambda: rename_file_gui(root),
-    )
-    rename_pdf.grid(row=3, column=2, padx=10, pady=10)
+        # Layout for the card itself
+        card.grid_rowconfigure((0, 1, 2), weight=1)
+        card.grid_columnconfigure(0, weight=1)
 
-    Label(root, text="Want to split a PDF?", font=FONT_STYLE).grid(
-        row=4, column=1, padx=5, pady=5
-    )
-    split_pdf = Button(
-        root,
-        text="Choose PDF to split",
-        font=BUTTON_FONT,
-        relief=RAISED,
-        command=lambda: split_pdf_gui(root),
-    )
-    split_pdf.grid(row=4, column=2, padx=10, pady=10)
+        # Image
+        image = ctk.CTkImage(light_image=Image.open(image_path), size=(48, 48))
+        image_label = ctk.CTkLabel(card, image=image, text="")
+        image_label.grid(row=0, column=0, pady=(10, 4), sticky="n")
 
-    Label(root, text="Want to extract pages from a PDF?", font=FONT_STYLE).grid(
-        row=5, column=1, padx=5, pady=5
-    )
-    extract_pages_from_pdf = Button(
-        root,
-        text="Select here",
-        font=BUTTON_FONT,
-        relief=RAISED,
-        command=lambda: extract_page_pdf_gui(root),
-    )
-    extract_pages_from_pdf.grid(row=5, column=2, padx=10, pady=10)
+        # Description
+        desc_label = ctk.CTkLabel(
+            card, text=desc, font=FONT_DESC, wraplength=240, justify="center"
+        )
+        desc_label.grid(row=1, column=0, padx=10, pady=4, sticky="n")
 
-    Label(root, text="Need to process multiple PDFs?", font=FONT_STYLE).grid(
-        row=6, column=1, padx=5, pady=5
-    )
+        # Button
+        open_btn = ctk.CTkButton(card, text="Open", command=command)
+        open_btn.grid(row=2, column=0, pady=(0, 10), sticky="s")
 
-    batch_button = Button(
-        root,
-        text="Batch Operations",
-        font=BUTTON_FONT,
-        relief=RAISED,
-        command=lambda: batch_operations_gui_window(root),
-    )
-    batch_button.grid(row=6, column=2, padx=10, pady=10)
+        return card
 
-    footer_frame = Frame(root, bd=1, relief="sunken")
-    footer_frame.grid(row=7, column=0, columnspan=3, pady=(30, 0), sticky="we")
+    cards = [
+        (
+            get_persistent_path(os.path.join("assets", "merge_file.png")),
+            "Select multiple PDFs and merge them into one file.",
+            lambda: merge_pdf_gui(root),
+        ),
+        (
+            get_persistent_path(os.path.join("assets", "rename_file.png")),
+            "Rename your PDFs with custom rules easily.",
+            lambda: rename_file_gui(root),
+        ),
+        (
+            get_persistent_path(os.path.join("assets", "split_file.png")),
+            "Split PDFs into single or multiple pages.",
+            lambda: split_pdf_gui(root),
+        ),
+        (
+            get_persistent_path(os.path.join("assets", "extract_file.png")),
+            "Extract specific pages from your PDF file.",
+            lambda: extract_page_pdf_gui(root),
+        ),
+        (
+            get_persistent_path(os.path.join("assets", "folder.png")),
+            "Process multiple PDFs with batch tasks.",
+            lambda: batch_operations_gui_window(root),
+        ),
+        (
+            get_persistent_path(os.path.join("assets", "about_us.png")),
+            "Learn more about this app and its developer.",
+            lambda: messagebox.showinfo(
+                "About", f"PDF Toolkit v{__version__}\nCreated by JourneyCodesAyush"
+            ),
+        ),
+    ]
 
-    # Label(footer_frame, text="Version 1.0", font="helvetica 8").pack(
-    #     side="right", padx=10
-    # )
-    Label(footer_frame, text="© 2025 JourneyCodesAyush", font="Helvetica 8").pack(
-        side="left", padx=10
+    for idx, (title, desc, cmd) in enumerate(cards):
+        row, col = divmod(idx, 2)
+        card = create_card(body, title, desc, cmd)
+        card.grid(row=row, column=col, padx=10, pady=10, sticky="nsew")
+
+    footer = ctk.CTkFrame(root, height=30, fg_color="transparent")
+    footer.grid(row=2, column=0, sticky="ew", padx=20, pady=(0, 10))
+    footer.grid_columnconfigure(0, weight=1)
+
+    footer_label = ctk.CTkLabel(
+        footer, text="© 2025 JourneyCodesAyush", font=FONT_FOOTER
     )
+    footer_label.grid(row=0, column=0, sticky="e")
+
     root.mainloop()
 
 
