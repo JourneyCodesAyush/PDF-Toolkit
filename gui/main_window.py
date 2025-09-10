@@ -7,7 +7,7 @@ from tkinter import messagebox
 import customtkinter as ctk
 from PIL import Image
 
-from core.utils import get_persistent_path
+from core.utils import get_absolute_path
 from gui.batch.batch_operations_gui import batch_operations_gui_window
 from gui.common_ui import save_preferences
 from gui.extract_page_pdf import extract_page_pdf_gui
@@ -101,32 +101,32 @@ def main():
 
     cards = [
         (
-            get_persistent_path(os.path.join("assets", "merge_file.png")),
+            get_absolute_path(os.path.join("assets", "merge_file.png")),
             "Select multiple PDFs and merge them into one file.",
             lambda: merge_pdf_gui(root),
         ),
         (
-            get_persistent_path(os.path.join("assets", "rename_file.png")),
+            get_absolute_path(os.path.join("assets", "rename_file.png")),
             "Rename your PDFs with custom rules easily.",
             lambda: rename_file_gui(root),
         ),
         (
-            get_persistent_path(os.path.join("assets", "split_file.png")),
+            get_absolute_path(os.path.join("assets", "split_file.png")),
             "Split PDFs into single or multiple pages.",
             lambda: split_pdf_gui(root),
         ),
         (
-            get_persistent_path(os.path.join("assets", "extract_file.png")),
+            get_absolute_path(os.path.join("assets", "extract_file.png")),
             "Extract specific pages from your PDF file.",
             lambda: extract_page_pdf_gui(root),
         ),
         (
-            get_persistent_path(os.path.join("assets", "folder.png")),
+            get_absolute_path(os.path.join("assets", "folder.png")),
             "Process multiple PDFs with batch tasks.",
             lambda: batch_operations_gui_window(root),
         ),
         (
-            get_persistent_path(os.path.join("assets", "about_us.png")),
+            get_absolute_path(os.path.join("assets", "about_us.png")),
             "Learn more about this app and its developer.",
             lambda: messagebox.showinfo(
                 "About", f"PDF Toolkit v{__version__}\nCreated by JourneyCodesAyush"
