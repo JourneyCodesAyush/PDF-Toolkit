@@ -1,4 +1,7 @@
 import os
+import customtkinter
+
+ctk_path = os.path.dirname(customtkinter.__file__)
 
 a = Analysis(
     ["main.py"],
@@ -9,9 +12,10 @@ a = Analysis(
         ("version.py", "."),
         ("logs", "logs"),
         ("user_config", "user_config"),
+        (os.path.join(ctk_path, "assets"), "customtkinter/assets"),
     ],
     # Bundle the full assets folder
-    hiddenimports=[],
+    hiddenimports=["customtkinter"],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
