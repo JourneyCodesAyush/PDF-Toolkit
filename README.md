@@ -3,42 +3,34 @@
 <!-- Badges generated using https://shields.io -->
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/JourneyCodesAyush/pdf-toolkit?display_name=tag&sort=semver)
+![Status](https://img.shields.io/badge/status-stable-green)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/status-pre%20release-orange)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
 
 ---
 
 Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you **merge**, **rename**, and **split** PDF files effortlessly. Whether you're handling academic papers, work documents, or just organizing your digital clutter, this tool gets the job done quickly and easily.
 
-> 🚧 *This project is currently under active development. Features, structure, and design may change before the first stable release.*
 
 ---
 
 ## 📦 Latest Version
 
-**Version:** [v0.9.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v0.9.0)  
-**Release Date:** August 28, 2025  
-**Status:** Pre-release  
-**Download:** [PDF-Toolkit.v0.9.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v0.9.0/PDF-Toolkit.v0.9.0.zip)
+**Version:** [v1.0.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v1.0.0)  
+**Release Date:** September 13, 2025  
+**Status:** Stable
+**Download:** [PDF-Toolkit.v1.0.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v1.0.0/PDF-Toolkit.v1.0.0.zip)
 
-> This pre-release introduces **persistent user preferences** and enhances stability across platforms.
 
-### ✨ What's New in v0.9.0:
 
-- 💾 **User Preferences**:
-  - Added support for saving recent file paths and user actions in `user_config/preferences.json`.
-  - Preferences like last used files and folders for merge, rename, and split are now remembered across sessions.
+### ✨ What's New in v1.0.0:
 
-- 🐛 **Bug Fixes**:
-  - Fixed a `RecursionError` caused by missing `preferences.json` on first-time use.
-  - Improved error logging and handling for corrupted or missing preference files.
+- 🎉 After several **pre-release versions** and thorough testing, **PDF Toolkit** is now officially **stable**.
 
-- 🧱 **Infrastructure & Executable Enhancements**:
-  - `user_config` and `logs` directories are now correctly handled in both source and PyInstaller builds.
-  - Better path resolution with `get_persistent_path()` and improved compatibility across OSes.
+- 🐛 **Bug fixes**:
+  - Fixed image path resolution issues when running from standalone executable.
 
 
 ---
@@ -218,6 +210,7 @@ The app is equipped with built-in logging for user actions and robust error hand
 
 ![App Screenshot](assets/screenshot.png)
 ![App Screenshot](assets/screenshot2.png)
+![App Screenshot](assets/aboutusScreenshot.png)
 
 ---
 
