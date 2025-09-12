@@ -6,6 +6,36 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v1.0.0] – 2025-09-13
+
+### 🎉 Stable Release
+
+After several pre-release versions and months of iteration, PDF Toolkit is now officially stable and production-ready.  
+This version includes a complete UI overhaul, improved cross-platform compatibility, and robust internal logging.
+
+---
+
+### ✨ Added
+- **CustomTkinter UI Overhaul**:
+  - Switched from vanilla Tkinter to [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter), offering a modern, native-feeling UI experience.
+  - Introduced consistent theming, rounded buttons, smooth fonts, and responsive resizing.
+  - Reworked navigation and layout for easier access to Merge, Rename, Split features.
+- **Improved layout logic** in `main_window.py` for better scaling across screen sizes.
+- **Batch Tooltips and Help Labels** added for better usability.
+
+---
+
+### 🛠 Refactored
+- Refactored GUI files (`main_window.py`, `batch_operations_gui.py`, `common_ui.py`) to support CustomTkinter widgets and layout patterns.
+- Updated asset loading to support newer image formats compatible with CTk.
+
+---
+
+### 🐞 Fixed
+- `bugfix(gui/main-window)`: Fixed critical issue where images (icons) would not load correctly in the standalone executable by using `get_absolute_path()` for asset resolution.
+
+---
+
 ## [v0.9.0] – 2025-08-28
 
 ### ✨ Added
