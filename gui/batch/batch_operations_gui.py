@@ -5,7 +5,7 @@ import os
 import customtkinter as ctk
 from PIL import Image
 
-from core.utils import get_persistent_path
+from core.utils import get_absolute_path
 from gui.batch.batch_merge_gui import batch_merge_pdf_gui
 from gui.batch.batch_rename_gui import batch_rename_pdf_gui
 from gui.batch.batch_split_gui import batch_split_pdf_gui
@@ -92,17 +92,17 @@ def batch_operations_gui_window(parent=None):
 
     cards = [
         (
-            get_persistent_path(os.path.join("assets", "merge_file.png")),
+            get_absolute_path(os.path.join("assets", "merge_file.png")),
             "Merge all PDFs from a folder into one file.",
             lambda: batch_merge_pdf_gui(window),
         ),
         (
-            get_persistent_path(os.path.join("assets", "rename_file.png")),
+            get_absolute_path(os.path.join("assets", "rename_file.png")),
             "Rename all PDFs in a folder using custom rules.",
             lambda: batch_rename_pdf_gui(window),
         ),
         (
-            get_persistent_path(os.path.join("assets", "split_file.png")),
+            get_absolute_path(os.path.join("assets", "split_file.png")),
             "Split a PDF into single-paged files in batch.",
             lambda: batch_split_pdf_gui(window),
         ),
@@ -113,7 +113,7 @@ def batch_operations_gui_window(parent=None):
         card = create_card(body, img, desc, cmd)
         card.grid(row=row, column=col, padx=10, pady=10, sticky="nsew")
 
-    # Footer 
+    # Footer
     footer = ctk.CTkFrame(window, height=30, fg_color="transparent")
     footer.grid(row=2, column=0, sticky="ew", padx=20, pady=(0, 10))
     footer.grid_columnconfigure(0, weight=1)
