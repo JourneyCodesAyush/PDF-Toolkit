@@ -67,7 +67,26 @@ def main():
     body.grid_columnconfigure((0, 1), weight=1, uniform="a")
     body.grid_rowconfigure((0, 1), weight=1, uniform="a")
 
-    def create_card(parent, image_path, desc, command):
+    def create_card(parent, image_path, desc, command) -> ctk.CTkFrame:
+        """
+        Create a reusable card-style UI component with an icon, description, and button.
+
+        Args:
+            parent (ctk.CTkFrame): The parent container (frame) where the card will be placed.
+            image_path (str): Path to the image/icon to display on the card.
+            desc (str): Description text to display under the image.
+            command (Callable): Function to be executed when the "Open" button is clicked.
+
+        Returns:
+            ctk.CTkFrame: A customtkinter frame representing the card component.
+
+        Behaviour:
+            Constructs a visually styled card with:
+                - A top-centered image (48x48) loaded from the given image_path.
+                - A centered multiline description label.
+                - An "Open" button at the bottom that triggers the given command.
+            The card has fixed dimensions and appearance that adapts to the current theme (light/dark).
+        """
         card = ctk.CTkFrame(
             parent,
             corner_radius=12,
