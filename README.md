@@ -1,6 +1,7 @@
-# 📄 PDF Toolkit 
+# 📄 PDF Toolkit
 
 <!-- Badges generated using https://shields.io -->
+
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/JourneyCodesAyush/pdf-toolkit?display_name=tag&sort=semver)
 ![Status](https://img.shields.io/badge/status-stable-green)
@@ -13,7 +14,6 @@
 
 Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you **merge**, **rename**, and **split** PDF files effortlessly. Whether you're handling academic papers, work documents, or just organizing your digital clutter, this tool gets the job done quickly and easily.
 
-
 ---
 
 ## 📦 Latest Version
@@ -23,15 +23,12 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 **Status:** Stable
 **Download:** [PDF-Toolkit.v1.0.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v1.0.0/PDF-Toolkit.v1.0.0.zip)
 
-
-
 ### ✨ What's New in v1.0.0:
 
 - 🎉 After several **pre-release versions** and thorough testing, **PDF Toolkit** is now officially **stable**.
 
 - 🐛 **Bug fixes**:
   - Fixed image path resolution issues when running from standalone executable.
-
 
 ---
 
@@ -41,7 +38,7 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 - ✏️ **Rename PDFs** – Give your PDF files cleaner, more meaningful names.
 - ✂️ **Split PDFs** – Break up large PDFs into smaller files or extract specific pages.
 - 📤 **Extract PDFs** – Extract custom page ranges or specific pages from PDFs.
-- 🏷️ **Batch Processing** – Perform batch operations like merging all PDFs in a folder into one (with optional move), rename PDFs of entire folder at once, or split a PDF into multiple single-paged PDFs at once. 
+- 🏷️ **Batch Processing** – Perform batch operations like merging all PDFs in a folder into one (with optional move), rename PDFs of entire folder at once, or split a PDF into multiple single-paged PDFs at once.
 - 🎯 **User-friendly interface** – No learning curve, just click and go.
 - ⚡ **Lightweight & fast** – Minimal dependencies and blazing performance.
 - 💻 **Cross-platform** – Built with Python & Tkinter; runs on Windows and (with small tweaks) on macOS/Linux too.
@@ -53,17 +50,19 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 To install and run PDF Toolkit locally:
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/JourneyCodesAyush/pdf-toolkit.git
    cd pdf-toolkit
    ```
 
 2. (Recommended) Create and activate a virtual environment:
+
    ```bash
    python -m venv venv
 
    # On Linux/macOS:
-   source venv/bin/activate       
+   source venv/bin/activate
 
    # On Windows CMD:
    venv\Scripts\activate.bat
@@ -73,23 +72,38 @@ To install and run PDF Toolkit locally:
    ```
 
 3. Install dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
 
 4. (Optional) Make an executable (for Windows):
-  
+
    First make sure **Pyinstaller** is installed
+
    ```bash
-   pip install pyinstaller 
+   pip install pyinstaller
    ```
+
    Then run:
+
    ```bash
    pyinstaller main.spec
-   ``` 
+   ```
 
-  💡 Tip: The generated `.exe` can be found inside `dist/`.
-      
+💡 Tip: The generated `.exe` can be found inside `dist/`.
+
+<details><summary>Windows Quick Launch<b></b></summary>
+
+This project includes a `launch_windows.bat` file to help run the app on Windows.
+
+> Note: I'm not very experienced with Batch scripting, so while this script works on my setup, it's possible that issues might come up on other systems. If you're a Windows user and run into problems, feel free to open an issue or submit a fix!
+
+```bash
+.\launch_windows.bat
+```
+
+</details>
 
 <details><summary>Linux Quick Launch<b></b></summary>
 
@@ -97,6 +111,7 @@ To install and run PDF Toolkit locally:
 chmod +x launch_linux.sh
 launch_linux.sh
 ```
+
 </details>
 
 ---
@@ -118,30 +133,32 @@ You’ll see a friendly window with three options: **Merge**, **Rename**, or **S
 If you run into any issues, try the following steps:
 
 - **Python version:**  
-  Make sure you are using Python 3.9 or above. Check your version with:  
+  Make sure you are using Python 3.9 or above. Check your version with:
+
   ```bash
-  python --version 
+  python --version
   ```
 
-- *Virtual environment*:
-If dependencies aren’t installing or the app crashes, try setting up and activating a virtual environment (see Installation section).
+- _Virtual environment_:
+  If dependencies aren’t installing or the app crashes, try setting up and activating a virtual environment (see Installation section).
 
-- *Missing dependencies*:
-Run
+- _Missing dependencies_:
+  Run
 
 ```bash
 pip install -r requirements.txt
 ```
+
 again to ensure all required packages are installed.
 
 - **Permission errors**:
-On some systems, you might need to run commands with elevated permissions (e.g., sudo on Linux/Mac).
+  On some systems, you might need to run commands with elevated permissions (e.g., sudo on Linux/Mac).
 
 - **App doesn’t launch**:
-Check the terminal or command prompt for error messages and share them when reporting bugs.
+  Check the terminal or command prompt for error messages and share them when reporting bugs.
 
 - **Still stuck**?
-Open an issue on GitHub or contact the [author](https://github.com/journeycodesayush).
+  Open an issue on GitHub or contact the [author](https://github.com/journeycodesayush).
 
 ---
 
@@ -171,22 +188,28 @@ pdf_toolkit/
 ---
 
 ## 🧪 Testing
-As of ***v0.7.0***, *PDF Toolkit* includes a growing suite of unit tests to ensure the reliability of its core and batch features.
+
+As of **_v0.7.0_**, _PDF Toolkit_ includes a growing suite of unit tests to ensure the reliability of its core and batch features.
 
 ### ✅ How to Run Tests
+
 1. Make sure `pytest` is installed:
-  ```bash
-  pip install pytest
-  ```
+
+```bash
+pip install pytest
+```
+
 2. Then from the project root, run:
-  ```bash
-  pytest
-  ```
+
+```bash
+pytest
+```
+
 > ⚠️**No module named core/**: Run this command
 
-  ```bash
-   python -m pytest
-   ```
+```bash
+ python -m pytest
+```
 
 3. This will automatically discover and run all tests under the `tests/` directory.
 
@@ -194,7 +217,7 @@ As of ***v0.7.0***, *PDF Toolkit* includes a growing suite of unit tests to ensu
 
 - Core modules: merge, split, rename
 - Batch modules: batch-merge, batch-split, batch-rename
-- Shared test fixtures in  `tests/conftest.py`
+- Shared test fixtures in `tests/conftest.py`
 
 Working towards expanding test coverage. Contributions welcome!
 
@@ -258,7 +281,6 @@ Please use this format when writing commit messages:
 
 `<type>(<scope>): <short message>`
 
-
 ### ✅ Common Commit Types
 
 | Type       | Description                                           |
@@ -274,9 +296,9 @@ Please use this format when writing commit messages:
 ### 📌 Examples
 
 ```bash
-feat(split): add multi-range page support  
-fix(rename): handle non-PDF files gracefully  
-docs(readme): add commit message convention section  
+feat(split): add multi-range page support
+fix(rename): handle non-PDF files gracefully
+docs(readme): add commit message convention section
 chore: update logging configuration
 ```
 
@@ -285,7 +307,7 @@ chore: update logging configuration
 ## 👨‍💻 Author
 
 Crafted with care by **JourneyCodesAyush**  
-© 2025 JourneyCodesAyush 
+© 2025 JourneyCodesAyush
 
 ---
 
@@ -299,14 +321,14 @@ Special thanks to ChatGPT (OpenAI) for helping with coding, documentation, and g
 
 ## 📚 Developer Notes (Optional Read)
 
--  Manipulating PDFs using Python's `PyPDF2` (merge, split, extract custom page ranges)
--  File system handling with Python's `os` module
--  Using `pytest` for testing, with shared `fixtures` in `conftest.py`
--  Creating and auto-cleaning temporary directories with `tempfile`
--  Building GUIs with Tkinter (layouts, event handling)
--  Implementing robust error handling and logging
--  Writing modular, well-documented Python code
--  Using Git for version control, branching, and collaboration
--  Writing effective, structured documentation like this README
+- Manipulating PDFs using Python's `PyPDF2` (merge, split, extract custom page ranges)
+- File system handling with Python's `os` module
+- Using `pytest` for testing, with shared `fixtures` in `conftest.py`
+- Creating and auto-cleaning temporary directories with `tempfile`
+- Building GUIs with Tkinter (layouts, event handling)
+- Implementing robust error handling and logging
+- Writing modular, well-documented Python code
+- Using Git for version control, branching, and collaboration
+- Writing effective, structured documentation like this README
 - Added `.github/` folder containing issue and pull request templates to streamline project contributions
 - Added `main.spec` for PyInstaller to facilitate building standalone executables
