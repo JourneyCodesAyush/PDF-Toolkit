@@ -1,7 +1,6 @@
 # Nothing much
 
 import argparse
-from pathlib import Path
 
 from core.pdf_splitter import split_pdf
 from core.result import Result
@@ -31,7 +30,7 @@ def run_split(args: argparse.Namespace) -> None:
     result: Result = split_pdf(
         file_path=args.file,
         page_range_input=args.range,
-        output_dir=str(Path(args.output).parent),
+        output_dir=args.output,
     )
     if result.success:
         print(f"Pages extracted from {args.file} and saved to {args.output}")
