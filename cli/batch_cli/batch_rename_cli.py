@@ -1,3 +1,5 @@
+# Batch Rename CLI
+
 import argparse
 
 from core.batch.batch_rename import batch_rename_pdfs
@@ -5,6 +7,20 @@ from core.result import Result
 
 
 def add_batch_rename_arguments(parser: argparse.ArgumentParser) -> None:
+    """
+    Add command-line arguments for batch renaming PDF files in a directory.
+
+    This function registers arguments for specifying the input directory containing
+    the PDFs to rename, the base name for renaming, and an optional output directory
+    to save the renamed files.
+
+    Args:
+        parser (argparse.ArgumentParser): The argument parser to which batch rename arguments are added.
+
+    Returns:
+        None
+    """
+
     parser.add_argument(
         "-d", "--directory", required=True, help="Directory containing PDFs to rename"
     )
@@ -23,6 +39,23 @@ def add_batch_rename_arguments(parser: argparse.ArgumentParser) -> None:
 
 
 def run_batch_rename(args: argparse.Namespace) -> None:
+    """
+    Execute the batch rename operation using provided command-line arguments.
+
+    This function renames all PDFs in the specified input directory using the given
+    base name, optionally saving the renamed files to a different output directory.
+    If no output directory is provided, files are saved in the input directory.
+
+    Args:
+        args (argparse.Namespace): Parsed command-line arguments containing:
+            - directory (str): Path to the directory containing PDFs to rename.
+            - newname (str): Base name to use when renaming files.
+            - outputdirectory (str, optional): Directory to save the renamed PDFs.
+
+    Returns:
+        None
+    """
+
     output_directory = args.outputdirectory or args.directory
     result: Result = batch_rename_pdfs(
         input_dir=args.directory,

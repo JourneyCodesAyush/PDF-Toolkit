@@ -11,7 +11,29 @@ from cli.split_cli import add_split_arguments, run_split
 from version import __version__
 
 
-def main():
+def main() -> None:
+    """
+    Entry point for the PDF-Toolkit CLI.
+
+    This function parses top-level command-line arguments and dispatches
+    control to the appropriate sub-command handler (e.g., merge, split, rename,
+    batch operations). It supports mutually exclusive actions including:
+
+        - Merge PDFs
+        - Rename a single PDF
+        - Split or extract pages from a PDF
+        - Batch merge PDFs from a directory
+        - Batch rename PDFs in a directory
+        - Batch split a PDF into individual pages
+        - Show the current version
+
+    For each action, it delegates parsing of action-specific arguments and
+    execution to the respective CLI modules.
+
+    Returns:
+        None
+    """
+
     parser = argparse.ArgumentParser(description="CLI version of the PDF-Toolkit")
 
     action_group = parser.add_mutually_exclusive_group(required=True)

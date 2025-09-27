@@ -1,4 +1,4 @@
-# Nothing much
+# Split CLI
 
 import argparse
 
@@ -7,6 +7,20 @@ from core.result import Result
 
 
 def add_split_arguments(parser: argparse.ArgumentParser) -> None:
+    """
+    Add command-line arguments for splitting pages from a PDF file.
+
+    This function registers arguments for specifying the source PDF file,
+    the page range to extract, and the output directory where the new PDF
+    will be saved.
+
+    Args:
+        parser (argparse.ArgumentParser): The argument parser to which split arguments are added.
+
+    Returns:
+        None
+    """
+
     parser.add_argument(
         "-f", "--file", required=True, help="PDF to extract pages from", type=str
     )
@@ -27,6 +41,23 @@ def add_split_arguments(parser: argparse.ArgumentParser) -> None:
 
 
 def run_split(args: argparse.Namespace) -> None:
+    """
+    Execute the PDF split operation using the provided command-line arguments.
+
+    This function calls the split logic with the specified file, page range,
+    and output directory. It prints the result to the console indicating
+    whether the operation was successful or failed.
+
+    Args:
+        args (argparse.Namespace): Parsed command-line arguments containing:
+            - file (str): Path to the source PDF file.
+            - range (str): Page range to extract (e.g., '1', '2-4', '1,3,5-7').
+            - output (str): Directory to save the resulting split PDF.
+
+    Returns:
+        None
+    """
+
     result: Result = split_pdf(
         file_path=args.file,
         page_range_input=args.range,

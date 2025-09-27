@@ -1,4 +1,4 @@
-# Nothing much
+# Rename CLI
 
 import argparse
 from pathlib import Path
@@ -8,11 +8,40 @@ from core.result import Result
 
 
 def add_rename_arguments(parser: argparse.ArgumentParser) -> None:
+    """
+    Add command-line arguments for renaming a PDF file to the argument parser.
+
+    This function registers the necessary arguments for the PDF rename operation,
+    including the path to the original PDF and the desired new name or path.
+
+    Args:
+        parser (argparse.ArgumentParser): The argument parser to which rename arguments are added.
+
+    Returns:
+        None
+    """
+
     parser.add_argument("-f", "--file", required=True, help="PDF to rename")
     parser.add_argument("-o", "--output", required=True, help="New name of the PDF")
 
 
 def run_rename(args: argparse.Namespace) -> None:
+    """
+    Execute the PDF rename operation using provided command-line arguments.
+
+    This function extracts the new file name and directory from the output path,
+    then invokes the rename logic. It prints the result to the console to indicate
+    success or failure.
+
+    Args:
+        args (argparse.Namespace): Parsed command-line arguments containing:
+            - file (str): Path to the existing PDF file.
+            - output (str): New full path or name for the renamed PDF.
+
+    Returns:
+        None
+    """
+
     new_name = Path(args.output).name
     new_directory = str(Path(args.output).parent)
 
