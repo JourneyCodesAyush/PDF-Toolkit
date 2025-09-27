@@ -12,6 +12,34 @@
 
 ---
 
+## 📚 Table of Contents
+
+- [📄 PDF Toolkit](#-pdf-toolkit)
+  - [📚 Table of Contents](#-table-of-contents)
+  - [📦 Latest Version](#-latest-version)
+    - [✨ What's New in v1.1.0:](#-whats-new-in-v110)
+  - [🚀 Features](#-features)
+  - [🛠 Installation](#-installation)
+  - [▶️ Usage](#️-usage)
+  - [🖥️ Using the CLI](#️-using-the-cli)
+  - [🛠 Troubleshooting](#-troubleshooting)
+  - [🧱 Project Structure](#-project-structure)
+  - [🧪 Testing](#-testing)
+    - [✅ How to Run Tests](#-how-to-run-tests)
+  - [🧬 Test Coverage](#-test-coverage)
+  - [📜 Logging \& Error Handling](#-logging--error-handling)
+  - [🧪 Screenshots](#-screenshots)
+  - [🤝 Contributing](#-contributing)
+  - [📝 License](#-license)
+  - [🧾 Commit Message Convention](#-commit-message-convention)
+    - [✅ Common Commit Types](#-common-commit-types)
+    - [📌 Examples](#-examples)
+  - [👨‍💻 Author](#-author)
+  - [🙌 Special Thanks](#-special-thanks)
+  - [📚 Developer Notes (Optional Read)](#-developer-notes-optional-read)
+
+---
+
 Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you **merge**, **rename**, and **split** PDF files effortlessly. Whether you're handling academic papers, work documents, or just organizing your digital clutter, this tool gets the job done quickly and easily.
 
 ---
@@ -23,12 +51,11 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 **Status:** Stable
 **Download:** [PDF-Toolkit.v1.0.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v1.0.0/PDF-Toolkit.v1.0.0.zip)
 
-### ✨ What's New in v1.0.0:
+### ✨ What's New in v1.1.0:
 
-- 🎉 After several **pre-release versions** and thorough testing, **PDF Toolkit** is now officially **stable**.
-
-- 🐛 **Bug fixes**:
-  - Fixed image path resolution issues when running from standalone executable.
+- 🚀 Added CLI support for advanced PDF manipulation and automation.
+- 🎉 Over 200 commits milestone!
+- 🐛 Minor improvements and docstring additions.
 
 ---
 
@@ -39,6 +66,7 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 - ✂️ **Split PDFs** – Break up large PDFs into smaller files or extract specific pages.
 - 📤 **Extract PDFs** – Extract custom page ranges or specific pages from PDFs.
 - 🏷️ **Batch Processing** – Perform batch operations like merging all PDFs in a folder into one (with optional move), rename PDFs of entire folder at once, or split a PDF into multiple single-paged PDFs at once.
+- 🖥️ **Command-Line Interface (CLI)** – Automate PDF operations like merge, rename, and split via terminal commands. Ideal for power users and scripting.
 - 🎯 **User-friendly interface** – No learning curve, just click and go.
 - ⚡ **Lightweight & fast** – Minimal dependencies and blazing performance.
 - 💻 **Cross-platform** – Built with Python & Tkinter; runs on Windows and (with small tweaks) on macOS/Linux too.
@@ -93,6 +121,8 @@ To install and run PDF Toolkit locally:
 
 💡 Tip: The generated `.exe` can be found inside `dist/`.
 
+> **CLI Usage**: The command-line interface is included for advanced users and automation. It requires cloning the repo and running via Python scripts (see Usage section).
+
 <details><summary>Windows Quick Launch<b></b></summary>
 
 This project includes a `launch_windows.bat` file to help run the app on Windows.
@@ -126,13 +156,40 @@ python main.py
 
 You’ll see a friendly window with three options: **Merge**, **Rename**, or **Split** your PDFs. Just follow the prompts and you’re good to go!
 
+## 🖥️ Using the CLI
+
+For automation or advanced use cases, PDF Toolkit includes a CLI interface.
+After cloning the repo and installing dependencies, you can run:
+
+```bash
+python main_cli.py --help
+```
+
+This will show available commands such as:
+
+- `--merge`
+- `--rename`
+- `--split`
+- `--batch-merge`
+- `--batch-rename`
+- `--batch-split`
+- `--version`
+
+Example:
+
+```bash
+python main_cli.py --merge --input file1.pdf file2.pdf --output merged.pdf
+```
+
+> **_Note_**: CLI is intended for users comfortable with command-line tools and requires cloning the repository and installing dependencies. The GUI remains the recommended interface for typical users.
+
 ---
 
 ## 🛠 Troubleshooting
 
 If you run into any issues, try the following steps:
 
-- **Python version:**  
+- **Python version:**
   Make sure you are using Python 3.9 or above. Check your version with:
 
   ```bash
@@ -306,15 +363,15 @@ chore: update logging configuration
 
 ## 👨‍💻 Author
 
-Crafted with care by **JourneyCodesAyush**  
+Crafted with care by **JourneyCodesAyush**
 © 2025 JourneyCodesAyush
 
 ---
 
 ## 🙌 Special Thanks
 
-Built with ❤️ using Python and Tkinter.  
-Badges powered by [Shields.io](https://shields.io)  
+Built with ❤️ using Python and Tkinter.
+Badges powered by [Shields.io](https://shields.io)
 Special thanks to ChatGPT (OpenAI) for helping with coding, documentation, and guidance.
 
 ---
@@ -323,6 +380,7 @@ Special thanks to ChatGPT (OpenAI) for helping with coding, documentation, and g
 
 - Manipulating PDFs using Python's `PyPDF2` (merge, split, extract custom page ranges)
 - File system handling with Python's `os` module
+- Command line arguments with Python's `argparse` module
 - Using `pytest` for testing, with shared `fixtures` in `conftest.py`
 - Creating and auto-cleaning temporary directories with `tempfile`
 - Building GUIs with Tkinter (layouts, event handling)
