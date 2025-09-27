@@ -142,6 +142,18 @@ If `core/` is not found, run:
     │       ├── batch_rename.py
     │       └── batch_split.py
     │
+    ├── cli/
+    │   ├── __init__.py       
+    │   ├── cli_entry.py                
+    │   ├── merge_cli.py                
+    │   ├── rename_cli.py               
+    │   ├── split_cli.py               
+    │   └── batch_cli/          
+    │       ├── __init__.py                  
+    │       ├── batch_merge_cli.py  
+    │       ├── batch_rename_cli.py  
+    │       └── batch_split_cli.py 
+    │ 
     ├── logs/
     │   ├── errors.json
     │   └── user_activity.log
@@ -184,17 +196,28 @@ If `core/` is not found, run:
 
     If you are adding new logic in `core/`, please add unit tests in the `tests/` directory.
 
+    Before submitting your pull request, please run all tests locally to ensure your changes don't break anything.
+    ```bash
+    pytest
+    ```
+   > ⚠️ If you see `No module named core`, run:
+
+
+    ```bash
+    python -m pytest
+    ```
+
 3. Follow Commit Message Convention
    
     We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)    
     ```bash
-        <type>(<scope>):<short message>
+    <type>(<scope>):<short message>
     ```
     Examples:
     ```bash
-        feat(split): add multi-range page support
-        fix(rename): handle non-PDF files gracefully
-        docs(readme): update installation instructions
+    feat(split): add multi-range page support
+    fix(rename): handle non-PDF files gracefully
+    docs(readme): update installation instructions
     ```
     
     Common types include: `feat`, `fix`, `docs`, `style`, `refactor`, `test` and `chore`.
@@ -203,9 +226,9 @@ If `core/` is not found, run:
     Use clear and consistent branch names to indicate the purpose of your work.  
     Examples:  
     ```bash
-        feature/pdf-merge-support
-        bugfix/fix-path-issue
-        docs/update-contributing-guide
+    feature/pdf-merge-support
+    bugfix/fix-path-issue
+    docs/update-contributing-guide
     ```
     Use the prefix that best matches your contribution type:
         - `feature/` for new features
