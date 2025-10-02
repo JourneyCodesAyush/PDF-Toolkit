@@ -18,6 +18,8 @@ Please make sure to read and follow our [Code of Conduct](CODE_OF_CONDUCT.md). I
   - [🛠️ Getting Started](#️-getting-started)
     - [Prerequisites](#prerequisites)
   - [🚧 Making a Contribution](#-making-a-contribution)
+    - [🔄 Keep Your Fork in Sync](#-keep-your-fork-in-sync)
+      - [👉 Recommended Workflow](#-recommended-workflow)
     - [🧑‍💻 Code Style Guidelines](#-code-style-guidelines)
   - [✅ Tips for a Great Pull Request](#-tips-for-a-great-pull-request)
   - [🙋‍♂️ Need Help](#️-need-help)
@@ -234,6 +236,30 @@ If `core/` is not found, run:
         - `feature/` for new features
         - `bugfix/` for bug fixes
         - `docs/` for documentation-only changes
+
+---
+
+### 🔄 Keep Your Fork in Sync
+
+To avoid **merge conflicts** and ensure your contributions integrate smoothly, please make sure to **regularly sync your forked repository** with the upstream repository.
+
+#### 👉 Recommended Workflow
+
+1. **Add the original repo as an upstream remote (you only need to do this once)**:
+   ```bash
+   git remote add upstream https://github.com/JourneyCodesAyush/pdf-toolkit.git
+   ```
+2. **Before starting any new feature or bugfix**:
+   ```bash
+   git checkout main
+   git pull upstream main
+   git push origin main
+   ```
+3. **Then create your feature branch from the updated `main`**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+> 🔔 Keeping your fork up to date helps prevent unnecessary conflicts during pull requests and ensures smoother collaboration.
 
 ---
 
