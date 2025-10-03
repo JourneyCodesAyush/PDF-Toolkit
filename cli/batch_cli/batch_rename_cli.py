@@ -22,19 +22,28 @@ def add_batch_rename_arguments(parser: argparse.ArgumentParser) -> None:
     """
 
     parser.add_argument(
-        "-d", "--directory", required=True, help="Directory containing PDFs to rename"
+        "-d",
+        "--directory",
+        required=True,
+        help="Path to the directory containing PDF files to rename. Example: -d ./pdfs",
     )
     parser.add_argument(
         "-n",
         "--newname",
         required=True,
-        help="Base name to use when renaming PDFs (e.g. 'Invoice' → Invoice_1.pdf, Invoice_2.pdf...)",
+        help=(
+            "Base name to use for renaming files. PDFs will be renamed sequentially "
+            "using this base name (e.g., 'Invoice' → Invoice_1.pdf, Invoice_2.pdf, ...)."
+        ),
     )
     parser.add_argument(
         "-o",
         "--outputdirectory",
         required=False,
-        help="Directory to save the renamed PDFs",
+        help=(
+            "Directory to save the renamed PDF files. "
+            "If not provided, renamed files are saved in the input directory."
+        ),
     )
 
 
@@ -67,3 +76,21 @@ def run_batch_rename(args: argparse.Namespace) -> None:
 
     else:
         print(f"Rename failed: {result.message}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        prog="pdf-toolkit batch-rename",
+        description="Batch rename all PDF files in a directory using a base name pattern.",
+        epilog=(
+            "Examples:\n"
+            "  pdf-toolkit --batch-rename -d ./pdfs -n Report\n"
+            "  → Produces Report_1.pdf, Report_2.pdf, ... inside ./pdfs\n\n"
+            "  pdf-toolkit --batch-rename -d ./pdfs -n Invoice -o ./renamed\n"
+            "  → Produces Invoice_1.pdf, Invoice_2.pdf, ... inside ./renamed"
+        ),
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    add_batch_rename_arguments(parser)
+    args = parser.parse_args()
+    run_batch_rename(args)
