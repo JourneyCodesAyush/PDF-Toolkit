@@ -21,8 +21,22 @@ def add_rename_arguments(parser: argparse.ArgumentParser) -> None:
         None
     """
 
-    parser.add_argument("-f", "--file", required=True, help="PDF to rename")
-    parser.add_argument("-o", "--output", required=True, help="New name of the PDF")
+    parser.add_argument(
+        "-f",
+        "--file",
+        required=True,
+        help="Path to the existing PDF file you want to rename. Example: -f old.pdf",
+    )
+    parser.add_argument(
+        "-o",
+        "--output",
+        required=True,
+        help=(
+            "New name or path for the renamed PDF. "
+            "You can provide just a filename (e.g., new.pdf) or a full path "
+            "(e.g., ./renamed/new.pdf)."
+        ),
+    )
 
 
 def run_rename(args: argparse.Namespace) -> None:
@@ -52,3 +66,19 @@ def run_rename(args: argparse.Namespace) -> None:
         print(f"Renamed {args.file} to {args.output}")
     else:
         print(f"Rename failed: {result.message}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        prog="pdf-toolkit rename",
+        description="Rename a PDF file to a new name or path.",
+        epilog=(
+            "Examples:\n"
+            "  pdf-toolkit --rename -f old.pdf -o new.pdf\n"
+            "  pdf-toolkit --rename -f reports/old.pdf -o reports/renamed_report.pdf"
+        ),
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    add_rename_arguments(parser)
+    args = parser.parse_args()
+    run_rename(args)

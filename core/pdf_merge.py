@@ -1,6 +1,7 @@
 # PDF merge logic
 
 import os
+
 from PyPDF2 import PdfMerger
 
 from core.error_handler import handle_exception

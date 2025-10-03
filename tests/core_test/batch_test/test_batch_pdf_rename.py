@@ -1,6 +1,5 @@
 import os
 
-
 from core.batch.batch_rename import batch_rename_pdfs
 
 

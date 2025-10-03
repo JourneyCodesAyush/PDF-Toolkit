@@ -22,16 +22,25 @@ def add_batch_merge_arguments(parser: argparse.ArgumentParser) -> None:
     """
 
     parser.add_argument(
-        "-d", "--directory", required=True, help="Directory containing PDFs to merge"
+        "-d",
+        "--directory",
+        required=True,
+        help="Path to the directory containing PDF files to merge. Example: -d ./pdfs",
     )
     parser.add_argument(
-        "-n", "--newname", required=True, help="Name of the merged PDF file"
+        "-n",
+        "--newname",
+        required=True,
+        help="Filename for the merged PDF (without path). Example: -n merged.pdf",
     )
     parser.add_argument(
         "-o",
         "--outputdirectory",
         required=False,
-        help="Directory to save the merged PDF",
+        help=(
+            "Directory where the merged PDF will be saved. "
+            "If not provided, the merged file is saved in the input directory."
+        ),
     )
 
 
@@ -63,3 +72,19 @@ def run_batch_merge(args: argparse.Namespace) -> None:
         print(f"{result.message}")
     else:
         print(f"{result.message}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        prog="pdf-toolkit batch-merge",
+        description="Batch merge all PDF files in a directory into a single PDF.",
+        epilog=(
+            "Examples:\n"
+            "  pdf-toolkit --batch-merge -d ./pdfs -n merged.pdf\n"
+            "  pdf-toolkit --batch-merge -d ./pdfs -n combined.pdf -o ./output"
+        ),
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    add_batch_merge_arguments(parser)
+    args = parser.parse_args()
+    run_batch_merge(args)

@@ -1,6 +1,5 @@
 import os
 
-
 from core.batch.batch_split import batch_split_pdf
 
 
