@@ -15,8 +15,12 @@ Please make sure to read and follow our [Code of Conduct](CODE_OF_CONDUCT.md). I
 - [Contributing to PDF Toolkit](#contributing-to-pdf-toolkit)
   - [Code of Conduct](#code-of-conduct)
   - [📚 Table of Contents](#-table-of-contents)
+  - [⚡ Quickstart for Developers](#-quickstart-for-developers)
   - [🛠️ Getting Started](#️-getting-started)
     - [Prerequisites](#prerequisites)
+    - [Linux Quick Launch (Optional, for Linux Users)](#linux-quick-launch-optional-for-linux-users)
+      - [To use the script:](#to-use-the-script)
+  - [🧪 Running Tests](#-running-tests)
   - [🚧 Making a Contribution](#-making-a-contribution)
     - [🔄 Keep Your Fork in Sync](#-keep-your-fork-in-sync)
       - [👉 Recommended Workflow](#-recommended-workflow)
@@ -24,6 +28,29 @@ Please make sure to read and follow our [Code of Conduct](CODE_OF_CONDUCT.md). I
   - [✅ Tips for a Great Pull Request](#-tips-for-a-great-pull-request)
   - [🙋‍♂️ Need Help](#️-need-help)
   - [🙌 Thank You](#-thank-you)
+
+---
+
+## ⚡ Quickstart for Developers
+
+```bash
+git clone https://github.com/JourneyCodesAyush/pdf-toolkit.git
+cd pdf-toolkit
+
+python -m venv venv
+source venv/bin/activate  # or .\venv\Scripts\activate on Windows
+
+pip install -r requirements.txt
+pre-commit install
+
+python main.py
+```
+
+Run tests:
+
+```bash
+pytest
+```
 
 ---
 
@@ -55,6 +82,12 @@ To contribute, you’ll need to set up the project on your local machine. Follow
    ```bash
    python main.py
    ```
+6. **Set up pre-commit hooks** (for automatic formatting and lint checks):
+   ```bash
+   pip install pre-commit
+   pre-commit install
+   ```
+   These hooks run checks like `black`, `isort`, and more before you commit code.
 
 ### Linux Quick Launch (Optional, for Linux Users)
 
@@ -188,6 +221,8 @@ All tests are written using [`pytest`](https://docs.pytest.org/). To run the tes
    │   └── preferences.json
    │
    ├── main.py
+   ├── main_cli.py
+   ├── .pre-commit-config.yaml
    ├── README.md
    ├── CHANGELOG.md
    ├── CODE_OF_CONDUCT.md
@@ -195,6 +230,7 @@ All tests are written using [`pytest`](https://docs.pytest.org/). To run the tes
    ├── SECURITY.md
    ├── launch_linux.sh
    ├── LICENSE
+   ├── .gitattributes
    └── .gitignore
    ```
 
@@ -232,8 +268,27 @@ All tests are written using [`pytest`](https://docs.pytest.org/). To run the tes
 
    Common types include: `feat`, `fix`, `docs`, `style`, `refactor`, `test` and `chore`.
 
-4. Branch Naming Convention  
-   Use clear and consistent branch names to indicate the purpose of your work.  
+4. Referencing Issues in Commit Messages
+
+   When your commit or pull request fixes or closes an issue, please include the issue number in your commit message to automatically close the issue when your PR is merged.
+
+   Use this format in your commit message footer:
+
+   ```text
+   Closes #<issue-number>
+   ```
+
+   Example:
+
+   ```text
+   fix(split): handle empty page range inputs gracefully
+
+   Closes #2
+   ```
+   > 💡 Tip: You can also add `Closes #2` in your **pull request description**, and GitHub will close the issue once the PR is merged.
+
+5. Branch Naming Convention
+   Use clear and consistent branch names to indicate the purpose of your work.
    Examples:
    ```bash
    feature/pdf-merge-support
@@ -272,8 +327,8 @@ To avoid **merge conflicts** and ensure your contributions integrate smoothly, p
 
 To maintain consistency across the codebase, please follow these standards when writing or editing code:
 
-- ✅ **Formatting**: Format all Python files using [`black`](https://github.com/psf/black)  
-   Run:
+- ✅ **Formatting**: Format all Python files using [`black`](https://github.com/psf/black)
+  Run:
   ```bash
   black .
   ```
@@ -284,6 +339,16 @@ To maintain consistency across the codebase, please follow these standards when 
   isort .
   ```
 
+- ✅ **Pre-commit Hooks**: Run format and lint checks automatically before every commit.
+  - Install and activate:
+    ```bash
+    pip install pre-commit
+    pre-commit install
+    ```
+  - Run on all files manually:
+    ```bash
+    pre-commit run --all-files
+    ```
 - ✅ **Style Guide**: Follow the [PEP8](https://peps.python.org/pep-0008/) style guide.
 
 - ✅ **Error Handling**: Use the `Result` object and the shared `handle_exception()` function for all error reporting (see examples in `core/`).
@@ -317,6 +382,6 @@ If you:
 
 ## 🙌 Thank You
 
-Thanks for making **PDF Toolkit** better!  
-Every line of code, every typo fix, and every suggestion makes a difference.  
+Thanks for making **PDF Toolkit** better!
+Every line of code, every typo fix, and every suggestion makes a difference.
 We’re excited to build this project with your help — let’s create something awesome together! 🚀
