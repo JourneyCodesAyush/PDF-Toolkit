@@ -1,5 +1,5 @@
-# Ensure consistent line endings across platforms
-* text=auto
+# Normalize all text files to use LF
+* text=auto eol=lf
 
 # Treat image files in assets/ as binary
 assets/*.{png,jpg,jpeg} binary
