@@ -6,6 +6,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/JourneyCodesAyush/pdf-toolkit?display_name=tag&sort=semver)
 ![Status](https://img.shields.io/badge/status-stable-green)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://pre-commit.com/)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
@@ -22,6 +23,7 @@
   - [🛠 Installation](#-installation)
   - [▶️ Usage](#️-usage)
   - [🖥️ Using the CLI](#️-using-the-cli)
+  - [🛡️ Code Quality](#️-code-quality)
   - [🛠 Troubleshooting](#-troubleshooting)
   - [🧱 Project Structure](#-project-structure)
   - [🧪 Testing](#-testing)
@@ -46,8 +48,8 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 ## 📦 Latest Version
 
-**Version:** [v1.0.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v1.0.0)  
-**Release Date:** September 13, 2025  
+**Version:** [v1.0.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v1.0.0)
+**Release Date:** September 13, 2025
 **Status:** Stable
 **Download:** [PDF-Toolkit.v1.0.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v1.0.0/PDF-Toolkit.v1.0.0.zip)
 
@@ -182,6 +184,15 @@ python main_cli.py --merge --input file1.pdf file2.pdf --output merged.pdf
 ```
 
 > **_Note_**: CLI is intended for users comfortable with command-line tools and requires cloning the repository and installing dependencies. The GUI remains the recommended interface for typical users.
+
+---
+
+## 🛡️ Code Quality
+
+This project uses [pre-commit](https://pre-commit.com/) hooks to automatically enforce code style and catch common issues before each commit.
+It includes formatting tools like [`black`](https://github.com/psf/black) and other useful checks.
+
+Contributors are encouraged to install and run these hooks locally. Developers should refer to [CONTRIBUTING.md](CONTRIBUTING.md) for setup and usage instructions.
 
 ---
 
