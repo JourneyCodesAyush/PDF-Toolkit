@@ -76,21 +76,3 @@ def run_batch_rename(args: argparse.Namespace) -> None:
 
     else:
         print(f"Rename failed: {result.message}")
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        prog="pdf-toolkit batch-rename",
-        description="Batch rename all PDF files in a directory using a base name pattern.",
-        epilog=(
-            "Examples:\n"
-            "  pdf-toolkit --batch-rename -d ./pdfs -n Report\n"
-            "  → Produces Report_1.pdf, Report_2.pdf, ... inside ./pdfs\n\n"
-            "  pdf-toolkit --batch-rename -d ./pdfs -n Invoice -o ./renamed\n"
-            "  → Produces Invoice_1.pdf, Invoice_2.pdf, ... inside ./renamed"
-        ),
-        formatter_class=argparse.RawTextHelpFormatter,
-    )
-    add_batch_rename_arguments(parser)
-    args = parser.parse_args()
-    run_batch_rename(args)

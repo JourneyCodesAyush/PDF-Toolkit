@@ -72,19 +72,3 @@ def run_batch_merge(args: argparse.Namespace) -> None:
         print(f"{result.message}")
     else:
         print(f"{result.message}")
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        prog="pdf-toolkit batch-merge",
-        description="Batch merge all PDF files in a directory into a single PDF.",
-        epilog=(
-            "Examples:\n"
-            "  pdf-toolkit --batch-merge -d ./pdfs -n merged.pdf\n"
-            "  pdf-toolkit --batch-merge -d ./pdfs -n combined.pdf -o ./output"
-        ),
-        formatter_class=argparse.RawTextHelpFormatter,
-    )
-    add_batch_merge_arguments(parser)
-    args = parser.parse_args()
-    run_batch_merge(args)

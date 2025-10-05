@@ -78,18 +78,3 @@ def run_split(args: argparse.Namespace) -> None:
         print(f"{result.message}")
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        prog="pdf-toolkit split",
-        description="Split a PDF file by extracting specific pages or page ranges into new PDFs.",
-        epilog=(
-            "Examples:\n"
-            "  pdf-toolkit --split -f document.pdf -r 1 -o ./output\n"
-            "  pdf-toolkit --split -f book.pdf -r 5-10 -o ./chapters\n"
-            "  pdf-toolkit --split -f thesis.pdf -r 1,3,7-9 -o ./parts"
-        ),
-        formatter_class=argparse.RawTextHelpFormatter,
-    )
-    add_split_arguments(parser)
-    args = parser.parse_args()
-    run_split(args)

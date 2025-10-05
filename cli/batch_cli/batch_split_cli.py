@@ -65,19 +65,3 @@ def run_batch_split(args: argparse.Namespace):
         print(f"Split failed: {result.message}")
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        prog="pdf-toolkit batch-split",
-        description="Split a PDF into individual single-page PDF files.",
-        epilog=(
-            "Examples:\n"
-            "  pdf-toolkit --batch-split -f document.pdf\n"
-            "  → Splits document.pdf into page_1.pdf, page_2.pdf, ... in the same folder\n\n"
-            "  pdf-toolkit --batch-split -f report.pdf -o ./output\n"
-            "  → Splits report.pdf into individual pages inside ./output"
-        ),
-        formatter_class=argparse.RawTextHelpFormatter,
-    )
-    add_batch_split_arguments(parser)
-    args = parser.parse_args()
-    run_batch_split(args)

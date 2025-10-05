@@ -60,17 +60,3 @@ def run_merge(args: argparse.Namespace) -> None:
     else:
         print(f"{result.message}")
 
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        prog="pdf-toolkit merge",
-        description="Merge multiple PDF files into a single PDF document.",
-        epilog=(
-            "Example:\n"
-            "  pdf-toolkit --merge -f file1.pdf file2.pdf --output merged.pdf"
-        ),
-        formatter_class=argparse.RawTextHelpFormatter,
-    )
-    add_merge_arguments(parser)
-    args = parser.parse_args()
-    run_merge(args)

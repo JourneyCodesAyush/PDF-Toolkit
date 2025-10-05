@@ -175,6 +175,3 @@ def main() -> None:
         op_args = op_parser.parse_args(remaining_args)
         run_batch_split(op_args)
 
-
-if __name__ == "__main__":
-    main()

@@ -68,17 +68,3 @@ def run_rename(args: argparse.Namespace) -> None:
         print(f"Rename failed: {result.message}")
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        prog="pdf-toolkit rename",
-        description="Rename a PDF file to a new name or path.",
-        epilog=(
-            "Examples:\n"
-            "  pdf-toolkit --rename -f old.pdf -o new.pdf\n"
-            "  pdf-toolkit --rename -f reports/old.pdf -o reports/renamed_report.pdf"
-        ),
-        formatter_class=argparse.RawTextHelpFormatter,
-    )
-    add_rename_arguments(parser)
-    args = parser.parse_args()
-    run_rename(args)
