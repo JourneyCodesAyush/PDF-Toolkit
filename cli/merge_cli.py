@@ -21,10 +21,20 @@ def add_merge_arguments(parser: argparse.ArgumentParser) -> None:
     """
 
     parser.add_argument(
-        "-f", "--files", nargs="+", required=True, help="List of PDFs to merge"
+        "-f",
+        "--files",
+        nargs="+",
+        required=True,
+        help=(
+            "One or more PDF files to merge, provided in the desired order. "
+            "Example: -f file1.pdf file2.pdf file3.pdf"
+        ),
     )
     parser.add_argument(
-        "-o", "--output", required=True, help="Location to save the merged PDF"
+        "-o",
+        "--output",
+        required=True,
+        help="Path to save the merged PDF file. Example: -o merged.pdf",
     )
 
 
@@ -49,3 +59,4 @@ def run_merge(args: argparse.Namespace) -> None:
         print(f"{args.files} merged and saved to {args.output}")
     else:
         print(f"{result.message}")
+

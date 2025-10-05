@@ -22,21 +22,30 @@ def add_split_arguments(parser: argparse.ArgumentParser) -> None:
     """
 
     parser.add_argument(
-        "-f", "--file", required=True, help="PDF to extract pages from", type=str
+        "-f",
+        "--file",
+        required=True,
+        type=str,
+        help="Path to the source PDF file. Example: -f document.pdf",
     )
     parser.add_argument(
         "-r",
         "--range",
         required=True,
-        help="Page to extract (e.g., '1', '2-4', or '1,3,5-7')",
         type=str,
+        help=(
+            "Page range(s) to extract. Examples:\n"
+            "  '1'        → extracts page 1\n"
+            "  '2-4'      → extracts pages 2 through 4\n"
+            "  '1,3,5-7'  → extracts pages 1, 3, and 5 through 7"
+        ),
     )
     parser.add_argument(
         "-o",
         "--output",
         required=True,
-        help="Directory to save the split PDF",
         type=str,
+        help="Directory where the extracted PDF(s) will be saved. Example: -o ./output",
     )
 
 
@@ -67,3 +76,5 @@ def run_split(args: argparse.Namespace) -> None:
         print(f"Pages extracted from {args.file} and saved to {args.output}")
     else:
         print(f"{result.message}")
+
+

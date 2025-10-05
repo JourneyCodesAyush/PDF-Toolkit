@@ -1,10 +1,10 @@
 # Batch Split CLI
 
 import argparse
-
 from pathlib import Path
-from core.result import Result
+
 from core.batch.batch_split import batch_split_pdf
+from core.result import Result
 
 
 def add_batch_split_arguments(parser: argparse.ArgumentParser):
@@ -23,13 +23,19 @@ def add_batch_split_arguments(parser: argparse.ArgumentParser):
     """
 
     parser.add_argument(
-        "-f", "--file", required=True, help="PDF file to split into individual pages"
+        "-f",
+        "--file",
+        required=True,
+        help="Path to the PDF file to split into individual single-page PDFs. Example: -f document.pdf",
     )
     parser.add_argument(
         "-o",
         "--outputdirectory",
         required=False,
-        help="Directory to save the split PDFs",
+        help=(
+            "Directory where the individual page PDFs will be saved. "
+            "If not provided, they will be saved in the same directory as the input file."
+        ),
     )
 
 
@@ -57,3 +63,5 @@ def run_batch_split(args: argparse.Namespace):
 
     else:
         print(f"Split failed: {result.message}")
+
+
