@@ -1,6 +1,6 @@
 # Standardized return message from core/ to gui/
 
-from typing import Any, Dict, Optional
+from typing import Any
 
 
 class Result:
@@ -9,8 +9,8 @@ class Result:
         success: bool,
         title: str,
         message: str,
-        error_type: Optional[str] = None,
-        data: Optional[Dict[str, Any]] = None,
+        error_type: str | None = None,
+        data: dict[str, Any] | None = None,
     ):
         """
         Standardized result object used to return status and messages from core logic to GUI.

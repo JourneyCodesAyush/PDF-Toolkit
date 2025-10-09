@@ -1,5 +1,3 @@
-import pytest
-
 from core.pdf_rename import rename_pdf_file
 
 

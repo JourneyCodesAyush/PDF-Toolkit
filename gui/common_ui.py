@@ -4,7 +4,7 @@ import json
 import os
 import threading
 from tkinter import PhotoImage, messagebox, ttk
-from typing import Callable, Union
+from typing import Callable
 
 import customtkinter as ctk
 
@@ -103,7 +103,7 @@ class ProgressBar(ctk.CTkToplevel):
 
 
 def run_task_with_progress(
-    root: Union[ctk.CTk, ctk.CTkToplevel],
+    root: ctk.CTk | ctk.CTkToplevel,
     task_func: Callable[[], Result],
     on_done=Callable[[Result], None],
 ) -> None:

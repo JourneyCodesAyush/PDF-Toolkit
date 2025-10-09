@@ -1,7 +1,6 @@
 # Batch PDF split logic
 
 import os
-from typing import Optional
 
 from PyPDF2 import PdfReader, PdfWriter
 
@@ -10,7 +9,7 @@ from core.result import Result
 from core.utils import validate_pdf_file
 
 
-def batch_split_pdf(file_path: str, output_dir: Optional[str] = None) -> Result:
+def batch_split_pdf(file_path: str, output_dir: str | None = None) -> Result:
     """
     Split a PDF file into multiple single-page PDF files saved in the specified directory.
 
@@ -24,7 +23,6 @@ def batch_split_pdf(file_path: str, output_dir: Optional[str] = None) -> Result:
             On success, includes a list of the created single-page PDF filenames in 'data'.
     """
     try:
-
         if not os.path.isfile(file_path):
             return Result(
                 success=False,
@@ -74,7 +72,6 @@ def batch_split_pdf(file_path: str, output_dir: Optional[str] = None) -> Result:
             output_path = os.path.join(output_dir, filename)
 
             if os.path.exists(output_path):
-
                 return Result(
                     success=False,
                     error_type="error",

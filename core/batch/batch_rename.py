@@ -1,7 +1,6 @@
 # Batch PDF rename logic
 
 import os
-from typing import Optional
 
 from core.error_handler import handle_exception
 from core.result import Result
@@ -9,7 +8,7 @@ from core.utils import validate_pdf_file
 
 
 def batch_rename_pdfs(
-    input_dir: str, base_name: str, output_dir: Optional[str] = None
+    input_dir: str, base_name: str, output_dir: str | None = None
 ) -> Result:
     """
     Rename all PDF files in the input directory with a base name and move them to the output directory.
