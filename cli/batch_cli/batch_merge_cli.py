@@ -22,16 +22,25 @@ def add_batch_merge_arguments(parser: argparse.ArgumentParser) -> None:
     """
 
     parser.add_argument(
-        "-d", "--directory", required=True, help="Directory containing PDFs to merge"
+        "-d",
+        "--directory",
+        required=True,
+        help="Path to the directory containing PDF files to merge. Example: -d ./pdfs",
     )
     parser.add_argument(
-        "-n", "--newname", required=True, help="Name of the merged PDF file"
+        "-n",
+        "--newname",
+        required=True,
+        help="Filename for the merged PDF (without path). Example: -n merged.pdf",
     )
     parser.add_argument(
         "-o",
         "--outputdirectory",
         required=False,
-        help="Directory to save the merged PDF",
+        help=(
+            "Directory where the merged PDF will be saved. "
+            "If not provided, the merged file is saved in the input directory."
+        ),
     )
 
 
