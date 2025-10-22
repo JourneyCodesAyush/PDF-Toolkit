@@ -2,6 +2,7 @@
 
 import os
 import sys
+from enum import Enum
 
 from PyPDF2 import PdfReader
 
@@ -106,6 +107,25 @@ def parse_page_ranges(
     return parsed_ranges, None
 
 
+class PDFValidationStatus(Enum):
+    """
+    Enum representing the validation status of a PDF file.
+
+    Members:
+        - VALID: The PDF file is valid, readable, and unencrypted.
+        - NOT_PDF: The file is not a PDF based on its extension.
+        - ENCRYPTED: The PDF file is encrypted or password-protected.
+        - CORRUPTED: The PDF file is corrupted or unreadable.
+
+    Used to standardize the results of PDF validation checks across the app.
+    """
+
+    VALID = "valid"
+    NOT_PDF = "not-pdf"
+    ENCRYPTED = "encrypted"
+    CORRUPTED = "corrupted"
+
+
 def is_valid_pdf(path: str) -> bool:
     """
     Check whether a file is a readable, non-corrupted PDF.
@@ -147,30 +167,39 @@ def is_encrypted_pdf(path: str) -> bool:
         return False
 
 
-def validate_pdf_file(path: str) -> tuple[bool, str]:
+def validate_pdf_file(path: str) -> tuple[bool, PDFValidationStatus, str]:
     """
     Validate whether the file is a legitimate, readable, and unencrypted PDF.
 
-    This function checks:
-      - The file has a .pdf extension
-      - It can be opened and parsed successfully
-      - It is not password-protected or encrypted
+    This function performs the following checks in order:
+      - Ensures the file has a ".pdf" extension.
+      - Confirms the file can be opened and parsed by PyPDF2.
+      - Detects whether the file is encrypted or password-protected.
 
     Args:
         path (str): Path to the file to validate.
 
     Returns:
-        tuple[bool, str]:
-            - (True, "") if the file is a valid, readable, unencrypted PDF.
-            - (False, error_message) if the file is invalid, unreadable, or encrypted.
+        tuple[bool, PDFValidationStatus, str]:
+            - bool: True if valid PDF and neither encrypted nor corrupt, False otherwise.
+            - PDFValidationStatus: Enum indicating the validation result status.
+            - str: Detailed error message if validation fails; empty string if successful.
     """
     if not path.lower().endswith(".pdf"):
-        return (False, "File is not a .pdf file.")
+        return (False, PDFValidationStatus.NOT_PDF, "File is not a .pdf file.")
 
     if not is_valid_pdf(path):
-        return (False, "The file is not a valid PDF or is corrupted")
+        return (
+            False,
+            PDFValidationStatus.CORRUPTED,
+            "The file is not a valid PDF or is corrupted",
+        )
 
     if is_encrypted_pdf(path):
-        return (False, "The file is encrypted and cannot be processed")
+        return (
+            False,
+            PDFValidationStatus.ENCRYPTED,
+            "The file is encrypted and cannot be processed",
+        )
 
-    return (True, "")
+    return (True, PDFValidationStatus.VALID, "")
