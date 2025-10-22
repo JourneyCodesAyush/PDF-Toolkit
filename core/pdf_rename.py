@@ -2,9 +2,9 @@
 
 import os
 
-from core.error_handler import create_msg_object, handle_exception
+from core.error_handler import handle_exception
 from core.result import Result
-from core.utils import validate_pdf_file
+from core.utils import PDFValidationStatus, validate_pdf_file
 
 
 def rename_pdf_file(old_path: str, new_directory: str, new_name: str) -> Result:
@@ -57,8 +57,11 @@ def rename_pdf_file(old_path: str, new_directory: str, new_name: str) -> Result:
             # raise ValueError("New file name must have a .pdf extension.")
             new_name += ".pdf"
 
-        is_valid, error_message = validate_pdf_file(path=old_path)
-        if not is_valid:
+        is_valid, status, error_message = validate_pdf_file(path=old_path)
+
+        if (
+            not is_valid and status == PDFValidationStatus.CORRUPTED
+        ) or status == PDFValidationStatus.NOT_PDF:
             return Result(
                 success=False,
                 error_type="error",
