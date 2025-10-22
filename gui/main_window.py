@@ -167,6 +167,7 @@ def main():
     )
     footer_label.grid(row=0, column=0, sticky="e")
 
+    root.after(0, lambda: root.state("zoomed"))
     root.mainloop()
 
 
