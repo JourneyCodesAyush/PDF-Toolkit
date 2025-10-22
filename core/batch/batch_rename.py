@@ -4,7 +4,7 @@ import os
 
 from core.error_handler import handle_exception
 from core.result import Result
-from core.utils import validate_pdf_file
+from core.utils import PDFValidationStatus, validate_pdf_file
 
 
 def batch_rename_pdfs(
@@ -64,8 +64,10 @@ def batch_rename_pdfs(
             )
 
         for file in pdf_files:
-            is_valid, error_message = validate_pdf_file(path=file)
-            if not is_valid:
+            is_valid, status, error_message = validate_pdf_file(path=file)
+            if (
+                not is_valid and status == PDFValidationStatus.CORRUPTED
+            ) or status == PDFValidationStatus.NOT_PDF:
                 return Result(
                     success=False,
                     error_type="error",
