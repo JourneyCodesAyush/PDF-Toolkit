@@ -1,15 +1,21 @@
 # PDF split logic
 
 import os
+from typing import Callable
 
 from PyPDF2 import PdfReader, PdfWriter
 
 from core.error_handler import handle_exception
 from core.result import Result
-from core.utils import parse_page_ranges, validate_pdf_file
+from core.utils import PDFValidationStatus, parse_page_ranges, validate_pdf_file
 
 
-def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
+def split_pdf(
+    file_path: str,
+    page_range_input: str,
+    output_dir: str,
+    ask_password_callback: Callable[[str], str | None] | None,
+) -> Result:
     """
     Split a PDF file into multiple files based on user-defined page ranges.
 
@@ -17,13 +23,14 @@ def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
         file_path (str): Path to the input PDF file.
         page_range_input (str): Page ranges as a string (e.g., "1-3,4,5-7").
         output_dir (str): Directory to save the resulting split PDF files.
+        ask_password_callback (Optional[Callable[[str], str | None]]): Optional
+            function to request password for encrypted PDFs.
 
     Returns:
         Result: Standardized Result object containing success status, messages,
                 and metadata (such as list of created files).
     """
     try:
-
         if not os.path.isfile(file_path):
             return Result(
                 success=False,
@@ -49,8 +56,13 @@ def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
                 message="Selected file is not a PDF",
             )
 
-        is_valid, error_message = validate_pdf_file(path=file_path)
-        if not is_valid:
+        is_valid, status, error_message = validate_pdf_file(path=file_path)
+
+        password: str | None = None
+
+        if (
+            not is_valid and status == PDFValidationStatus.CORRUPTED
+        ) or status == PDFValidationStatus.NOT_PDF:
             return Result(
                 success=False,
                 error_type="error",
@@ -58,7 +70,43 @@ def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
                 message=f"{error_message}",
             )
 
+        if status == PDFValidationStatus.ENCRYPTED:
+            if ask_password_callback is None:
+                return Result(
+                    success=False,
+                    title="Encrypted PDF detected",
+                    message="No function to collect the password of the encrypted PDF",
+                    error_type="error",
+                )
+
+            password = ask_password_callback(file_path)
+
+            if not password:
+                return Result(
+                    success=False,
+                    title="Encrypted PDF detected",
+                    message="Encrypted PDF was not given password",
+                    error_type="error",
+                )
+
         reader = PdfReader(file_path)
+
+        if reader.is_encrypted:
+            if not password:
+                return Result(
+                    success=False,
+                    title="Encrypted PDF detected",
+                    message="Password required but not provided or incorrect",
+                    error_type="error",
+                )
+            elif reader.decrypt(password) == 0:
+                return Result(
+                    success=False,
+                    title="Wrong Password",
+                    message="The provided password for the encrypted PDF is incorrect",
+                    error_type="error",
+                )
+
         total_pages = len(reader.pages)
 
         page_ranges, msg = parse_page_ranges(page_range_input, total_pages)
@@ -74,7 +122,13 @@ def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
         basename = os.path.splitext(os.path.basename(file_path))[0]
 
         saved_files = []
-
+        if page_ranges is None:
+            return Result(
+                success=False,
+                error_type="error",
+                title="Invalid page range",
+                message="Page range cannot be empty",
+            )
         for start, end in page_ranges:
             writer = PdfWriter()
             for i in range(start - 1, end):
@@ -88,7 +142,6 @@ def split_pdf(file_path: str, page_range_input: str, output_dir: str) -> Result:
             output_path = os.path.join(output_dir, filename)
 
             if os.path.exists(output_path):
-
                 return Result(
                     success=False,
                     error_type="error",

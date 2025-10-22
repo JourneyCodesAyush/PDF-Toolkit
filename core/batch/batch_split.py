@@ -1,15 +1,20 @@
 # Batch PDF split logic
 
 import os
+from typing import Callable
 
 from PyPDF2 import PdfReader, PdfWriter
 
 from core.error_handler import handle_exception
 from core.result import Result
-from core.utils import validate_pdf_file
+from core.utils import PDFValidationStatus, validate_pdf_file
 
 
-def batch_split_pdf(file_path: str, output_dir: str | None = None) -> Result:
+def batch_split_pdf(
+    file_path: str,
+    output_dir: str | None = None,
+    ask_password_callback: Callable[[str], str | None] | None = None,
+) -> Result:
     """
     Split a PDF file into multiple single-page PDF files saved in the specified directory.
 
@@ -47,18 +52,54 @@ def batch_split_pdf(file_path: str, output_dir: str | None = None) -> Result:
                 title="Invalid file",
                 message="Selected file is not a PDF",
             )
+        is_valid, status, error_message = validate_pdf_file(path=file_path)
 
-        is_valid, error_message = validate_pdf_file(path=file_path)
-        if not is_valid:
+        password: str | None = None
+
+        if (
+            not is_valid and status == PDFValidationStatus.CORRUPTED
+        ) or status == PDFValidationStatus.NOT_PDF:
             return Result(
                 success=False,
                 error_type="error",
                 title="Invalid PDF",
                 message=f"{error_message}",
             )
+        if status == PDFValidationStatus.ENCRYPTED:
+            if ask_password_callback is None:
+                return Result(
+                    success=False,
+                    title="Encrypted PDF detected",
+                    message="No function to collect the password of the encrypted PDF",
+                    error_type="error",
+                )
+
+            password = ask_password_callback(file_path)
+
+            if not password:
+                return Result(
+                    success=False,
+                    title="Encrypted PDF detected",
+                    message="Encrypted PDF was not given password",
+                    error_type="error",
+                )
 
         reader = PdfReader(file_path)
-        total_pages = len(reader.pages)
+        if reader.is_encrypted:
+            if not password:
+                return Result(
+                    success=False,
+                    title="Encrypted PDF detected",
+                    message="Password required but not provided",
+                    error_type="error",
+                )
+            elif reader.decrypt(password) == 0:
+                return Result(
+                    success=False,
+                    title="Wrong Password",
+                    message="The provided password for the encrypted PDF is incorrect",
+                    error_type="error",
+                )
 
         basename = os.path.splitext(os.path.basename(file_path))[0]
 
