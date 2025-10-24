@@ -154,6 +154,7 @@ All tests are written using [`pytest`](https://docs.pytest.org/). To run the tes
    ├── gui/
    │   ├── __init__.py
    │   ├── error_handler_gui.py
+   │   ├── encrypted_pdf_handling.py
    │   ├── merge_gui.py
    │   ├── rename_gui.py
    │   ├── split_gui.py
@@ -169,6 +170,7 @@ All tests are written using [`pytest`](https://docs.pytest.org/). To run the tes
    │
    ├── core/
    │   ├── __init__.py
+   │   ├── globals.py
    │   ├── pdf_merge.py
    │   ├── pdf_rename.py
    │   ├── pdf_splitter.py
@@ -285,6 +287,7 @@ All tests are written using [`pytest`](https://docs.pytest.org/). To run the tes
 
    Closes #2
    ```
+
    > 💡 Tip: You can also add `Closes #2` in your **pull request description**, and GitHub will close the issue once the PR is merged.
 
 5. Branch Naming Convention
