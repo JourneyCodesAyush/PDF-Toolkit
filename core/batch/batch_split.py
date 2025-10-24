@@ -6,6 +6,7 @@ from typing import Callable
 from PyPDF2 import PdfReader, PdfWriter
 
 from core.error_handler import handle_exception
+from core.globals import ENCRYPTED_FILE_HANDLING, EncryptedFileHandling
 from core.result import Result
 from core.utils import PDFValidationStatus, validate_pdf_file
 
@@ -77,6 +78,20 @@ def batch_split_pdf(
             password = ask_password_callback(file_path)
 
             if not password:
+                if ENCRYPTED_FILE_HANDLING == EncryptedFileHandling.SKIP:
+                    return Result(
+                        success=False,
+                        title="Encrypted PDF detected",
+                        message="Current encrypted PDF will be skipped",
+                        error_type="info",
+                    )
+                elif ENCRYPTED_FILE_HANDLING == EncryptedFileHandling.SKIP_ALL:
+                    return Result(
+                        success=False,
+                        title="Encrypted PDF detected",
+                        message="All encrypted PDFs will be skipped",
+                        error_type="info",
+                    )
                 return Result(
                     success=False,
                     title="Encrypted PDF detected",
