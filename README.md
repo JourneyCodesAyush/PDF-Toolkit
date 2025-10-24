@@ -2,7 +2,7 @@
 
 <!-- Badges generated using https://shields.io -->
 
-![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/JourneyCodesAyush/pdf-toolkit?display_name=tag&sort=semver)
 ![Status](https://img.shields.io/badge/status-stable-green)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -18,7 +18,7 @@
 - [📄 PDF Toolkit](#-pdf-toolkit)
   - [📚 Table of Contents](#-table-of-contents)
   - [📦 Latest Version](#-latest-version)
-    - [✨ What's New in v1.1.0:](#-whats-new-in-v110)
+    - [✨ What's New in v1.2.0:](#-whats-new-in-v120)
   - [🚀 Features](#-features)
   - [🛠 Installation](#-installation)
   - [▶️ Usage](#️-usage)
@@ -48,16 +48,16 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 ## 📦 Latest Version
 
-**Version:** [v1.0.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v1.0.0)
-**Release Date:** September 13, 2025
+**Version:** [v1.2.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v1.2.0)
+**Release Date:** October 24, 2025
 **Status:** Stable
-**Download:** [PDF-Toolkit.v1.0.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v1.0.0/PDF-Toolkit.v1.0.0.zip)
+**Download:** [PDF-Toolkit.v1.2.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v1.2.0/PDF-Toolkit.v1.2.0.zip)
 
-### ✨ What's New in v1.1.0:
+### ✨ What's New in v1.2.0:
 
-- 🚀 Added CLI support for advanced PDF manipulation and automation.
-- 🎉 Over 200 commits milestone!
-- 🐛 Minor improvements and docstring additions.
+- 🛡️ Added GUI prompt for encrypted PDFs: operations now ask for password instead of stopping abruptly.
+- 🔗 Updated core modules to support password callbacks for encrypted PDFs.
+- ⚡ Minor improvements and bug fixes.
 
 ---
 
@@ -69,6 +69,7 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 - 📤 **Extract PDFs** – Extract custom page ranges or specific pages from PDFs.
 - 🏷️ **Batch Processing** – Perform batch operations like merging all PDFs in a folder into one (with optional move), rename PDFs of entire folder at once, or split a PDF into multiple single-paged PDFs at once.
 - 🖥️ **Command-Line Interface (CLI)** – Automate PDF operations like merge, rename, and split via terminal commands. Ideal for power users and scripting.
+- 🗝️ **Encrypted PDFs Support** – When encountering an encrypted PDF, the app will prompt you for the password rather than failing silently.
 - 🎯 **User-friendly interface** – No learning curve, just click and go.
 - ⚡ **Lightweight & fast** – Minimal dependencies and blazing performance.
 - 💻 **Cross-platform** – Built with Python & Tkinter; runs on Windows and (with small tweaks) on macOS/Linux too.
@@ -182,6 +183,9 @@ Example:
 ```bash
 python main_cli.py --merge --input file1.pdf file2.pdf --output merged.pdf
 ```
+
+> ⚠️ **Note:** Encrypted PDFs are currently only supported via the GUI.
+> The CLI will not prompt for passwords and may fail on encrypted files.
 
 > **_Note_**: CLI is intended for users comfortable with command-line tools and requires cloning the repository and installing dependencies. The GUI remains the recommended interface for typical users.
 
@@ -301,6 +305,7 @@ The app is equipped with built-in logging for user actions and robust error hand
 
 ![App Screenshot](assets/screenshot.png)
 ![App Screenshot](assets/screenshot2.png)
+![App Screenshot](assets/password.png)
 ![App Screenshot](assets/aboutusScreenshot.png)
 
 ---
