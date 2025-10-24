@@ -8,6 +8,7 @@ from config.config import setup_logger
 from config.preferences_manager import get_preferences, set_preferences
 from core.error_handler import handle_exception
 from core.pdf_splitter import split_pdf
+from gui.common_ui import ProgressBar, make_gui_password_callback
 from gui.error_handler_gui import show_message
 
 logger = setup_logger(__name__)
@@ -27,7 +28,6 @@ def split_pdf_gui(root) -> None:
 
     logger.info("Split PDF operation started")
     try:
-
         prefs = get_preferences()
         initial_directory = Path.home()
         if prefs.get("save_preferences") and prefs.get("last_split_file"):
@@ -69,8 +69,11 @@ def split_pdf_gui(root) -> None:
             logger.warning("Splitting failed - No output folder selected.")
             return
 
-        def task():
-            return split_pdf(file_path, page_range_input, output_dir)
+        def task(progress_window: ProgressBar):
+            password_callback = make_gui_password_callback(
+                progress_window=progress_window
+            )
+            return split_pdf(file_path, page_range_input, output_dir, password_callback)
 
         def on_done(result):
             if result.success:

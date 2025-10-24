@@ -7,6 +7,7 @@ from config.config import setup_logger
 from config.preferences_manager import get_preferences, set_preferences
 from core.error_handler import handle_exception
 from core.pdf_merge import merge_pdf
+from gui.common_ui import ProgressBar, make_gui_password_callback
 from gui.error_handler_gui import show_message
 
 logger = setup_logger(__name__)
@@ -60,8 +61,11 @@ def merge_pdf_gui(root) -> None:
             logger.warning("Merging failed - Output file name NOT selected")
             return
 
-        def task():
-            return merge_pdf(list(input_files), save_file_path)
+        def task(progress_window: ProgressBar):
+            password_callback = make_gui_password_callback(
+                progress_window=progress_window
+            )
+            return merge_pdf(list(input_files), save_file_path, password_callback)
 
         def on_done(result):
             if result.success:
