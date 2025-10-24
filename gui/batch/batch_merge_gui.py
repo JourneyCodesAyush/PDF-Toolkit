@@ -8,6 +8,7 @@ from config.config import setup_logger
 from config.preferences_manager import get_preferences, set_preferences
 from core.batch.batch_merge import batch_merge_pdfs
 from core.error_handler import handle_exception
+from gui.common_ui import ProgressBar, ask_password, make_gui_password_callback
 from gui.error_handler_gui import show_message
 
 logger = setup_logger(__name__)
@@ -28,7 +29,6 @@ def batch_merge_pdf_gui(parent_window) -> None:
     logger.info("Batch merge PDF operation started")
 
     try:
-
         prefs = get_preferences()
         initial_directory = Path.home()
 
@@ -66,12 +66,18 @@ def batch_merge_pdf_gui(parent_window) -> None:
             prompt="Enter the name for the merged PDF(without .pdf extension)",
         )
 
-        if not new_name.endswith(".pdf"):
+        if new_name and not new_name.endswith(".pdf"):
             new_name += ".pdf"
 
-        def task():
+        def task(progress_window: ProgressBar):
+            password_callback = make_gui_password_callback(
+                progress_window=progress_window
+            )
             return batch_merge_pdfs(
-                input_dir_path=input_dir, new_name=new_name, output_dir=output_dir
+                input_dir_path=input_dir,
+                new_name=new_name,
+                output_dir=output_dir,
+                ask_password_callback=password_callback,
             )
 
         def on_done(result):

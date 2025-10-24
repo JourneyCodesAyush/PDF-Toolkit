@@ -9,6 +9,7 @@ from config.config import setup_logger
 from config.preferences_manager import get_preferences, set_preferences
 from core.batch.batch_split import batch_split_pdf
 from core.error_handler import handle_exception
+from gui.common_ui import ProgressBar, make_gui_password_callback
 from gui.error_handler_gui import show_message
 
 logger = setup_logger(__name__)
@@ -28,7 +29,6 @@ def batch_split_pdf_gui(parent_window) -> None:
 
     logger.info("Batch split PDF operation started")
     try:
-
         prefs = get_preferences()
         initial_directory = Path.home()
 
@@ -61,8 +61,11 @@ def batch_split_pdf_gui(parent_window) -> None:
         else:
             output_dir = os.path.dirname(file_path)
 
-        def task():
-            return batch_split_pdf(file_path, output_dir)
+        def task(progress_window: ProgressBar):
+            password_callback = make_gui_password_callback(
+                progress_window=progress_window
+            )
+            return batch_split_pdf(file_path, output_dir, password_callback)
 
         def on_done(result):
             if result.success:

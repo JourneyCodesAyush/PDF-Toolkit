@@ -8,6 +8,7 @@ from config.config import setup_logger
 from config.preferences_manager import get_preferences, set_preferences
 from core.error_handler import handle_exception
 from core.pdf_extract_pages import extract_pdf_page
+from gui.common_ui import ProgressBar, make_gui_password_callback
 from gui.error_handler_gui import show_message
 
 logger = setup_logger(__name__)
@@ -71,8 +72,13 @@ def extract_page_pdf_gui(root) -> None:
             logger.warning("Extracting pages failed - No output folder selected.")
             return
 
-        def task():
-            return extract_pdf_page(file_path, page_range_input, output_dir)
+        def task(progress_window: ProgressBar):
+            password_callback = make_gui_password_callback(
+                progress_window=progress_window
+            )
+            return extract_pdf_page(
+                file_path, page_range_input, output_dir, password_callback
+            )
 
         def on_done(result):
             if result.success:
