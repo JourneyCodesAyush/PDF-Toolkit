@@ -7,7 +7,7 @@ This script imports and invokes the main CLI handler, serving as the
 executable entry point when running the application from the command line.
 """
 
-from cli.cli_entry import main
+from cli.__main__ import main
 
 if __name__ == "__main__":
     main()
