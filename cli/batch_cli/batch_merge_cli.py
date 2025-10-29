@@ -2,6 +2,7 @@
 
 import argparse
 
+from cli.common_commands import ask_password_cli
 from core.batch.batch_merge import batch_merge_pdfs
 from core.result import Result
 
@@ -57,9 +58,18 @@ def run_batch_merge(args: argparse.Namespace) -> None:
         input_dir_path=args.directory,
         new_name=args.newname,
         output_dir=args.outputdirectory,
+        ask_password_callback=ask_password_cli,
     )
 
     if result.success:
-        print(f"{result.message}")
+        print(result.message)
+        data = result.data or {}
+        if data.get("skipped_encrypted_files"):
+            print("Skipped encrypted PDFs:", ", ".join(data["skipped_encrypted_files"]))
+        if data.get("wrong_password_files"):
+            print("PDFs with wrong passwords:", ", ".join(data["wrong_password_files"]))
+        if data.get("invalid_files"):
+            print("Invalid PDFs:", ", ".join(data["invalid_files"]))
+
     else:
         print(f"{result.message}")

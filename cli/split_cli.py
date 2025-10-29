@@ -2,6 +2,7 @@
 
 import argparse
 
+from cli.common_commands import ask_password_cli
 from core.pdf_splitter import split_pdf
 from core.result import Result
 
@@ -62,8 +63,17 @@ def run_split(args: argparse.Namespace) -> None:
         file_path=args.file,
         page_range_input=args.range,
         output_dir=args.output,
+        ask_password_callback=ask_password_cli,
     )
     if result.success:
-        print(f"Pages extracted from {args.file} and saved to {args.output}")
+        print(result.message)
+        data = result.data or {}
+        if data.get("skipped_encrypted_files"):
+            print("Skipped encrypted PDFs:", ", ".join(data["skipped_encrypted_files"]))
+        if data.get("wrong_password_files"):
+            print("PDFs with wrong passwords:", ", ".join(data["wrong_password_files"]))
+        if data.get("invalid_files"):
+            print("Invalid PDFs:", ", ".join(data["invalid_files"]))
+
     else:
         print(f"{result.message}")

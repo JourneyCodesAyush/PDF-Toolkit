@@ -1,10 +1,11 @@
 # Batch Split CLI
 
 import argparse
-
 from pathlib import Path
-from core.result import Result
+
+from cli.common_commands import ask_password_cli
 from core.batch.batch_split import batch_split_pdf
+from core.result import Result
 
 
 def add_batch_split_arguments(parser: argparse.ArgumentParser):
@@ -51,9 +52,20 @@ def run_batch_split(args: argparse.Namespace):
     """
 
     output_directory = args.outputdirectory or str(Path(args.file).parent)
-    result: Result = batch_split_pdf(file_path=args.file, output_dir=output_directory)
+    result: Result = batch_split_pdf(
+        file_path=args.file,
+        output_dir=output_directory,
+        ask_password_callback=ask_password_cli,
+    )
     if result.success:
-        print(f"{result.message}")
+        print(result.message)
+        data = result.data or {}
+        if data.get("skipped_encrypted_files"):
+            print("Skipped encrypted PDFs:", ", ".join(data["skipped_encrypted_files"]))
+        if data.get("wrong_password_files"):
+            print("PDFs with wrong passwords:", ", ".join(data["wrong_password_files"]))
+        if data.get("invalid_files"):
+            print("Invalid PDFs:", ", ".join(data["invalid_files"]))
 
     else:
         print(f"Split failed: {result.message}")

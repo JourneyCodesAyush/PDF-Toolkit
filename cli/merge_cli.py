@@ -2,6 +2,7 @@
 
 import argparse
 
+from cli.common_commands import ask_password_cli
 from core.pdf_merge import merge_pdf
 from core.result import Result
 
@@ -44,8 +45,20 @@ def run_merge(args: argparse.Namespace) -> None:
         None
     """
 
-    result: Result = merge_pdf(input_file_path=args.files, output_file_path=args.output)
+    result: Result = merge_pdf(
+        input_file_path=args.files,
+        output_file_path=args.output,
+        ask_password_callback=ask_password_cli,
+    )
     if result.success:
-        print(f"{args.files} merged and saved to {args.output}")
+        print(result.message)
+        data = result.data or {}
+        if data.get("skipped_encrypted_files"):
+            print("Skipped encrypted PDFs:", ", ".join(data["skipped_encrypted_files"]))
+        if data.get("wrong_password_files"):
+            print("PDFs with wrong passwords:", ", ".join(data["wrong_password_files"]))
+        if data.get("invalid_files"):
+            print("Invalid PDFs:", ", ".join(data["invalid_files"]))
+
     else:
         print(f"{result.message}")
