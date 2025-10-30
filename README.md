@@ -18,6 +18,7 @@
 - [📄 PDF Toolkit](#-pdf-toolkit)
   - [📚 Table of Contents](#-table-of-contents)
   - [📦 Latest Version](#-latest-version)
+    - [✨ What's New in v1.3.0:](#-whats-new-in-v130)
     - [✨ What's New in v1.2.0:](#-whats-new-in-v120)
   - [🚀 Features](#-features)
   - [🛠 Installation](#-installation)
@@ -49,9 +50,19 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 ## 📦 Latest Version
 
 **Version:** [v1.2.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v1.2.0)
+
 **Release Date:** October 24, 2025
+
 **Status:** Stable
+
 **Download:** [PDF-Toolkit.v1.2.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v1.2.0/PDF-Toolkit.v1.2.0.zip)
+
+### ✨ What's New in v1.3.0:
+
+- 🖥️ CLI refactor: moved entry point to `cli/__main__.py` for standard Python packaging.
+- 🔀 CLI now uses subcommands (`merge`, `split`, `rename`, `batch_merge`, `batch_rename`, `batch_split`) instead of flags.
+- 🛡️ Improved handling for encrypted PDFs: CLI can now process encrypted PDFs with password prompts (`--skip-all` option remains available).
+- 📝 Updated CLI usage examples in documentation to reflect subcommand syntax.
 
 ### ✨ What's New in v1.2.0:
 
@@ -70,6 +81,7 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 - 🏷️ **Batch Processing** – Perform batch operations like merging all PDFs in a folder into one (with optional move), rename PDFs of entire folder at once, or split a PDF into multiple single-paged PDFs at once.
 - 🖥️ **Command-Line Interface (CLI)** – Automate PDF operations like merge, rename, and split via terminal commands. Ideal for power users and scripting.
 - 🗝️ **Encrypted PDFs Support** – When encountering an encrypted PDF, the app will prompt you for the password rather than failing silently.
+- </> **CLI (v1.3.0)**: Refactored with subcommands and improved encrypted PDF support.
 - 🎯 **User-friendly interface** – No learning curve, just click and go.
 - ⚡ **Lightweight & fast** – Minimal dependencies and blazing performance.
 - 💻 **Cross-platform** – Built with Python & Tkinter; runs on Windows and (with small tweaks) on macOS/Linux too.
@@ -166,26 +178,32 @@ After cloning the repo and installing dependencies, you can run:
 
 ```bash
 python main_cli.py --help
+or
+python -m cli --help
 ```
 
 This will show available commands such as:
 
-- `--merge`
-- `--rename`
-- `--split`
-- `--batch-merge`
-- `--batch-rename`
-- `--batch-split`
-- `--version`
+- `merge`
+- `rename`
+- `split`
+- `batch_merge`
+- `batch_rename`
+- `batch_split`
+- `--version` or `-v`
+- `--skip-all`
 
 Example:
 
+_Recommended_
+
 ```bash
-python main_cli.py --merge --input file1.pdf file2.pdf --output merged.pdf
+python -m cli merge --input file1.pdf file2.pdf --output merged.pdf
 ```
 
-> ⚠️ **Note:** Encrypted PDFs are currently only supported via the GUI.
-> The CLI will not prompt for passwords and may fail on encrypted files.
+> Tip: You can still run `python main_cli.py ...` but using `python -m cli` is preferred for standard Python packaging.
+
+> 🛡️ **Note:** Encrypted PDFs are now supported in the CLI. The app will prompt for a password if needed. You can still use `--skip-all` to bypass encrypted files.
 
 > **_Note_**: CLI is intended for users comfortable with command-line tools and requires cloning the repository and installing dependencies. The GUI remains the recommended interface for typical users.
 
@@ -406,3 +424,4 @@ Special thanks to ChatGPT (OpenAI) for helping with coding, documentation, and g
 - Writing effective, structured documentation like this README
 - Added `.github/` folder containing issue and pull request templates to streamline project contributions
 - Added `main.spec` for PyInstaller to facilitate building standalone executables
+- CLI now fully supports encrypted PDFs with password prompts

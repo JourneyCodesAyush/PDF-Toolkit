@@ -6,6 +6,17 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v1.3.0] - 2025-10-30
+
+### Added / Changed
+
+- 🖥️ CLI refactor: moved entry point to `cli/__main__.py` for standard Python packaging.
+- 🔀 CLI now uses subcommands (`merge`, `split`, `rename`, `batch_merge`, `batch_rename`, `batch_split`) instead of flags.
+- 🛡️ Improved handling for encrypted PDFs: CLI can now process encrypted PDFs with password prompts (`--skip-all` option remains available).
+- 📝 Updated CLI usage examples in documentation to reflect subcommand syntax.
+
+---
+
 ## [v1.2.0] – 2025-10-24
 
 ### ✨ Added
