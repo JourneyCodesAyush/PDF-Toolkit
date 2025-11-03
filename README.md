@@ -18,6 +18,7 @@
 - [📄 PDF Toolkit](#-pdf-toolkit)
   - [📚 Table of Contents](#-table-of-contents)
   - [📦 Latest Version](#-latest-version)
+    - [✨ What's New in v1.3.1:](#-whats-new-in-v131)
     - [✨ What's New in v1.3.0:](#-whats-new-in-v130)
     - [✨ What's New in v1.2.0:](#-whats-new-in-v120)
   - [🚀 Features](#-features)
@@ -56,6 +57,10 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 **Status:** Stable
 
 **Download:** [PDF-Toolkit.v1.2.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v1.2.0/PDF-Toolkit.v1.2.0.zip)
+
+### ✨ What's New in v1.3.1:
+
+- 🛠️ **Fix:** Merge operation now correctly logs skipped, password-protected, and invalid PDFs in both CLI in `core/` operations.
 
 ### ✨ What's New in v1.3.0:
 

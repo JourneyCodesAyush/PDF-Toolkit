@@ -6,6 +6,16 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v1.3.1] – 2025-11-03
+
+### 🐞 Fixed
+
+- **`core`**: correctly append skipped and wrong-password PDFs in their respective lists
+  - PDFs skipped due to missing passwords or failed decryption are now added to `skipped_encrypted_files` or `wrong_password_files`.
+  - Ensures accurate reporting of all skipped or failed PDFs during merge/batch-merge operations.
+
+---
+
 ## [v1.3.0] - 2025-10-30
 
 ### Added / Changed
