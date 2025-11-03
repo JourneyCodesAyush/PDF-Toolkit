@@ -103,19 +103,24 @@ def merge_pdf(
 
                 # If user chooses to skip the file, leave it
                 if ENCRYPTED_FILE_HANDLING == EncryptedFileHandling.SKIP:
+                    skipped_encrypted_files.append(pdf)
                     continue
 
                 # Password not provided, return
                 if not password:
-                    wrong_password_files.append(pdf)
+                    skipped_encrypted_files.append(pdf)
                     continue
 
             reader = PdfReader(pdf)
 
-            if reader.is_encrypted and password is not None:
-                decrypt_result: int = reader.decrypt(password=password)
-                if decrypt_result == 0:
-                    wrong_password_files.append(pdf)
+            if reader.is_encrypted:
+                if password is not None:
+                    decrypt_result: int = reader.decrypt(password=password)
+                    if decrypt_result == 0:
+                        wrong_password_files.append(pdf)
+                        continue
+                else:
+                    skipped_encrypted_files.append(pdf)
                     continue
 
             merger.append(reader)

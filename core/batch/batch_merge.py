@@ -102,16 +102,23 @@ def batch_merge_pdfs(
 
                 # If user chooses to skip the file, leave it
                 if ENCRYPTED_FILE_HANDLING == EncryptedFileHandling.SKIP:
+                    skipped_encrypted_files.append(pdf)
                     continue
 
-                # Password not provided, return
+                # Password not provided, append in skipped_encrypted_files and continue
                 if not password:
-                    wrong_password_files.append(pdf)
+                    skipped_encrypted_files.append(pdf)
+                    continue
 
             reader = PdfReader(pdf)
             if reader.is_encrypted:
-                if not password or reader.decrypt(password=password) == 0:
-                    wrong_password_files.append(pdf)
+                if password is not None:
+                    decrypt_result: int = reader.decrypt(password=password)
+                    if decrypt_result == 0:
+                        wrong_password_files.append(pdf)
+                        continue
+                else:
+                    skipped_encrypted_files.append(pdf)
                     continue
 
             merger.append(reader)
