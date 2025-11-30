@@ -1,6 +1,9 @@
 # 📄 PDF Toolkit
 
 <!-- Badges generated using https://shields.io -->
+<p align="center">
+  <img src="https://img.shields.io/badge/status-inactive-708090?style=for-the-badge&logo=&logoColor=white" alt="Inactive">
+</p>
 
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/JourneyCodesAyush/pdf-toolkit?display_name=tag&sort=semver)
