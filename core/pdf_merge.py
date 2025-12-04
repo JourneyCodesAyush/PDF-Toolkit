@@ -63,6 +63,13 @@ def merge_pdf(
             message="Output file path cannot be same as any input file.",
         )
 
+    for file in input_file_path:
+        if not os.path.exists(file):
+            return Result(
+                success=False,
+                title="Non existent PDF",
+                message=f"Input file {file} does not exist.",
+            )
     if os.path.exists(output_file_path):
         return Result(
             success=False, title="Duplicate file", message="Location already exists."
@@ -124,6 +131,13 @@ def merge_pdf(
                     continue
 
             merger.append(reader)
+        if len(merger.pages) == 0:  # No pages added
+            return Result(
+                success=False,
+                title="No valid PDFs",
+                message="No valid PDFs to merge in the directory.",
+            )
+
         merger.write(output_file_path)
 
         notes: list[str] = []
