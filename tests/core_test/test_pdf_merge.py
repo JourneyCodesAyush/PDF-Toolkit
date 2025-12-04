@@ -111,7 +111,9 @@ def test_merge_same_pdf(multiple_pdfs, save_pdf_dir):
 
 def test_merge_fake_pdf_extension(save_pdf_dir):
     """
-    Skip invalid or corrupt PDF files while merging and store in Result object, while successfully merging the valid ones
+    Skip invalid or corrupt PDF files while merging and store in Result object, while successfully merging the valid ones.
+
+    Fail merge when all files are invalid ones with just a .pdf extension.
     """
 
     fake_pdf = os.path.join(save_pdf_dir, "fake.pdf")
@@ -124,7 +126,7 @@ def test_merge_fake_pdf_extension(save_pdf_dir):
         ask_password_callback=None,
     )
 
-    assert result.success is True
+    assert result.success is False
 
 
 def test_merge_mixed_valid_invalid(valid_invalid_pdfs, save_pdf_dir):
