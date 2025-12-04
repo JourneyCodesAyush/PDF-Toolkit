@@ -122,6 +122,14 @@ def batch_merge_pdfs(
                     continue
 
             merger.append(reader)
+
+        if len(merger.pages) == 0:  # No pages added
+            return Result(
+                success=False,
+                title="No valid PDFs",
+                message="No valid PDFs to merge in the directory.",
+            )
+
         merger.write(output_file_path)
 
         notes: list[str] = []
