@@ -9,16 +9,21 @@ def test_merge(multiple_pdfs, save_pdf_dir):
     result = merge_pdf(
         input_file_path=multiple_pdfs,
         output_file_path=os.path.join(save_pdf_dir, "sample.pdf"),
+        ask_password_callback=None,
     )
     assert result.success is True
 
 
 def test_merge_corrupt_pdf(corrupt_file, save_pdf_dir):
-    """Fail merge with corrupt PDF files."""
+    """
+    If all are invalid, fail merge operation.
+    Successfully merge valid PDF files while storing the name of the invalid ones in Result object.
+    """
 
     result = merge_pdf(
         input_file_path=corrupt_file,
         output_file_path=os.path.join(save_pdf_dir, "sample.pdf"),
+        ask_password_callback=None,
     )
     assert result.success is False
 
@@ -29,6 +34,7 @@ def test_merge_nonexistent_file(save_pdf_dir):
     result = merge_pdf(
         input_file_path=["non_existent"],
         output_file_path=os.path.join(save_pdf_dir, "sample.pdf"),
+        ask_password_callback=None,
     )
     assert result.success is False
 
@@ -39,16 +45,21 @@ def test_merge_no_new_name(multiple_pdfs, save_pdf_dir):
     result = merge_pdf(
         input_file_path=multiple_pdfs,
         output_file_path=os.path.join(save_pdf_dir, ""),
+        ask_password_callback=None,
     )
     assert result.success is False
 
 
 def test_merge_incorrect_file(save_pdf_dir):
-    """Fail merge with non-PDF input file."""
+    """
+    If input PDFs are non-existent, fail merge.
+    Merge valid PDFs and store the names of invalid ones in Result object.
+    """
 
     result = merge_pdf(
         input_file_path=["wrong_file.txt"],
         output_file_path=os.path.join(save_pdf_dir, "sample.pdf"),
+        ask_password_callback=None,
     )
     assert result.success is False
 
@@ -62,7 +73,11 @@ def test_merge_file_exists(multiple_pdfs, save_pdf_dir):
     with open(exists_pdf_path, "w") as f:
         f.write("")
 
-    result = merge_pdf(input_file_path=multiple_pdfs, output_file_path=exists_pdf_path)
+    result = merge_pdf(
+        input_file_path=multiple_pdfs,
+        output_file_path=exists_pdf_path,
+        ask_password_callback=None,
+    )
     assert result.success is False
 
 
@@ -75,6 +90,7 @@ def test_merge_long_name(multiple_pdfs, save_pdf_dir):
             save_pdf_dir,
             "something_long_name_is_suggested_hence_I_am_writing_this_sentence_that_holds_no_meaning_of_its_own_yet_its_not_meaningless",
         ),
+        ask_password_callback=None,
     )
     assert result.success is True
 
@@ -85,12 +101,18 @@ def test_merge_same_pdf(multiple_pdfs, save_pdf_dir):
     exists_pdf = multiple_pdfs[0]
     exists_pdf_path = os.path.join(save_pdf_dir, exists_pdf)
 
-    result = merge_pdf(input_file_path=multiple_pdfs, output_file_path=exists_pdf_path)
+    result = merge_pdf(
+        input_file_path=multiple_pdfs,
+        output_file_path=exists_pdf_path,
+        ask_password_callback=None,
+    )
     assert result.success is False
 
 
 def test_merge_fake_pdf_extension(save_pdf_dir):
-    """Fail merge with a fake pdf file (fake .pdf extension)."""
+    """
+    Skip invalid or corrupt PDF files while merging and store in Result object, while successfully merging the valid ones
+    """
 
     fake_pdf = os.path.join(save_pdf_dir, "fake.pdf")
     with open(fake_pdf, "w") as f:
@@ -99,20 +121,24 @@ def test_merge_fake_pdf_extension(save_pdf_dir):
     result = merge_pdf(
         input_file_path=[fake_pdf],
         output_file_path=os.path.join(save_pdf_dir, "somename"),
+        ask_password_callback=None,
     )
 
-    assert result.success is False
+    assert result.success is True
 
 
 def test_merge_mixed_valid_invalid(valid_invalid_pdfs, save_pdf_dir):
-    """Fail merge with a mix of valid and corrupt PDFs."""
+    """
+    Skip invalid PDFs and successfully merge valid ones from a mix of valid and corrupt PDFs.
+    """
 
     result = merge_pdf(
         input_file_path=valid_invalid_pdfs,
         output_file_path=os.path.join(save_pdf_dir, "merged.pdf"),
+        ask_password_callback=None,
     )
 
-    assert result.success is False
+    assert result.success is True
 
 
 def test_merge_no_pdf(save_pdf_dir):
@@ -121,6 +147,7 @@ def test_merge_no_pdf(save_pdf_dir):
     result = merge_pdf(
         input_file_path=[],
         output_file_path=os.path.join(save_pdf_dir, "somesample.pdf"),
+        ask_password_callback=None,
     )
 
     assert result.success is False
