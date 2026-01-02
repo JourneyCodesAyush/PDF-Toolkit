@@ -1,4 +1,4 @@
-# 📄 Changelog
+# Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -8,7 +8,7 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [v1.3.1] – 2025-11-03
 
-### 🐞 Fixed
+### Fixed
 
 - **`core`**: correctly append skipped and wrong-password PDFs in their respective lists
   - PDFs skipped due to missing passwords or failed decryption are now added to `skipped_encrypted_files` or `wrong_password_files`.
@@ -20,30 +20,30 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Added / Changed
 
-- 🖥️ CLI refactor: moved entry point to `cli/__main__.py` for standard Python packaging.
-- 🔀 CLI now uses subcommands (`merge`, `split`, `rename`, `batch_merge`, `batch_rename`, `batch_split`) instead of flags.
-- 🛡️ Improved handling for encrypted PDFs: CLI can now process encrypted PDFs with password prompts (`--skip-all` option remains available).
-- 📝 Updated CLI usage examples in documentation to reflect subcommand syntax.
+- CLI refactor: moved entry point to `cli/__main__.py` for standard Python packaging.
+- CLI now uses subcommands (`merge`, `split`, `rename`, `batch_merge`, `batch_rename`, `batch_split`) instead of flags.
+- Improved handling for encrypted PDFs: CLI can now process encrypted PDFs with password prompts (`--skip-all` option remains available).
+- Updated CLI usage examples in documentation to reflect subcommand syntax.
 
 ---
 
 ## [v1.2.0] – 2025-10-24
 
-### ✨ Added
+### Added
 
-- 🛡️ GUI prompt for encrypted PDFs: operations now ask for password instead of stopping abruptly.
-- 🔗 Core modules updated to support password callbacks for encrypted PDFs.
-- ⚡ Root window is automatically maximized.
+- GUI prompt for encrypted PDFs: operations now ask for password instead of stopping abruptly.
+- Core modules updated to support password callbacks for encrypted PDFs.
+- Root window is automatically maximized.
 
 ---
 
 ## [v1.1.0] – 2025-09-27
 
-### ✨ Added
+### Added
 
-- 🚀 Added CLI support for automation geeks.
-- 🎉 Celebrated 200+ commits milestone.
-- 📄 Improved docstrings for better code documentation.
+- Added CLI support for automation geeks.
+- Celebrated 200+ commits milestone.
+- Improved docstrings for better code documentation.
 
 ---
 
@@ -56,7 +56,7 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ---
 
-### ✨ Added
+### Added
 
 - **CustomTkinter UI Overhaul**:
   - Switched from vanilla Tkinter to [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter), offering a modern, native-feeling UI experience.
@@ -74,7 +74,7 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ---
 
-### 🐞 Fixed
+### Fixed
 
 - `bugfix(gui/main-window)`: Fixed critical issue where images (icons) would not load correctly in the standalone executable by using `get_absolute_path()` for asset resolution.
 
@@ -82,18 +82,18 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.9.0] – 2025-08-28
 
-### ✨ Added
+### Added
 
 - **Persistent User Preferences**:
   - Support for saving recent file paths and user actions in `user_config/preferences.json`.
   - Preferences such as last used files and folders for merge, rename, and split operations are now remembered across sessions.
 
-### 🐞 Fixed
+# Fixed
 
 - Resolved `RecursionError` caused by missing `preferences.json` on first-time use.
 - Improved error logging and handling for corrupted or missing preferences files.
 
-### 🧱 Improved
+### Improved
 
 - Correct handling of `user_config` and `logs` directories in both source and PyInstaller builds.
 - Enhanced path resolution using `get_persistent_path()`, improving cross-platform compatibility and stability.
@@ -102,11 +102,11 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.8.0] – 2025-08-23
 
-### ✨ Added
+### Added
 
 - Migrated serious error logging from `logs/error.log` to `logs/error.ndjson` using structured JSON lines format, improving both machine parsing and human readability while maintaining existing error capture and user-friendly messaging.
 
-### 🐞 Fixed
+### Fixed
 
 - `core/utils.py`: Use `getattr()` to safely access `_MEIPASS` in `get_absolute_path()` — prevents errors during PyInstaller execution
 
@@ -114,13 +114,13 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.7.0] – 2025-08-15
 
-### ✨ Added
+### Added
 
 - New **Extract** module to extract custom page ranges from PDFs (e.g., `5-7`)
 - Unit tests covering the Extract module to ensure correctness and robustness
 - Updated GUI to include Extract functionality with user-friendly page range input
 
-### 🧪 Testing
+### Testing
 
 - Added tests specifically for Extract module in `tests/core_test/test_pdf_extract.py`
 
@@ -128,13 +128,13 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.6.0] – 2025-07-27
 
-### ✨ Added
+### Added
 
 - `tests/` directory with unit tests for all core operations:
   - `tests/conftest.py`: Contains shared fixtures for all tests
   - `tests/core_test/`: Includes test files corresponding to modules in `core/`
   - `tests/core_test/batch_test/`: Includes test files for modules in `core/batch/`
-- 🧪 Initial test suite covering:
+- Initial test suite covering:
   - Core modules: merge, split, rename
   - Batch modules: batch-merge, batch-split, batch-rename
 
@@ -142,11 +142,11 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.5.0] – 2025-07-26
 
-### 🛡️ Improved
+### Improved
 
 - Added stricter validation in **batch rename** to prevent input errors and handle the output location where the files would be saved
 
-### 🐞 Fixed
+### Fixed
 
 - **core/rename**: Add validation for empty file name
 - **core/merge**: Prevent overwriting an existing file, add output path validations, and avoid self-merge scenarios
@@ -157,7 +157,7 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.4.1] – 2025-07-05
 
-### 🐞 Fixed
+### Fixed
 
 - Replace `.ico` icon with `.png` to improve compatibility with Linux desktop environments
 
@@ -165,7 +165,7 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.4.0] – 2025-07-03
 
-### ✨ Added
+### Added
 
 - **Progress bar and threading support for long-running operations**:
   - Introduced a reusable `ProgressBar` modal window in `gui/common_ui.py`
@@ -173,13 +173,13 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
   - Keeps GUI responsive during operations like merge, split, rename (batch and single)
   - Safe GUI lock using `grab_set()` and `WM_DELETE_WINDOW` override
 
-### 🔧 Changed
+### Changed
 
 - All long-running operations now execute in background threads
 - Main UI remains interactive during PDF processing tasks
 - Enhanced error resilience and encapsulation of shared UI behaviors
 
-### 🐞 Fixed
+### Fixed
 
 - Fixed UI freeze when performing large PDF operations in batch mode
 - Minor alignment and modality bugs in batch dialogs
@@ -188,7 +188,7 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.3.0] – 2025-06-27
 
-### ✨ Added
+### Added
 
 - Batch processing support for PDFs:
   - Batch merge, rename, and split operations implemented in `core/batch/` and `gui/batch/`
@@ -200,7 +200,7 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.2.1] – 2025-06-18
 
-### ✨ Added
+### Added
 
 - Separate logging for **user-facing messages** and **developer-focused error logs**
 - Improved error handling with clearer separation between user feedback and internal logging
@@ -212,7 +212,7 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.2.0] – 2025-06-13
 
-### ✨ Added
+### Added
 
 - **Advanced PDF validation** before merge, split, and rename operations:
   - Verifies `.pdf` extension
@@ -220,7 +220,7 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
   - Detects encrypted (password-protected) PDFs
 - New function `validate_pdf_file(path)` in `core/utils.py`
 
-### 🔧 Changed
+### Changed
 
 - Added PDF validation checks inside `core/` functions
 - Improved separation of concerns:
@@ -231,7 +231,7 @@ This version includes a complete UI overhaul, improved cross-platform compatibil
 
 ## [v0.1.0] – 2025-06-11
 
-### ✨ Added
+### Added
 
 - Initial version of the PDF tool
 - Core functionality:
