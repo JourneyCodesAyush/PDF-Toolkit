@@ -11,10 +11,10 @@ import logging
 import os
 
 from config.json_formatter import JsonFormatter
-from core.utils import get_persistent_path
+from core.utils import get_app_data_dir
 
 # LOG_FILE_PATH = get_absolute_path("../logs/user_activity.log")
-LOG_DIR = get_persistent_path("logs")
+LOG_DIR = get_app_data_dir() / "logs"
 
 # Ensure the logs directory exists
 os.makedirs(LOG_DIR, exist_ok=True)

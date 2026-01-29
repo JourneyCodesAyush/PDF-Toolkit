@@ -7,9 +7,9 @@ Manages persistent user preferences stored in a JSON file within user configurat
 import json
 from pathlib import Path
 
-from core.utils import get_persistent_path
+from core.utils import get_app_data_dir, get_persistent_path
 
-PREFER_DIR = Path(get_persistent_path("user_config"))
+PREFER_DIR = Path(get_app_data_dir() / "user_config")
 
 PREFER_DIR.mkdir(parents=True, exist_ok=True)
 
