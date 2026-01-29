@@ -1,10 +1,71 @@
 # Shared utilities
 
 import os
+import platform
 import sys
 from enum import Enum
+from pathlib import Path
 
 from PyPDF2 import PdfReader
+
+
+def _get_windows_data():
+    """
+    Returns the base directory for user-local application data on Windows.
+
+    Uses the LOCALAPPDATA environment variable.
+
+    Raises:
+        ValueError: If LOCALAPPDATA is not set.
+    """
+    value = os.getenv("LOCALAPPDATA")
+    if not value:
+        raise ValueError("LOCALAPPDATA is not set")
+    return Path(value)
+
+
+def _get_macos_data():
+    """
+    Returns the base directory for user-local application data on macOS.
+
+    Typically: ~/Library/Application Support
+    """
+    return Path.home() / "Library" / "Application Support"
+
+
+def _get_linux_data():
+    """
+    Returns the base directory for user-local application data on Linux/BSD.
+
+    Uses $XDG_DATA_HOME if set, otherwise falls back to ~/.local/share
+    """
+    xdg = os.getenv("XDG_DATA_HOME")
+    if xdg:
+        return Path(xdg)
+    else:
+        return Path.home() / ".local" / "share"
+
+
+def get_app_data_dir() -> Path:
+    """
+    Returns the PDF Toolkit root directory for storing user data.
+
+    Cross-platform paths:
+    - Windows: %LOCALAPPDATA%\\.pdf-toolkit
+    - macOS: ~/Library/Application Support/.pdf-toolkit
+    - Linux/BSD: $XDG_DATA_HOME/pdf-toolkit or ~/.local/share/pdf-toolkit
+
+    Returns:
+        Path: Path to PDF Toolkit app data directory
+    """
+    if platform.system() == "Windows":
+        PDF_TOOLKIT_DIR = _get_windows_data() / ".pdf-toolkit"
+    elif platform.system() == "Darwin":
+        PDF_TOOLKIT_DIR = _get_macos_data() / ".pdf-toolkit"
+    else:
+        PDF_TOOLKIT_DIR = _get_linux_data() / ".pdf-toolkit"
+
+    return PDF_TOOLKIT_DIR
 
 
 def get_absolute_path(relative_path: str = "") -> str:
