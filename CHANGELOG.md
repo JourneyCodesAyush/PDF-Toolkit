@@ -6,6 +6,19 @@ This changelog follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## [v1.4.0] – 2026-01-29
+
+### Changed / Refactored
+
+- Updated storage location for logs and configuration to use cross-platform user data directories:
+  - Windows: `%LOCALAPPDATA%\.pdf-toolkit`
+  - macOS: `~/Library/Application Support/.pdf-toolkit`
+  - Linux/BSD: `$XDG_DATA_HOME/pdf-toolkit` or `~/.local/share/pdf-toolkit`
+- Updated `LOG_DIR` and `PREFER_DIR` to use `get_app_data_dir()` from `core/utils.py`.
+- Ensures all user data is stored in user-space without requiring admin rights.
+
+---
+
 ## [v1.3.1] – 2025-11-03
 
 ### Fixed

@@ -35,6 +35,7 @@
     - [✅ How to Run Tests](#-how-to-run-tests)
   - [🧬 Test Coverage](#-test-coverage)
   - [📜 Logging \& Error Handling](#-logging--error-handling)
+    - [📂 Data Storage / App Data Location](#-data-storage--app-data-location)
   - [🧪 Screenshots](#-screenshots)
   - [🤝 Contributing](#-contributing)
   - [📝 License](#-license)
@@ -323,7 +324,20 @@ Working towards expanding test coverage. Contributions welcome!
 
 ## 📜 Logging & Error Handling
 
-The app is equipped with built-in logging for user actions and robust error handling. It logs user operations and captures unexpected issues to avoid crashes — helping both developers and users stay informed.
+The app is equipped with built-in logging for user actions and robust error handling. It logs user operations and captures unexpected issues to avoid crashes - helping both developers and users stay informed.
+
+### 📂 Data Storage / App Data Location
+
+PDF Toolkit now stores logs and user preferences in **user-local directories** instead of project directories. This ensures the app works without admin rights and keeps your system directories clean.
+
+- **Windows:** `%LOCALAPPDATA%\.pdf-toolkit`
+- **macOS:** `~/Library/Application Support/.pdf-toolkit`
+- **Linux/BSD:** `$XDG_DATA_HOME/pdf-toolkit` or `~/.local/share/pdf-toolkit`
+
+Inside this folder, you will find:
+
+- `logs/` - All user activity and error logs.
+- `user_config/` - JSON files storing persistent user preferences.
 
 ---
 
@@ -340,7 +354,7 @@ The app is equipped with built-in logging for user actions and robust error hand
 
 Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before submitting pull requests.
 
-Feel free to fork the repo, create a new branch, and send in a pull request! Bug fixes, new features, UI tweaks — it’s all welcome.
+Feel free to fork the repo, create a new branch, and send in a pull request! Bug fixes, new features, UI tweaks - it’s all welcome.
 
 ---
 
