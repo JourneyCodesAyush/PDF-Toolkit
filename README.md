@@ -5,7 +5,6 @@
   <img src="https://img.shields.io/badge/status-low%20activity-FFA500?style=for-the-badge&logo=&logoColor=white" alt="Low Activity">
 </p>
 
-
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/JourneyCodesAyush/pdf-toolkit?display_name=tag&sort=semver)
 ![Status](https://img.shields.io/badge/status-stable-green)
@@ -22,9 +21,9 @@
 - [📄 PDF Toolkit](#-pdf-toolkit)
   - [📚 Table of Contents](#-table-of-contents)
   - [📦 Latest Version](#-latest-version)
+    - [✨ What's New in v1.4.0:](#-whats-new-in-v140)
     - [✨ What's New in v1.3.1:](#-whats-new-in-v131)
     - [✨ What's New in v1.3.0:](#-whats-new-in-v130)
-    - [✨ What's New in v1.2.0:](#-whats-new-in-v120)
   - [🚀 Features](#-features)
   - [🛠 Installation](#-installation)
   - [▶️ Usage](#️-usage)
@@ -55,13 +54,20 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 
 ## 📦 Latest Version
 
-**Version:** [v1.2.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v1.2.0)
+**Version:** [v1.4.0](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/tag/v1.4.0)
 
-**Release Date:** October 24, 2025
+**Release Date:** January 29, 2026
 
 **Status:** Stable
 
-**Download:** [PDF-Toolkit.v1.2.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v1.2.0/PDF-Toolkit.v1.2.0.zip)
+**Download:** [PDF-Toolkit.v1.4.0.zip](https://github.com/JourneyCodesAyush/PDF-Toolkit/releases/download/v1.4.0/PDF-Toolkit.v1.4.0.zip)
+
+### ✨ What's New in v1.4.0:
+
+- Updated storage location for logs and configuration to use cross-platform user data directories:
+  - Windows: `%LOCALAPPDATA%\.pdf-toolkit`
+  - macOS: `~/Library/Application Support/.pdf-toolkit`
+  - Linux: `$XDG_DATA_HOME/pdf-toolkit` or `~/.local/share/pdf-toolkit`.
 
 ### ✨ What's New in v1.3.1:
 
@@ -73,12 +79,6 @@ Welcome to **PDF Toolkit** – a clean and simple desktop app built to help you 
 - 🔀 CLI now uses subcommands (`merge`, `split`, `rename`, `batch_merge`, `batch_rename`, `batch_split`) instead of flags.
 - 🛡️ Improved handling for encrypted PDFs: CLI can now process encrypted PDFs with password prompts (`--skip-all` option remains available).
 - 📝 Updated CLI usage examples in documentation to reflect subcommand syntax.
-
-### ✨ What's New in v1.2.0:
-
-- 🛡️ Added GUI prompt for encrypted PDFs: operations now ask for password instead of stopping abruptly.
-- 🔗 Updated core modules to support password callbacks for encrypted PDFs.
-- ⚡ Minor improvements and bug fixes.
 
 ---
 
